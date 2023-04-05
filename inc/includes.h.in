@@ -16,3 +16,4 @@
 #include "utils/vk_swapchain_utils.h"
 #include "utils/vk_command_X_utils.h"
 #include "utils/vk_render_X_utils.h"
+#include "utils/vk_shader_utils.h"

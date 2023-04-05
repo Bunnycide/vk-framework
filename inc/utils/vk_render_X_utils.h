@@ -12,10 +12,15 @@ VkFormat H_findSupportedFormat(VkPhysicalDevice& ,
 
 VkFormat H_findDepthFormat(VkPhysicalDevice&);
 
+
+
 void H_createRenderPass(VkDevice&,
                         VkFormat,
                         VkFormat,
                         VkRenderPass&);
+
+void H_createPipelineLayout(VkDevice&,
+                            VkPipelineLayout& );
 
 void H_createRenderPipeline();
 

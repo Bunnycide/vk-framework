@@ -97,6 +97,11 @@ bool FrameWork::LoadLightStyle(LightData *, const char *lightData) {
 void FrameWork::cleanup() {
     H_deleteRenderWindow();
 
+    // Destroy gfx pipeline
+    vkDestroyPipelineLayout(vulkanInstance.device,
+                            vulkanRender.pipelineLayout,
+                            nullptr);
+
     // Destroy render pass
     vkDestroyRenderPass(vulkanInstance.device,
                         vulkanRender.renderPass,
@@ -160,4 +165,5 @@ void FrameWork::setupRenderPass() {
                        vulkanSwapChain.surfaceFormat,
                        depthFormat,
                        vulkanRender.renderPass);
+    H_createPipelineLayout(vulkanInstance.device, vulkanRender.pipelineLayout);
 }

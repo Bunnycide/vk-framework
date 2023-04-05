@@ -61,6 +61,7 @@ struct VulkanSwapChain{
 };
 
 struct VulkanRender{
-    VkRenderPass    renderPass;
     VkPipeline      gfxPipeline;
+    VkRenderPass    renderPass;
+    VkPipelineLayout pipelineLayout;
 };
