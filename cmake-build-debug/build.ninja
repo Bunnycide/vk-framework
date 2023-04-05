@@ -155,6 +155,20 @@ build CMakeFiles/vk_framework.dir/src/utils/vk_swapchain_utils.cpp.o: CXX_COMPIL
   OBJECT_DIR = CMakeFiles/vk_framework.dir
   OBJECT_FILE_DIR = CMakeFiles/vk_framework.dir/src/utils
 
+build CMakeFiles/vk_framework.dir/src/utils/vk_command_X_utils.cpp.o: CXX_COMPILER__vk_framework_Debug /home/jae/CLionProjects/vk-framework/src/utils/vk_command_X_utils.cpp || cmake_object_order_depends_target_vk_framework
+  DEP_FILE = CMakeFiles/vk_framework.dir/src/utils/vk_command_X_utils.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I/home/jae/CLionProjects/vk-framework/inc -I/home/jae/CLionProjects/vk-framework/VK_LOADER_DIR -I/home/jae/CLionProjects/vk-framework/inc/Log -I/home/jae/CLionProjects/vk-framework/third-party/glfw-3.3.8/include
+  OBJECT_DIR = CMakeFiles/vk_framework.dir
+  OBJECT_FILE_DIR = CMakeFiles/vk_framework.dir/src/utils
+
+build CMakeFiles/vk_framework.dir/src/utils/vk_render_X_utils.h.cpp.o: CXX_COMPILER__vk_framework_Debug /home/jae/CLionProjects/vk-framework/src/utils/vk_render_X_utils.h.cpp || cmake_object_order_depends_target_vk_framework
+  DEP_FILE = CMakeFiles/vk_framework.dir/src/utils/vk_render_X_utils.h.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I/home/jae/CLionProjects/vk-framework/inc -I/home/jae/CLionProjects/vk-framework/VK_LOADER_DIR -I/home/jae/CLionProjects/vk-framework/inc/Log -I/home/jae/CLionProjects/vk-framework/third-party/glfw-3.3.8/include
+  OBJECT_DIR = CMakeFiles/vk_framework.dir
+  OBJECT_FILE_DIR = CMakeFiles/vk_framework.dir/src/utils
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target vk_framework
@@ -163,7 +177,7 @@ build CMakeFiles/vk_framework.dir/src/utils/vk_swapchain_utils.cpp.o: CXX_COMPIL
 #############################################
 # Link the static library libvk_framework.a
 
-build libvk_framework.a: CXX_STATIC_LIBRARY_LINKER__vk_framework_Debug CMakeFiles/vk_framework.dir/src/vk_framework.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_instance_and_device_utils.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_layer_and_extension_utils.cpp.o CMakeFiles/vk_framework.dir/src/platform/Linux/vk_render_surface.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_swapchain_utils.cpp.o || liblog.a libvk_loader.a third-party/glfw-3.3.8/src/libglfw3.a
+build libvk_framework.a: CXX_STATIC_LIBRARY_LINKER__vk_framework_Debug CMakeFiles/vk_framework.dir/src/vk_framework.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_instance_and_device_utils.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_layer_and_extension_utils.cpp.o CMakeFiles/vk_framework.dir/src/platform/Linux/vk_render_surface.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_swapchain_utils.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_command_X_utils.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_render_X_utils.h.cpp.o || liblog.a libvk_loader.a third-party/glfw-3.3.8/src/libglfw3.a
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles/vk_framework.dir
   POST_BUILD = :

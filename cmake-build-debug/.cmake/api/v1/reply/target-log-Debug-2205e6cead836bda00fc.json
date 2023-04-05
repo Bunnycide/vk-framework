@@ -89,7 +89,9 @@
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				1
+				1,
+				2,
+				3
 			]
 		}
 	],
@@ -104,6 +106,16 @@
 		{
 			"backtrace" : 1,
 			"path" : "inc/utils/vk_swapchain_utils.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "inc/utils/vk_command_X_utils.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "inc/utils/vk_render_X_utils.h",
 			"sourceGroupIndex" : 1
 		}
 	],

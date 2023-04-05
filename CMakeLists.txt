@@ -3,7 +3,7 @@ project(vk_framework)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(LOG_SRC ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp inc/utils/vk_swapchain_utils.h)
+set(LOG_SRC ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp inc/utils/vk_swapchain_utils.h inc/utils/vk_command_X_utils.h inc/utils/vk_render_X_utils.h)
 
 # Include Directories
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/inc)
@@ -34,7 +34,9 @@ target_link_libraries(vk_loader PUBLIC log)
 add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_instance_and_device_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_layer_and_extension_utils.cpp
-                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/vk_render_surface.cpp src/utils/vk_swapchain_utils.cpp)
+                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/vk_render_surface.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/vk_swapchain_utils.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/vk_command_X_utils.cpp src/utils/vk_render_X_utils.cpp)
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 

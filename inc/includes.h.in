@@ -12,3 +12,4 @@
 #include "utils/vk_layer_and_extension_utils.h"
 #include "utils/platform/${CMAKE_HOST_SYSTEM_NAME}/vk_render_surface.h"
 #include "utils/vk_swapchain_utils.h"
+#include "utils/vk_command_X_utils.h"
