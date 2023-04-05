@@ -2,6 +2,7 @@
 #include <cassert>
 #include <vector>
 #include <set>
+#include <array>
 #include "Log/Log.h"
 #include "../vk_loader/inc/vk_loader.h"
 #include "vk_framework_enums.h"
@@ -13,3 +14,4 @@
 #include "utils/platform/Linux/vk_render_surface.h"
 #include "utils/vk_swapchain_utils.h"
 #include "utils/vk_command_X_utils.h"
+#include "utils/vk_render_X_utils.h"

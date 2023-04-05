@@ -193,6 +193,4 @@ void H_createSwapChain(VkPhysicalDevice& physicalDevice,
     swapChainCreateInfo.oldSwapchain = nullptr;
 
     VK_CHECK_RESULT(vkCreateSwapchainKHR(logicalDevice, &swapChainCreateInfo, nullptr, &swapchain))
-
-    uint32_t swapChainImageCount();
 }

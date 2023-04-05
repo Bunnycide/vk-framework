@@ -16,6 +16,10 @@ private:
     ContextType contextType;
     VulkanInstance vulkanInstance;
     VulkanSwapChain vulkanSwapChain;
+    VulkanRender vulkanRender;
+
+    void setupSwapChain();
+    void setupRenderPass();
 
 public:
     explicit FrameWork(ContextType);

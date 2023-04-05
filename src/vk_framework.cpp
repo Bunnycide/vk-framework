@@ -73,26 +73,11 @@ bool FrameWork::InitRenderEngine() {
         return false;
     }
 
-    H_createSwapChain(vulkanInstance.physicalDevice,
-                      vulkanInstance.device,
-                      vulkanSwapChain.surface,
-                      800,
-                      600,
-                      vulkanInstance.queueInfos,
-                      vulkanSwapChain.swapchain);
+    //// Setup swap-chain stuff
+    setupSwapChain();
 
-    H_getSwapChainImages(vulkanInstance.device,
-                         vulkanSwapChain.swapchain,
-                         vulkanSwapChain.swapChainImages);
-
-    VkSurfaceFormatKHR surfaceFormat = H_findPresentSurfaceImageFormat(vulkanInstance.physicalDevice, vulkanSwapChain.surface);
-    vulkanSwapChain.colorSpace = surfaceFormat.colorSpace;
-    vulkanSwapChain.surfaceFormat = surfaceFormat.format;
-
-    H_createSwapChainImageViews(vulkanInstance.device,
-                                surfaceFormat,
-                                vulkanSwapChain.swapChainImages,
-                                vulkanSwapChain.imageViews);
+    //// setup renderpass and gfx pipeline
+    setupRenderPass();
 
     return true;
 }
@@ -111,6 +96,12 @@ bool FrameWork::LoadLightStyle(LightData *, const char *lightData) {
 
 void FrameWork::cleanup() {
     H_deleteRenderWindow();
+
+    // Destroy render pass
+    vkDestroyRenderPass(vulkanInstance.device,
+                        vulkanRender.renderPass,
+                        nullptr);
+
     // Destroy Image Views
     for(auto & imageView : vulkanSwapChain.imageViews){
         vkDestroyImageView(vulkanInstance.device, imageView, nullptr);
@@ -138,4 +129,35 @@ void FrameWork::mainLoop() {
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+}
+
+void FrameWork::setupSwapChain() {
+    H_createSwapChain(vulkanInstance.physicalDevice,
+                      vulkanInstance.device,
+                      vulkanSwapChain.surface,
+                      800,
+                      600,
+                      vulkanInstance.queueInfos,
+                      vulkanSwapChain.swapchain);
+
+    H_getSwapChainImages(vulkanInstance.device,
+                         vulkanSwapChain.swapchain,
+                         vulkanSwapChain.swapChainImages);
+
+    VkSurfaceFormatKHR surfaceFormat = H_findPresentSurfaceImageFormat(vulkanInstance.physicalDevice, vulkanSwapChain.surface);
+    vulkanSwapChain.colorSpace = surfaceFormat.colorSpace;
+    vulkanSwapChain.surfaceFormat = surfaceFormat.format;
+
+    H_createSwapChainImageViews(vulkanInstance.device,
+                                surfaceFormat,
+                                vulkanSwapChain.swapChainImages,
+                                vulkanSwapChain.imageViews);
+}
+
+void FrameWork::setupRenderPass() {
+    VkFormat depthFormat = H_findDepthFormat(vulkanInstance.physicalDevice);
+    H_createRenderPass(vulkanInstance.device,
+                       vulkanSwapChain.surfaceFormat,
+                       depthFormat,
+                       vulkanRender.renderPass);
 }

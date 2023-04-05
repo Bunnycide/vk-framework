@@ -59,3 +59,8 @@ struct VulkanSwapChain{
     std::vector<VkImageView> imageViews;
     std::vector<VkFramebuffer> frameBuffers;
 };
+
+struct VulkanRender{
+    VkRenderPass    renderPass;
+    VkPipeline      gfxPipeline;
+};
