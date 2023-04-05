@@ -2,7 +2,9 @@
 #include <cassert>
 #include <vector>
 #include <set>
+#include <array>
 #include "Log/Log.h"
+#include "../../third-party/shaderc/include/shaderc/shaderc.hpp"
 #include "../vk_loader/inc/vk_loader.h"
 #include "vk_framework_enums.h"
 #include "vk_framework_structs.h"
@@ -13,3 +15,4 @@
 #include "utils/platform/${CMAKE_HOST_SYSTEM_NAME}/vk_render_surface.h"
 #include "utils/vk_swapchain_utils.h"
 #include "utils/vk_command_X_utils.h"
+#include "utils/vk_render_X_utils.h"

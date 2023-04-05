@@ -97,3 +97,7 @@ void H_createRenderPass(VkDevice& logicalDevice,
 
     VK_CHECK_RESULT(vkCreateRenderPass(logicalDevice, &renderPassCreateInfo, nullptr, &pRenderPass))
 }
+
+void H_createRenderPipeline(){
+//    vkCreatePipelineLayout
+}

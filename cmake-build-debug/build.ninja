@@ -209,9 +209,9 @@ build CMakeFiles/main.dir/main.cpp.o: CXX_COMPILER__main_Debug /home/jae/CLionPr
 #############################################
 # Link the executable main
 
-build main: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/main.cpp.o | libvk_framework.a libvk_loader.a liblog.a third-party/glfw-3.3.8/src/libglfw3.a /usr/lib/librt.a /usr/lib/libm.so /usr/lib/libX11.so || liblog.a libvk_framework.a libvk_loader.a third-party/glfw-3.3.8/src/libglfw3.a
+build main: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/main.cpp.o | libvk_framework.a libvk_loader.a liblog.a third-party/glfw-3.3.8/src/libglfw3.a /usr/lib/librt.a /usr/lib/libm.so /usr/lib/libX11.so /home/jae/CLionProjects/vk-framework/third-party/shaderc/lib/libshaderc.a || liblog.a libvk_framework.a libvk_loader.a third-party/glfw-3.3.8/src/libglfw3.a
   FLAGS = -g
-  LINK_LIBRARIES = libvk_framework.a  libvk_loader.a  liblog.a  third-party/glfw-3.3.8/src/libglfw3.a  /usr/lib/librt.a  -lm  -ldl  /usr/lib/libX11.so
+  LINK_LIBRARIES = libvk_framework.a  libvk_loader.a  liblog.a  third-party/glfw-3.3.8/src/libglfw3.a  /usr/lib/librt.a  -lm  -ldl  /usr/lib/libX11.so  /home/jae/CLionProjects/vk-framework/third-party/shaderc/lib/libshaderc.a
   OBJECT_DIR = CMakeFiles/main.dir
   POST_BUILD = :
   PRE_LINK = :

@@ -17,4 +17,6 @@ void H_createRenderPass(VkDevice&,
                         VkFormat,
                         VkRenderPass&);
 
+void H_createRenderPipeline();
+
 #endif //VK_FRAMEWORK_VK_RENDER_X_UTILS_H

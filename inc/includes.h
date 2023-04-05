@@ -4,6 +4,7 @@
 #include <set>
 #include <array>
 #include "Log/Log.h"
+#include "../../third-party/shaderc/include/shaderc/shaderc.hpp"
 #include "../vk_loader/inc/vk_loader.h"
 #include "vk_framework_enums.h"
 #include "vk_framework_structs.h"

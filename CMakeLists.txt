@@ -15,6 +15,11 @@ set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third-party)
 configure_file(/home/jae/CLionProjects/vk-framework/inc/includes.h.in
                 /home/jae/CLionProjects/vk-framework/inc/includes.h)
 
+# add shaderc lib
+add_library(shaderc STATIC IMPORTED)
+set_target_properties(shaderc PROPERTIES IMPORTED_LOCATION
+                        ${THIRD_PARTY_DIR}/shaderc/lib/libshaderc.a)
+
 # compile glfw
 add_subdirectory(${THIRD_PARTY_DIR}/glfw-3.3.8)
 
@@ -41,7 +46,7 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 
-target_link_libraries(vk_framework PUBLIC vk_loader glfw)
+target_link_libraries(vk_framework PUBLIC vk_loader glfw shaderc)
 
 # main
 add_executable(main main.cpp)
