@@ -1,5 +1,0 @@
-/home/jae/Programs/clion-2022.3.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/jae/Programs/clion-2022.3.1/bin/ninja/linux/ninja -G Ninja -S /home/jae/CLionProjects/vk-framework -B /home/jae/CLionProjects/vk-framework/cmake-build-debug
--- Using X11 for window creation
--- Configuring done
--- Generating done
--- Build files have been written to: /home/jae/CLionProjects/vk-framework/cmake-build-debug
