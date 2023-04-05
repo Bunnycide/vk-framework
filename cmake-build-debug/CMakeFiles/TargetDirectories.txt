@@ -1,0 +1,12 @@
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/CMakeFiles/log.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/CMakeFiles/vk_loader.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/CMakeFiles/vk_framework.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/CMakeFiles/main.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/third-party/glfw-3.3.8/CMakeFiles/edit_cache.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/third-party/glfw-3.3.8/CMakeFiles/rebuild_cache.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/third-party/glfw-3.3.8/src/CMakeFiles/edit_cache.dir
+/home/jae/CLionProjects/vk-framework/cmake-build-debug/third-party/glfw-3.3.8/src/CMakeFiles/rebuild_cache.dir

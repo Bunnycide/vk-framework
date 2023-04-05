@@ -1,0 +1,2 @@
+/usr/bin/ar qc libvk_framework.a CMakeFiles/vk_framework.dir/src/vk_framework.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_instance_and_device_utils.cpp.o CMakeFiles/vk_framework.dir/src/utils/vk_layer_and_extension_utils.cpp.o CMakeFiles/vk_framework.dir/src/platform/Linux/vk_render_surface.cpp.o
+/usr/bin/ranlib libvk_framework.a
