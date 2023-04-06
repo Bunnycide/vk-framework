@@ -1,0 +1,2 @@
+#define ASSET_FOLDER "${ASSET_FOLDER_DIR}"
+#include "utils/platform/${CMAKE_HOST_SYSTEM_NAME}/vk_render_surface.h"

@@ -13,3 +13,8 @@ void Shader::setValue() {
 void Shader::compileShader() {
 
 }
+
+const char *Shader::getShaderString(const char *filePath) {
+    std::ifstream shaderFile;
+    return nullptr;
+}

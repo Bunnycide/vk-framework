@@ -1,2 +1,3 @@
 cmake-build-debug/
 third-party/shaderc/lib/
+inc/config.h

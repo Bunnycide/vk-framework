@@ -10,6 +10,8 @@ class Shader{
     ~Shader() = default;
 private:
     std::vector<VkShaderModule> shaderModules;
+
+    const char* getShaderString(const char* filePath);
 public:
     void compileShader();
     void setValue();

@@ -10,10 +10,11 @@ set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/inc)
 set(VK_LOADER_DIR ${CMAKE_SOURCE_DIR}/vk_loader/inc)
 set(LOG_INC_DIR ${CMAKE_SOURCE_DIR}/inc/Log)
 set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third-party)
+set(ASSET_FOLDER_DIR ${CMAKE_SOURCE_DIR}/assets)
 
 # platform specific source loading
-configure_file(/home/jae/CLionProjects/vk-framework/inc/includes.h.in
-                /home/jae/CLionProjects/vk-framework/inc/includes.h)
+configure_file(/home/jae/CLionProjects/vk-framework/inc/config.h.in
+                /home/jae/CLionProjects/vk-framework/inc/config.h)
 
 # add shaderc lib
 add_library(shaderc STATIC IMPORTED)
