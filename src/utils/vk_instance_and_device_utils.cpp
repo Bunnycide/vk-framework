@@ -67,17 +67,17 @@ void H_createLogicalDevice(VkDevice& device, VkPhysicalDevice& physicalDevice, s
     for(int i = 0; i < queueFamilyProperties.size(); i++){
 
         if( queueFamilyProperties[i].queueFlags & VK_QUEUE_GRAPHICS_BIT) {
-            queueInfos[GRAPHICS] = fillQueueInfo(queueFamilyProperties[i], i);
+            queueInfos[IDX_GRAPHICS] = fillQueueInfo(queueFamilyProperties[i], i);
             continue;
         }
 
         if( queueFamilyProperties[i].queueFlags & VK_QUEUE_COMPUTE_BIT) {
-            queueInfos[COMPUTE] = fillQueueInfo(queueFamilyProperties[i], i);
+            queueInfos[IDX_COMPUTE] = fillQueueInfo(queueFamilyProperties[i], i);
             continue;
         }
 
         if( queueFamilyProperties[i].queueFlags & VK_QUEUE_TRANSFER_BIT ) {
-            queueInfos[TRANSFER] = fillQueueInfo(queueFamilyProperties[i], i);
+            queueInfos[IDX_TRANSFER] = fillQueueInfo(queueFamilyProperties[i], i);
             continue;
         }
     }

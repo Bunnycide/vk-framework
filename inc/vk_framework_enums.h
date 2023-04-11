@@ -7,7 +7,16 @@ enum RenderStyle{
 };
 
 enum Index{
-    GRAPHICS    = 0,
-    COMPUTE     = 1,
-    TRANSFER    = 2
+    IDX_GRAPHICS    = 0,
+    IDX_COMPUTE     = 1,
+    IDX_TRANSFER    = 2
+};
+
+enum ShaderTypes{
+    ShaderType_VERTEX      ,
+    ShaderType_FRAGMENT    ,
+    ShaderType_TESS        ,
+    ShaderType_GEOM        ,
+    ShaderType_RT          ,
+    ShaderType_COMPUTE
 };

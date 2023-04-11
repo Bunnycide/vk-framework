@@ -160,10 +160,16 @@ void FrameWork::setupSwapChain() {
 }
 
 void FrameWork::setupRenderPass() {
+
     VkFormat depthFormat = H_findDepthFormat(vulkanInstance.physicalDevice);
     H_createRenderPass(vulkanInstance.device,
                        vulkanSwapChain.surfaceFormat,
                        depthFormat,
                        vulkanRender.renderPass);
     H_createPipelineLayout(vulkanInstance.device, vulkanRender.pipelineLayout);
+    H_createRenderPipeline(vulkanInstance.device,
+                           800.0f, 600.0f,
+                           vulkanRender.pipelineLayout,
+                           vulkanRender.renderPass,
+                           vulkanRender.gfxPipeline);
 }

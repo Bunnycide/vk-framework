@@ -22,6 +22,10 @@ void H_createRenderPass(VkDevice&,
 void H_createPipelineLayout(VkDevice&,
                             VkPipelineLayout& );
 
-void H_createRenderPipeline();
+void H_createRenderPipeline(VkDevice&,
+                            float, float,
+                            VkPipelineLayout&,
+                            VkRenderPass&,
+                            VkPipeline& );
 
 #endif //VK_FRAMEWORK_VK_RENDER_X_UTILS_H

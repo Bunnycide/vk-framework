@@ -26,14 +26,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da0bf79b-d9b5-4cbc-876c-db286723f1e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inc/config.h.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/shaders/frag.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/shaders/vert.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/asset_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/platform/Linux/asset_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/includes.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/includes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/includes.h.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/utils/vk_shader_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_shader_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/vk_framework_enums.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework_enums.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/vk_instance_and_device_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_instance_and_device_utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/vk_shader_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_shader_utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vk_framework.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/vk_framework.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +50,13 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="GLSL Shader" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -129,7 +142,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680736087106</updated>
-      <workItem from="1680736088862" duration="1724000" />
+      <workItem from="1680736088862" duration="18261000" />
     </task>
     <servers />
   </component>

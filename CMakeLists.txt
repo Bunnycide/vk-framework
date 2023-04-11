@@ -3,7 +3,7 @@ project(vk_framework)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(LOG_SRC ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp inc/utils/vk_swapchain_utils.h inc/utils/vk_command_X_utils.h inc/utils/vk_render_X_utils.h inc/utils/vk_shader_utils.h)
+set(LOG_SRC ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp)
 
 # Include Directories
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/inc)
@@ -19,7 +19,7 @@ configure_file(/home/jae/CLionProjects/vk-framework/inc/config.h.in
 # add shaderc lib
 add_library(shaderc STATIC IMPORTED)
 set_target_properties(shaderc PROPERTIES IMPORTED_LOCATION
-                        ${THIRD_PARTY_DIR}/shaderc/lib/libshaderc.a)
+        ${THIRD_PARTY_DIR}/shaderc/lib/libshaderc_combined.a)
 
 # compile glfw
 add_subdirectory(${THIRD_PARTY_DIR}/glfw-3.3.8)
@@ -44,7 +44,8 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_swapchain_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_command_X_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_render_X_utils.cpp
-                         ${CMAKE_SOURCE_DIR}/src/utils/vk_shader_utils.cpp)
+                         ${CMAKE_SOURCE_DIR}/src/utils/vk_shader_utils.cpp
+                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/asset_utils.cpp)
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 

@@ -117,6 +117,10 @@ void H_createRenderPipeline(VkDevice& logicalDevice,
                             VkPipelineLayout& pipelineLayout,
                             VkRenderPass& renderPass,
                             VkPipeline& pipeline){
+    Shader shader;
+    shader.compileShader(logicalDevice,
+                         "/shaders/vert.glsl",
+                         "/shaders/frag.glsl");
 
     VkViewport viewport {
         .x = 0,
