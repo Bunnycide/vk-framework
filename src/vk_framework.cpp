@@ -46,24 +46,30 @@ bool FrameWork::InitRenderEngine() {
         return false;
     }
 
+    //// Get physical device memory properties for later
+    vkGetPhysicalDeviceMemoryProperties(vulkanInstance.physicalDevice,
+                                        &vulkanInstance.physicalDeviceMemoryProperties);
+
     //// Vulkan create a logical device and load device level funcs
-    H_createLogicalDevice(vulkanInstance.device,
+    H_createLogicalDevice(vulkanInstance.logicalDevice,
                           vulkanInstance.physicalDevice,
                           vulkanInstance.queueInfos);
 
-    if(!loadDeviceVulkanFunctions(vulkanInstance.device)){
+    if(!loadDeviceVulkanFunctions(vulkanInstance.logicalDevice)){
         Log::error("Failed to load device level vulkan funcs");
         return false;
     }
 
     std::vector<const char*> deviceExtensions(Consts::DEVICE_EXTENSIONS, Consts::DEVICE_EXTENSIONS+Consts::NUM_DEVICE_EXTENSIONS);
-    if(! loadDeviceVulkanFunctionsFromExtensions(vulkanInstance.device, deviceExtensions)){
+    if(! loadDeviceVulkanFunctionsFromExtensions(vulkanInstance.logicalDevice, deviceExtensions)){
         Log::error("Failed to load device level vulkan funcs from extensions");
         return false;
     }
 
     //// Get device queues
-    H_retriveDeviceQueues(vulkanInstance.device, vulkanInstance.queueInfos);
+    H_retriveDeviceQueues(vulkanInstance.logicalDevice, vulkanInstance.queueInfos);
+
+    setupCommandPool();
 
     //// Create a render surface
     if(! H_createRenderSurface(vulkanInstance.instance,
@@ -96,30 +102,39 @@ bool FrameWork::LoadLightStyle(LightData *, const char *lightData) {
 void FrameWork::cleanup() {
     H_deleteRenderWindow();
 
+    // Destroy command pool
+    H_freeCommandPool(vulkanInstance.logicalDevice,
+                      gfxCommandPoolInfo.commandPool);
+    H_freeCommandPool(vulkanInstance.logicalDevice,
+                      trxCommandPoolInfo.commandPool);
+
+    // Destroy depth resources
+    H_freeBuffer(vulkanInstance.logicalDevice, vulkanRender.depthResource);
+
     // Destroy gfx pipeline
-    vkDestroyPipelineLayout(vulkanInstance.device,
+    vkDestroyPipelineLayout(vulkanInstance.logicalDevice,
                             vulkanRender.pipelineLayout,
                             nullptr);
 
     // Destroy render pass
-    vkDestroyRenderPass(vulkanInstance.device,
+    vkDestroyRenderPass(vulkanInstance.logicalDevice,
                         vulkanRender.renderPass,
                         nullptr);
 
     // Destroy Image Views
     for(auto & imageView : vulkanSwapChain.imageViews){
-        vkDestroyImageView(vulkanInstance.device, imageView, nullptr);
+        vkDestroyImageView(vulkanInstance.logicalDevice, imageView, nullptr);
     }
 
     // Destroy swap-chain
-    vkDestroySwapchainKHR(vulkanInstance.device, vulkanSwapChain.swapchain, nullptr);
+    vkDestroySwapchainKHR(vulkanInstance.logicalDevice, vulkanSwapChain.swapchain, nullptr);
 
     // Destroy surface
     vkDestroySurfaceKHR(vulkanInstance.instance, vulkanSwapChain.surface, nullptr);
 
     // Destroy logical device
-    vkDestroyDevice(vulkanInstance.device, nullptr);
-    vulkanInstance.device = nullptr;
+    vkDestroyDevice(vulkanInstance.logicalDevice, nullptr);
+    vulkanInstance.logicalDevice = nullptr;
 
     // Destroy instance
     vkDestroyInstance(vulkanInstance.instance, nullptr);
@@ -135,16 +150,40 @@ void FrameWork::mainLoop() {
     }
 }
 
+void FrameWork::setupCommandPool(){
+    //// Create command pool for gfx operations
+    gfxCommandPoolInfo.queueFamilyIndex = vulkanInstance.queueInfos[IDX_GRAPHICS].queueFamilyIndex;
+
+    H_createCommandPool(vulkanInstance.logicalDevice,
+                        gfxCommandPoolInfo);
+
+    //// Create command pool for transfer operations
+    trxCommandPoolInfo.queueFamilyIndex = vulkanInstance.queueInfos[IDX_TRANSFER].queueFamilyIndex;
+
+    H_createCommandPool(vulkanInstance.logicalDevice,
+                        trxCommandPoolInfo);
+
+    //// Allocate command buffers for gfx
+    H_allocateCommandBuffers(vulkanInstance.logicalDevice,
+                             2,
+                             gfxCommandPoolInfo);
+
+    //// Allocate command buffer for transfer
+    H_allocateCommandBuffers(vulkanInstance.logicalDevice,
+                             2,
+                             trxCommandPoolInfo);
+}
+
 void FrameWork::setupSwapChain() {
     H_createSwapChain(vulkanInstance.physicalDevice,
-                      vulkanInstance.device,
+                      vulkanInstance.logicalDevice,
                       vulkanSwapChain.surface,
                       800,
                       600,
                       vulkanInstance.queueInfos,
                       vulkanSwapChain.swapchain);
 
-    H_getSwapChainImages(vulkanInstance.device,
+    H_getSwapChainImages(vulkanInstance.logicalDevice,
                          vulkanSwapChain.swapchain,
                          vulkanSwapChain.swapChainImages);
 
@@ -152,7 +191,7 @@ void FrameWork::setupSwapChain() {
     vulkanSwapChain.colorSpace = surfaceFormat.colorSpace;
     vulkanSwapChain.surfaceFormat = surfaceFormat.format;
 
-    H_createSwapChainImageViews(vulkanInstance.device,
+    H_createSwapChainImageViews(vulkanInstance.logicalDevice,
                                 surfaceFormat,
                                 vulkanSwapChain.swapChainImages,
                                 vulkanSwapChain.imageViews);
@@ -161,14 +200,17 @@ void FrameWork::setupSwapChain() {
 void FrameWork::setupRenderPass() {
 
     VkFormat depthFormat = H_findDepthFormat(vulkanInstance.physicalDevice);
-    H_createRenderPass(vulkanInstance.device,
+    H_createRenderPass(vulkanInstance.logicalDevice,
                        vulkanSwapChain.surfaceFormat,
                        depthFormat,
                        vulkanRender.renderPass);
-    H_createPipelineLayout(vulkanInstance.device, vulkanRender.pipelineLayout);
-    H_createRenderPipeline(vulkanInstance.device,
-                           800.0f, 600.0f,
-                           vulkanRender.pipelineLayout,
-                           vulkanRender.renderPass,
-                           vulkanRender.gfxPipeline);
+    H_createPipelineLayout(vulkanInstance.logicalDevice, vulkanRender.pipelineLayout);
+    H_createDepthResource(vulkanInstance.physicalDevice,
+                          vulkanInstance.logicalDevice,
+                          &vulkanRender.depthResource);
+//    H_createRenderPipeline(vulkanInstance.device,
+//                           800.0f, 600.0f,
+//                           vulkanRender.pipelineLayout,
+//                           vulkanRender.renderPass,
+//                           vulkanRender.gfxPipeline);
 }

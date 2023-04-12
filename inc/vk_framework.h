@@ -18,8 +18,12 @@ private:
     VulkanSwapChain vulkanSwapChain;
     VulkanRender vulkanRender;
 
+    CommandPoolInfo gfxCommandPoolInfo;
+    CommandPoolInfo trxCommandPoolInfo;
+
     void setupSwapChain();
     void setupRenderPass();
+    void setupCommandPool();
 
 public:
     explicit FrameWork(ContextType);
@@ -32,6 +36,8 @@ public:
     void mainLoop();
 
     void cleanup();
+
+
 };
 
 #endif // VK_FRAMEWORK_H

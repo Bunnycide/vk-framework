@@ -27,3 +27,5 @@
 #include "utils/resources/buffer/vk_buffer_util.h"
 #include "asset_utils.h"
 #include "config.h"
+#include "utils/sync/semaphores/vk_semaphore_utils.h"
+#include "utils/sync/fences/vk_fence_utils.h"

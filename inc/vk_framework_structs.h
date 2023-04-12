@@ -35,6 +35,22 @@ struct ContextType {
     bool GRAPHICS_AND_COMPUTE   = false;
 };
 
+struct BufferInfo{
+    VkBuffer buffer;
+    VkDeviceSize bufSz;
+    VkBufferUsageFlags usage;
+    VkDeviceMemory memoryObj;
+    VkMemoryPropertyFlagBits memoryProperties;
+};
+
+struct BufferTransition {
+    VkBuffer        buffer;
+    VkAccessFlags   currentAccess;
+    VkAccessFlags   newAccess;
+    uint32_t        currentQueueFamily;
+    uint32_t        newQueueFamily;
+};
+
 struct QueueInfo{
     std::vector<VkQueue> queues;
     uint32_t queueFamilyIndex;
@@ -42,10 +58,11 @@ struct QueueInfo{
 };
 
 struct VulkanInstance{
-    VkInstance          instance;
-    VkDevice            device;
-    VkPhysicalDevice    physicalDevice;
-    std::vector<QueueInfo> queueInfos;
+    VkInstance                          instance;
+    VkDevice                            logicalDevice;
+    VkPhysicalDevice                    physicalDevice;
+    std::vector<QueueInfo>              queueInfos;
+    VkPhysicalDeviceMemoryProperties    physicalDeviceMemoryProperties;
 };
 
 struct VulkanSwapChain{
@@ -60,8 +77,16 @@ struct VulkanSwapChain{
     std::vector<VkFramebuffer> frameBuffers;
 };
 
+struct CommandPoolInfo{
+    VkCommandPool commandPool;
+    uint32_t queueFamilyIndex;
+    std::vector<VkCommandBuffer> commandBuffers;
+};
+
 struct VulkanRender{
-    VkPipeline      gfxPipeline;
-    VkRenderPass    renderPass;
-    VkPipelineLayout pipelineLayout;
+    VkPipeline          gfxPipeline;
+    VkRenderPass        renderPass;
+    VkPipelineLayout    pipelineLayout;
+    // TODO: Please change this to an image later
+    BufferInfo          depthResource;
 };

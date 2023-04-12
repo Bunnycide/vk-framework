@@ -27,172 +27,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da0bf79b-d9b5-4cbc-876c-db286723f1e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/shaders/shader.frag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third-party/stb/stb_image.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third-party/stb/stb_loader.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third-party/vma/vk_memory_alloc.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third-party/vma/vk_memory_alloc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/sync/fences/vk_fence_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/sync/semaphores/vk_semaphore_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/vk_sync_X_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/sync/fences/vk_fence_utils.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/sync/semaphores/vk_semaphore_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/shaders/frag.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/shaders/vert.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/assets/shaders/shader.vert" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CompilerIdC/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.25.2/CompilerIdCXX/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/log.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/log.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/log.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/log.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/log.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/log.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/log.dir/src/platform/Linux/Log.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/log.dir/src/platform/Linux/Log.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/compiler_depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/compiler_depend.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/main.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/main.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/cmake_clean_target.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/compiler_depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/compiler_depend.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/src/platform/Linux/vk_render_surface.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/src/platform/Linux/vk_render_surface.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/src/utils/vk_instance_and_device_utils.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/src/utils/vk_instance_and_device_utils.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/src/utils/vk_layer_and_extension_utils.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/src/utils/vk_layer_and_extension_utils.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/src/vk_framework.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_framework.dir/src/vk_framework.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/cmake_clean_target.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/compiler_depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/compiler_depend.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/vk_loader/vk_functions.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/vk_loader/vk_functions.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/vk_loader/vk_loader.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/vk_loader.dir/vk_loader/vk_loader.cpp.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/build/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/liblog.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libvk_framework.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libvk_loader.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/context.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/context.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/egl_context.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/egl_context.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/glx_context.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/glx_context.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/init.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/init.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/input.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/input.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/linux_joystick.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/linux_joystick.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/monitor.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/monitor.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/osmesa_context.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/osmesa_context.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/posix_thread.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/posix_thread.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/posix_time.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/posix_time.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/vulkan.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/vulkan.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/window.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/window.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/x11_init.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/x11_init.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/x11_monitor.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/x11_monitor.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/x11_window.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/x11_window.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/xkb_unicode.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/xkb_unicode.c.o.d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/glfw3ConfigVersion.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/glfw3ConfigVersion.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/third-party/glfw-3.3.8/src/libglfw3.a" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/includes.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/includes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/vk_shader_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_shader_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platform/Linux/vk_render_surface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/platform/Linux/vk_render_surface.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/vk_command_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_command_X_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/vk_framework.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/vk_framework_structs.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework_structs.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/vk_command_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_command_X_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/vk_shader_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_shader_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vk_framework.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/vk_framework.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vk_enum_string_helper.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vk_icd.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vk_layer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vk_platform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vk_sdk_platform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_android.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_beta.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_core.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_directfb.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_enums.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_format_traits.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_fuchsia.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_funcs.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_ggp.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_handles.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_hash.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_ios.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_macos.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_metal.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_profiles.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_profiles.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_raii.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_screen.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_static_assertions.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_structs.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_to_string.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_vi.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_wayland.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_win32.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_xcb.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_xlib.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/third-party/vulkan/vulkan_xlib_xrandr.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vk_loader/inc/vk_functions.h" beforeDir="false" afterPath="$PROJECT_DIR$/vk_loader/inc/vk_functions.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vk_loader/inc/vk_loader.h" beforeDir="false" afterPath="$PROJECT_DIR$/vk_loader/inc/vk_loader.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,17 +85,19 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/home/jae/CLionProjects/vk-framework/src/utils",
+    "last_opened_file_path": "/home/jae/CLionProjects/vk-framework/inc/utils",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/inc/utils" />
       <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/third-party" />
     </key>
@@ -313,7 +166,7 @@
       <updated>1680736087106</updated>
       <workItem from="1680736088862" duration="18261000" />
       <workItem from="1681245502284" duration="2957000" />
-      <workItem from="1681248820984" duration="7892000" />
+      <workItem from="1681248820984" duration="20231000" />
     </task>
     <servers />
   </component>

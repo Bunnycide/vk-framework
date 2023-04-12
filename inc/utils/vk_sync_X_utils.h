@@ -1,0 +1,8 @@
+//
+// Created by jae on 12/04/23.
+//
+
+#ifndef VK_FRAMEWORK_VK_SYNC_X_UTILS_H
+#define VK_FRAMEWORK_VK_SYNC_X_UTILS_H
+
+#endif //VK_FRAMEWORK_VK_SYNC_X_UTILS_H

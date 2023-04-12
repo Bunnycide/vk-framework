@@ -20,12 +20,16 @@ void H_createRenderPass(VkDevice&,
                         VkRenderPass&);
 
 void H_createPipelineLayout(VkDevice&,
-                            VkPipelineLayout& );
+                            VkPipelineLayout&);
 
 void H_createRenderPipeline(VkDevice&,
                             float, float,
                             VkPipelineLayout&,
                             VkRenderPass&,
-                            VkPipeline& );
+                            VkPipeline&);
+
+void H_createDepthResource(VkPhysicalDevice,
+                           VkDevice,
+                           BufferInfo*);
 
 #endif //VK_FRAMEWORK_VK_RENDER_X_UTILS_H

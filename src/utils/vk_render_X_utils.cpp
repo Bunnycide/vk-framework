@@ -278,3 +278,13 @@ void H_createRenderPipeline(VkDevice& logicalDevice,
 
     shader.deleteShader(logicalDevice);
 }
+
+void H_createDepthResource(VkPhysicalDevice physicalDevice,
+                           VkDevice logicalDevice,
+                           BufferInfo* depthBuffer){
+    // TODO : Test function improve implementation to work
+    depthBuffer->usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
+    depthBuffer->bufSz = 512;
+
+    H_createBuffer(logicalDevice, *depthBuffer);
+}

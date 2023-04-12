@@ -3,8 +3,6 @@ project(vk_framework)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(LOG_SRC ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp inc/utils/resources/buffer/vk_buffer_util.h)
-
 # Include Directories
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/inc)
 set(VK_LOADER_DIR ${CMAKE_SOURCE_DIR}/vk_loader/inc)
@@ -31,7 +29,7 @@ set_target_properties(shaderc PROPERTIES IMPORTED_LOCATION
 add_subdirectory(${THIRD_PARTY_DIR}/glfw-3.3.8)
 
 # Log library
-add_library(log ${LOG_SRC})
+add_library(log ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp)
 target_include_directories(log PUBLIC ${LOG_INC_DIR})
 
 #vk loader
@@ -52,7 +50,9 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_render_X_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_shader_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/asset_utils.cpp
-                         ${CMAKE_SOURCE_DIR}/src/utils/resources/buffer/vk_buffer_util.cpp)
+                         ${CMAKE_SOURCE_DIR}/src/utils/resources/buffer/vk_buffer_util.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/sync/fences/vk_fence_utils.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/sync/semaphores/vk_semaphore_utils.cpp)
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 
