@@ -1,4 +1,4 @@
-#include "../../third-party/vulkan/vulkan.h"
+#include "vulkan/vulkan.h"
 
 namespace vk_loader{
 #define EXPORTED_VULKAN_FUNCTION( name ) extern PFN_##name name;

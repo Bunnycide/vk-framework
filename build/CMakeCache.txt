@@ -616,9 +616,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/home/jae/CLionProjects/vk-framework/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=25
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=26
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=3
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -839,10 +839,10 @@ PKG_FONTCONFIG_STATIC_CFLAGS:INTERNAL=-I/usr/include/freetype2;-I/usr/include/li
 PKG_FONTCONFIG_STATIC_CFLAGS_I:INTERNAL=
 PKG_FONTCONFIG_STATIC_CFLAGS_OTHER:INTERNAL=-pthread
 PKG_FONTCONFIG_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/freetype2;/usr/include/libpng16;/usr/include/harfbuzz;/usr/include/glib-2.0;/usr/lib/glib-2.0/include;/usr/include/sysprof-4
-PKG_FONTCONFIG_STATIC_LDFLAGS:INTERNAL=-L/usr/lib;-lfontconfig;-pthread;-lfreetype;-lbz2;-L/usr/lib;-L/usr/lib;-lz;-lpng16;-lm;-lz;-lm;-L/usr/lib;-L/usr/lib;-lz;-lharfbuzz;-pthread;-lm;-L/usr/lib;-lglib-2.0;-lm;-L/usr/lib;-lpcre2-8;-lsysprof-capture-4;-pthread;-lgraphite2;-lbrotlidec;-L/usr/lib;-lbrotlicommon;-L/usr/lib;-lexpat;-lm
-PKG_FONTCONFIG_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread;-pthread;-pthread
+PKG_FONTCONFIG_STATIC_LDFLAGS:INTERNAL=-L/usr/lib;-lfontconfig;-pthread;-lfreetype;-lbz2;-L/usr/lib;-L/usr/lib;-lz;-lpng16;-lm;-lz;-lm;-L/usr/lib;-L/usr/lib;-lz;-lharfbuzz;-pthread;-lm;-L/usr/lib;-lglib-2.0;-lm;-pthread;-L/usr/lib;-lsysprof-capture-4;-pthread;-lpcre2-8;-lgraphite2;-lbrotlidec;-L/usr/lib;-lbrotlicommon;-L/usr/lib;-lexpat;-lm
+PKG_FONTCONFIG_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread;-pthread;-pthread;-pthread
 PKG_FONTCONFIG_STATIC_LIBDIR:INTERNAL=
-PKG_FONTCONFIG_STATIC_LIBRARIES:INTERNAL=fontconfig;freetype;bz2;z;png16;m;z;m;z;harfbuzz;m;glib-2.0;m;pcre2-8;sysprof-capture-4;graphite2;brotlidec;brotlicommon;expat;m
+PKG_FONTCONFIG_STATIC_LIBRARIES:INTERNAL=fontconfig;freetype;bz2;z;png16;m;z;m;z;harfbuzz;m;glib-2.0;m;sysprof-capture-4;pcre2-8;graphite2;brotlidec;brotlicommon;expat;m
 PKG_FONTCONFIG_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib;/usr/lib;/usr/lib;/usr/lib;/usr/lib;/usr/lib;/usr/lib;/usr/lib;/usr/lib
 PKG_FONTCONFIG_STATIC_LIBS:INTERNAL=
 PKG_FONTCONFIG_STATIC_LIBS_L:INTERNAL=

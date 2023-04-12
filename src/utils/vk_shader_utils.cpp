@@ -14,19 +14,32 @@ void Shader::compileShader(VkDevice logicalDevice,
 
     std::string vertShaderSource; getShaderString(vertShaderPath, vertShaderSource);
     std::string fragShaderSource; getShaderString(fragShaderPath, fragShaderSource);
-    VkShaderModule *vertShader = nullptr, *fragShader = nullptr;
+
+    shaderModules[ShaderType_VERTEX] = *new VkShaderModule;
+    shaderModules[ShaderType_FRAGMENT] = *new VkShaderModule;
+
     VK_CHECK_RESULT(buildShaderFromSource(logicalDevice,
                                           vertShaderSource,
                                           VK_SHADER_STAGE_VERTEX_BIT,
-                                          vertShader))
+                                          &shaderModules[ShaderType_VERTEX]))
 
     VK_CHECK_RESULT(buildShaderFromSource(logicalDevice,
                                           fragShaderSource,
                                           VK_SHADER_STAGE_FRAGMENT_BIT,
-                                          fragShader))
+                                          &shaderModules[ShaderType_FRAGMENT]))
 }
 
-void Shader::getShaderString(const std::string& relativePath,
+void Shader::deleteShader(VkDevice logicalDevice){
+    for(auto const &[key, value] : shaderModules){
+        vkDestroyShaderModule(logicalDevice, value, nullptr);
+    }
+}
+
+VkShaderModule Shader::getShaderModule(ShaderTypes type){
+    return shaderModules[type];
+}
+
+void getShaderString(const std::string& relativePath,
                              std::string &shaderData) {
 
     std::string assetPath;
@@ -77,18 +90,31 @@ VkResult buildShaderFromSource(VkDevice logicalDevice,
                                std::string &shaderSource,
                                VkShaderStageFlagBits type,
                                VkShaderModule* shaderOut){
-    shaderc::Compiler compiler;
+    shaderc::Compiler       compiler;
+    shaderc::CompileOptions options;
 
-//    // Build vulkan shader module
-//    VkShaderModuleCreateInfo shaderModuleCreateInfo{
-//        .sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
-//        .pNext = nullptr,
-//        .flags = 0,
-//        .codeSize = shaderc_result_get_length(spvShader),
-//        .pCode = (const uint32_t*) shaderc_result_get_bytes(spvShader)
-//    };
-//
-//    VkResult result = vkCreateShaderModule(logicalDevice,  &shaderModuleCreateInfo, nullptr, shaderOut);
+    shaderc::SpvCompilationResult spvShader = compiler.CompileGlslToSpv(shaderSource.c_str(),
+                                                                     shaderSource.size(),
+                                                                     getShadercShaderType(type),
+                                                                     "main");
 
-    return VK_ERROR_INITIALIZATION_FAILED;
+    if(spvShader.GetCompilationStatus() !=
+    shaderc_compilation_status_success){
+        return static_cast<VkResult>(-1);
+    }
+
+    std::vector<uint32_t> compilerResult(spvShader.begin(), spvShader.end());
+
+    // Build vulkan shader module
+    VkShaderModuleCreateInfo shaderModuleCreateInfo{
+        .sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
+        .pNext = nullptr,
+        .flags = 0,
+        .codeSize = compilerResult.size() * sizeof(uint32_t),
+        .pCode = compilerResult.data()
+    };
+
+    VkResult result = vkCreateShaderModule(logicalDevice,  &shaderModuleCreateInfo, nullptr, shaderOut);
+
+    return result;
 }

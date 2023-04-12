@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/main.dir/main.cpp.o -o main  libvk_framework.a libvk_loader.a liblog.a third-party/glfw-3.3.8/src/libglfw3.a /usr/lib/librt.a -lm -ldl /usr/lib/libX11.so 

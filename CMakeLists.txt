@@ -3,7 +3,7 @@ project(vk_framework)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(LOG_SRC ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp)
+set(LOG_SRC ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp inc/utils/resources/buffer/vk_buffer_util.h)
 
 # Include Directories
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/inc)
@@ -13,8 +13,14 @@ set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third-party)
 set(ASSET_FOLDER_DIR ${CMAKE_SOURCE_DIR}/assets)
 
 # platform specific source loading
-configure_file(/home/jae/CLionProjects/vk-framework/inc/config.h.in
-                /home/jae/CLionProjects/vk-framework/inc/config.h)
+configure_file(${CMAKE_SOURCE_DIR}/inc/config.h.in
+        ${CMAKE_SOURCE_DIR}/inc/config.h)
+
+# add vma
+#add_library(vma ${THIRD_PARTY_DIR}/vma/vk_memory_alloc.cpp)
+
+# add stb lib
+add_library(stb ${THIRD_PARTY_DIR}/stb/stb_loader.cpp)
 
 # add shaderc lib
 add_library(shaderc STATIC IMPORTED)
@@ -45,11 +51,12 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_command_X_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_render_X_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_shader_utils.cpp
-                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/asset_utils.cpp)
+                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/asset_utils.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/resources/buffer/vk_buffer_util.cpp)
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 
-target_link_libraries(vk_framework PUBLIC vk_loader glfw shaderc)
+target_link_libraries(vk_framework PUBLIC vk_loader glfw shaderc stb)
 
 # main
 add_executable(main main.cpp)

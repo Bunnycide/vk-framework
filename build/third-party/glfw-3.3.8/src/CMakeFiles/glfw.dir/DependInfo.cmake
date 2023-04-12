@@ -26,8 +26,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/jae/CLionProjects/vk-framework/third-party/glfw-3.3.8/src/xkb_unicode.c" "third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/xkb_unicode.c.o" "gcc" "third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/xkb_unicode.c.o.d"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

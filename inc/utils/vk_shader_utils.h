@@ -5,6 +5,9 @@
 #ifndef VK_FRAMEWORK_VK_SHADER_UTILS_H
 #define VK_FRAMEWORK_VK_SHADER_UTILS_H
 
+static void getShaderString(const std::string&,
+                            std::string &);
+
 VkResult buildShaderFromSource(VkDevice logicalDevice,
                                std::string &shaderSource,
                                VkShaderStageFlagBits type,
@@ -12,14 +15,19 @@ VkResult buildShaderFromSource(VkDevice logicalDevice,
 
 class Shader{
 private:
-    std::map<VkShaderModule, ShaderTypes> shaderModules;
+    std::map<ShaderTypes, VkShaderModule> shaderModules;
 
-    static void getShaderString(const std::string& ,
-                                std::string &);
 public:
+    // Shader creation and deletion
     void compileShader(VkDevice,
                        const char*, const char*);
+    void deleteShader(VkDevice);
+
+    // TODO: Future use, to set values on shader object
     void setValue();
+
+    // Getters
+    VkShaderModule getShaderModule(ShaderTypes);
 
     Shader() = default;
     ~Shader() = default;

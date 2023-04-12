@@ -119,8 +119,33 @@ void H_createRenderPipeline(VkDevice& logicalDevice,
                             VkPipeline& pipeline){
     Shader shader;
     shader.compileShader(logicalDevice,
-                         "/shaders/vert.glsl",
-                         "/shaders/frag.glsl");
+                         "/shaders/shader.vert",
+                         "/shaders/shader.frag");
+
+    VkPipelineShaderStageCreateInfo vertShaderStageCreateInfo{
+/* VkStructureType                  */ .sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
+/* const void*                      */ .pNext = nullptr,
+/* VkPipelineShaderStageCreateFlags */ .flags = 0,
+/* VkShaderStageFlagBits            */ .stage = VK_SHADER_STAGE_VERTEX_BIT,
+/* VkShaderModule                   */ .module = shader.getShaderModule(ShaderType_VERTEX),
+/* const char*                      */ .pName = "main",
+/* const VkSpecializationInfo*      */ .pSpecializationInfo = nullptr,
+    };
+
+    VkPipelineShaderStageCreateInfo fragShaderStageCreateInfo{
+/* VkStructureType                  */ .sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
+/* const void*                      */ .pNext = nullptr,
+/* VkPipelineShaderStageCreateFlags */ .flags = 0,
+/* VkShaderStageFlagBits            */ .stage = VK_SHADER_STAGE_FRAGMENT_BIT,
+/* VkShaderModule                   */ .module = shader.getShaderModule(ShaderType_FRAGMENT),
+/* const char*                      */ .pName = "main",
+/* const VkSpecializationInfo*      */ .pSpecializationInfo = nullptr,
+    };
+
+    std::vector<VkPipelineShaderStageCreateInfo> shaderStages = {
+            vertShaderStageCreateInfo,
+            fragShaderStageCreateInfo
+    };
 
     VkViewport viewport {
         .x = 0,
@@ -198,18 +223,43 @@ void H_createRenderPipeline(VkDevice& logicalDevice,
     dynamicState.dynamicStateCount  = static_cast<uint32_t>(dynamicStates.size());
     dynamicState.pDynamicStates     = dynamicStates.data();
 
+    VkPipelineMultisampleStateCreateInfo multisampleStateCreateInfo{
+/* VkStructureType                       */ .sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO,
+/* const void*                           */ .pNext = nullptr,
+/* VkPipelineMultisampleStateCreateFlags */ .flags = 0,
+/* VkSampleCountFlagBits                 */ .rasterizationSamples = VK_SAMPLE_COUNT_1_BIT,
+/* VkBool32                              */ .sampleShadingEnable = VK_FALSE,
+/* VkBool32                              */ .alphaToCoverageEnable = VK_FALSE,
+/* VkBool32                              */ .alphaToOneEnable = VK_FALSE,
+    };
+
+    VkPipelineDepthStencilStateCreateInfo depthStencilStateCreateInfo
+            {VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO};
+
+    depthStencilStateCreateInfo.pNext = nullptr;
+    depthStencilStateCreateInfo.flags = 0;
+    depthStencilStateCreateInfo.depthTestEnable = VK_TRUE;
+    depthStencilStateCreateInfo.depthWriteEnable = VK_TRUE;
+    depthStencilStateCreateInfo.depthCompareOp = VK_COMPARE_OP_LESS;
+    depthStencilStateCreateInfo.depthBoundsTestEnable = VK_FALSE;
+    depthStencilStateCreateInfo.stencilTestEnable = VK_FALSE;
+//    depthStencilStateCreateInfo.front = ;
+//    depthStencilStateCreateInfo.back = ;
+//    depthStencilStateCreateInfo.minDepthBounds = ;
+//    depthStencilStateCreateInfo.maxDepthBounds = ;
+
     VkGraphicsPipelineCreateInfo graphicsPipelineCreateInfo{VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO};
     /* const void*                                    */  graphicsPipelineCreateInfo.pNext              = nullptr;
     /* VkPipelineCreateFlags                          */  graphicsPipelineCreateInfo.flags              = 0;
-    /* uint32_t                                       */  graphicsPipelineCreateInfo.stageCount         = 0;
-    /* const VkPipelineShaderStageCreateInfo*         */  graphicsPipelineCreateInfo.pStages            = nullptr;
+    /* uint32_t                                       */  graphicsPipelineCreateInfo.stageCount         = static_cast<uint32_t>(shaderStages.size());
+    /* const VkPipelineShaderStageCreateInfo*         */  graphicsPipelineCreateInfo.pStages            = shaderStages.data();
     /* const VkPipelineVertexInputStateCreateInfo*    */  graphicsPipelineCreateInfo.pVertexInputState  = nullptr;
     /* const VkPipelineInputAssemblyStateCreateInfo*  */  graphicsPipelineCreateInfo.pInputAssemblyState= nullptr;
     /* const VkPipelineTessellationStateCreateInfo*   */  graphicsPipelineCreateInfo.pTessellationState = nullptr;
     /* const VkPipelineViewportStateCreateInfo*       */  graphicsPipelineCreateInfo.pViewportState     = &viewportStateCreateInfo;
     /* const VkPipelineRasterizationStateCreateInfo*  */  graphicsPipelineCreateInfo.pRasterizationState= &rasterizationStateCreateInfo;
-    /* const VkPipelineMultisampleStateCreateInfo*    */  graphicsPipelineCreateInfo.pMultisampleState  = nullptr;
-    // TODO: Remember to create depth state
+    /* const VkPipelineMultisampleStateCreateInfo*    */  graphicsPipelineCreateInfo.pMultisampleState  = &multisampleStateCreateInfo;
+    // TODO: Remember to create depth state (later)
     /* const VkPipelineDepthStencilStateCreateInfo*   */  graphicsPipelineCreateInfo.pDepthStencilState = nullptr;
     /* const VkPipelineColorBlendStateCreateInfo*     */  graphicsPipelineCreateInfo.pColorBlendState   = &colorBlendStateCreateInfo;
     /* const VkPipelineDynamicStateCreateInfo*        */  graphicsPipelineCreateInfo.pDynamicState      = &dynamicState;
@@ -218,4 +268,13 @@ void H_createRenderPipeline(VkDevice& logicalDevice,
     /* uint32_t                                       */  graphicsPipelineCreateInfo.subpass            = 0;
     /* VkPipeline                                     */  graphicsPipelineCreateInfo.basePipelineHandle = VK_NULL_HANDLE;
     /* int32_t                                        */  graphicsPipelineCreateInfo.basePipelineIndex  = -1;
+
+    VK_CHECK_RESULT(vkCreateGraphicsPipelines(logicalDevice,
+                                              nullptr,
+                                              1,
+                                              &graphicsPipelineCreateInfo,
+                                              nullptr,
+                                              &pipeline))
+
+    shader.deleteShader(logicalDevice);
 }

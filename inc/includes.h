@@ -10,6 +10,8 @@
 #include <map>
 #include "Log/Log.h"
 #include "../../third-party/shaderc/include/shaderc/shaderc.hpp"
+#include "../../third-party/stb/stb_image.h"
+//#include "../../third-party/vma/vk_memory_alloc.h"
 #include "../vk_loader/inc/vk_loader.h"
 #include "vk_framework_enums.h"
 #include "vk_framework_structs.h"
@@ -22,5 +24,6 @@
 #include "utils/vk_command_X_utils.h"
 #include "utils/vk_render_X_utils.h"
 #include "utils/vk_shader_utils.h"
-#include "config.h"
+#include "utils/resources/buffer/vk_buffer_util.h"
 #include "asset_utils.h"
+#include "config.h"

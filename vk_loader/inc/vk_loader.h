@@ -3,7 +3,7 @@
 
 #define VK_NO_PROTOTYPES
 
-#include "../../third-party/vulkan/vulkan.h"
+#include "vulkan/vulkan.h"
 
 #if defined _WIN32
 #include <windows.h>
