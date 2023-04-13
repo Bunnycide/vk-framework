@@ -57,6 +57,11 @@ struct QueueInfo{
     uint32_t queueCount;
 };
 
+struct WaitSemaphoreInfo {
+    VkSemaphore Semaphore;
+    VkPipelineStageFlags WaitingStage;
+};
+
 struct VulkanInstance{
     VkInstance                          instance;
     VkDevice                            logicalDevice;

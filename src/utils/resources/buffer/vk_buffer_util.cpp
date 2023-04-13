@@ -64,7 +64,12 @@ void H_allocateAndBindMemoryObject(VkPhysicalDevice physicalDevice,
     VK_CHECK_RESULT(vkBindBufferMemory(logicalDevice, bufferInfo.buffer, bufferInfo.memoryObj, 0))
 }
 
-void H_setBufferMemoryBarrier(std::vector<BufferTransition> &bufferTransitions){
+
+
+void H_setBufferMemoryBarrier(std::vector<BufferTransition> &bufferTransitions,
+                              VkPipelineStageFlags generatingStages,
+                              VkPipelineStageFlags consumingStages,
+                              VkCommandBuffer commandBuffer){
     std::vector<VkBufferMemoryBarrier> buffer_memory_barriers;
 
     for(auto& bufferTransition : bufferTransitions){
@@ -80,6 +85,20 @@ void H_setBufferMemoryBarrier(std::vector<BufferTransition> &bufferTransitions){
             VK_WHOLE_SIZE
         });
     }
+
+    H_beginCommandBufferRecording(commandBuffer, VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
+
+    vkCmdPipelineBarrier(commandBuffer,
+                         generatingStages,
+                         consumingStages,
+                         0, 0,
+                         nullptr,
+                         static_cast<uint32_t>(buffer_memory_barriers.size()),
+                         &buffer_memory_barriers[0],
+                         0,
+                         nullptr);
+
+    H_endCommandBufferRecording(commandBuffer);
 }
 
 void H_freeBuffer(VkDevice logicalDevice, BufferInfo& bufferInfo){

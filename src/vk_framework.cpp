@@ -103,10 +103,10 @@ void FrameWork::cleanup() {
     H_deleteRenderWindow();
 
     // Destroy command pool
-    H_freeCommandPool(vulkanInstance.logicalDevice,
-                      gfxCommandPoolInfo.commandPool);
-    H_freeCommandPool(vulkanInstance.logicalDevice,
-                      trxCommandPoolInfo.commandPool);
+    H_destroyCommandPool(vulkanInstance.logicalDevice,
+                         gfxCommandPoolInfo.commandPool);
+    H_destroyCommandPool(vulkanInstance.logicalDevice,
+                         trxCommandPoolInfo.commandPool);
 
     // Destroy depth resources
     H_freeBuffer(vulkanInstance.logicalDevice, vulkanRender.depthResource);

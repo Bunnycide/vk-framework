@@ -27,22 +27,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da0bf79b-d9b5-4cbc-876c-db286723f1e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inc/utils/sync/fences/vk_fence_utils.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/sync/semaphores/vk_semaphore_utils.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/vk_sync_X_utils.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/sync/fences/vk_fence_utils.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/sync/semaphores/vk_semaphore_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/includes.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/includes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/sync/fences/vk_fence_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/sync/fences/vk_fence_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/sync/semaphores/vk_semaphore_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/sync/semaphores/vk_semaphore_utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/utils/vk_command_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_command_X_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/vk_framework.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/vk_framework_structs.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework_structs.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/sync/fences/vk_fence_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/sync/fences/vk_fence_utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/sync/semaphores/vk_semaphore_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/sync/semaphores/vk_semaphore_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/vk_command_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_command_X_utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vk_framework.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/vk_framework.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +160,7 @@
       <updated>1680736087106</updated>
       <workItem from="1680736088862" duration="18261000" />
       <workItem from="1681245502284" duration="2957000" />
-      <workItem from="1681248820984" duration="20231000" />
+      <workItem from="1681248820984" duration="38265000" />
     </task>
     <servers />
   </component>
