@@ -84,6 +84,13 @@ bool FrameWork::InitRenderEngine() {
     //// setup renderpass and gfx pipeline
     setupRenderPass();
 
+    //// Create frame buffers
+    H_createSwapChainFrameBuffers(vulkanInstance.logicalDevice,
+                                  vulkanRender.depthResource,
+                                  vulkanRender.renderPass,
+                                  vulkanSwapChain.swapChainImageViews,
+                                  vulkanSwapChain.swapChainFrameBuffers);
+
     return true;
 }
 
@@ -128,8 +135,13 @@ void FrameWork::cleanup() {
                         vulkanRender.renderPass,
                         nullptr);
 
+    // Destroy frame buffers
+
+    H_destroyFrameBuffers(vulkanInstance.logicalDevice,
+                          vulkanSwapChain.swapChainFrameBuffers);
+
     // Destroy Image Views
-    for(auto & imageView : vulkanSwapChain.imageViews){
+    for(auto & imageView : vulkanSwapChain.swapChainImageViews){
         vkDestroyImageView(vulkanInstance.logicalDevice, imageView, nullptr);
     }
 
@@ -201,7 +213,8 @@ void FrameWork::setupSwapChain() {
     H_createSwapChainImageViews(vulkanInstance.logicalDevice,
                                 surfaceFormat,
                                 vulkanSwapChain.swapChainImages,
-                                vulkanSwapChain.imageViews);
+                                vulkanSwapChain.swapChainImageViews);
+
 }
 
 void FrameWork::setupRenderPass() {

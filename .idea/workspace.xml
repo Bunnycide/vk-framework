@@ -29,14 +29,11 @@
   <component name="ChangeListManager">
     <list default="true" id="da0bf79b-d9b5-4cbc-876c-db286723f1e3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/includes.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/includes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/vk_descriptor_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_descriptor_util.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/vk_framework.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/vk_swapchain_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_swapchain_utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/vk_framework_structs.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework_structs.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/resources/image/vk_image_util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/resources/image/vk_image_util.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/vk_descriptor_util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_descriptor_util.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/vk_swapchain_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_swapchain_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vk_framework.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/vk_framework.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,7 +173,7 @@
       <workItem from="1681427362553" duration="153000" />
       <workItem from="1681427573485" duration="232000" />
       <workItem from="1681427894182" duration="1711000" />
-      <workItem from="1681429628581" duration="47106000" />
+      <workItem from="1681429628581" duration="48965000" />
     </task>
     <servers />
   </component>

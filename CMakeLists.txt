@@ -32,7 +32,7 @@ set_target_properties(shaderc PROPERTIES IMPORTED_LOCATION
 add_subdirectory(${THIRD_PARTY_DIR}/glfw-3.3.8)
 
 # Log library
-add_library(log ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp)
+add_library(log ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp )
 target_include_directories(log PUBLIC ${LOG_INC_DIR})
 
 #vk loader

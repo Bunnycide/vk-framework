@@ -42,8 +42,14 @@ void H_createSwapChainImageViews(VkDevice&,
                                  std::vector<VkImageView>&);
 
 /** Create swap chain image frame buffers */
-void H_createSwapChainFrameBuffers(VkDevice& ,
-                                   std::vector<VkFramebuffer>& );
+void H_createSwapChainFrameBuffers(VkDevice&,
+                                   ImageInfo&,
+                                   VkRenderPass&,
+                                   std::vector<VkImageView>&,
+                                   std::vector<VkFramebuffer>&);
+
+/** Delete Frame buffers */
+void H_destroyFrameBuffers(VkDevice, std::vector<VkFramebuffer>&);
 
 /** Retrieve swap chain images*/
 void H_getSwapChainImages(VkDevice&,

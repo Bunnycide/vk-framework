@@ -115,8 +115,8 @@ struct VulkanSwapChain{
     VkColorSpaceKHR colorSpace;
     uint32_t swapChainSize;
     std::vector<VkImage> swapChainImages;
-    std::vector<VkImageView> imageViews;
-    std::vector<VkFramebuffer> frameBuffers;
+    std::vector<VkImageView> swapChainImageViews;
+    std::vector<VkFramebuffer> swapChainFrameBuffers;
 };
 
 struct CommandPoolInfo{

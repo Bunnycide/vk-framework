@@ -95,6 +95,5 @@ void H_destroyDescriptorData(VkDevice logicalDevice,
     }
 
     vkDestroyDescriptorPool(logicalDevice, descriptorData.descriptorPool, nullptr);
-
 }
 

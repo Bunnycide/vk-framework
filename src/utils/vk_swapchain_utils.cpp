@@ -137,10 +137,44 @@ void H_createSwapChainImageViews(VkDevice& logicalDevice,
     }
 }
 
-void H_createSwapChainFrameBuffers(VkDevice& logicalDevice, std::vector<VkFramebuffer>& frameBuffer){
-    // TODO : Implement this
+void H_createSwapChainFrameBuffers(VkDevice&                    logicalDevice,
+                                   ImageInfo&                   depthResource,
+                                   VkRenderPass&                renderPass,
+                                   std::vector<VkImageView>&    imageViews,
+                                   std::vector<VkFramebuffer>&  frameBuffers){
+    frameBuffers.resize(imageViews.size());
+
+    for(int i = 0; i < frameBuffers.size(); i ++){
+        std::array<VkImageView, 2> attachments = {
+            imageViews[i],
+            depthResource.imageView
+        };
+
+        VkFramebufferCreateInfo framebufferCreateInfo {
+                /* VkStructureType          */.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO,
+                /* const void*              */.pNext = nullptr,
+                /* VkFramebufferCreateFlags */.flags = 0,
+                /* VkRenderPass             */.renderPass = renderPass,
+                /* uint32_t                 */.attachmentCount = static_cast<uint32_t>(attachments.size()),
+                /* const VkImageView*       */.pAttachments = attachments.data(),
+                /* uint32_t                 */.width = 800,
+                /* uint32_t                 */.height = 600,
+                /* uint32_t                 */.layers = 1
+        };
+
+        VK_CHECK_RESULT(vkCreateFramebuffer(logicalDevice,
+                                            &framebufferCreateInfo,
+                                            nullptr,
+                                            &frameBuffers[i]))
+    }
 }
 
+void H_destroyFrameBuffers(VkDevice logicalDevice,
+                           std::vector<VkFramebuffer>& frameBuffers){
+    for(auto& frameBuffer : frameBuffers){
+        vkDestroyFramebuffer(logicalDevice, frameBuffer, nullptr);
+    }
+}
 
 void H_getSwapChainImages(VkDevice& logicalDevice, VkSwapchainKHR& swapChain  ,std::vector<VkImage>& swapChainImages){
     uint32_t swapChainImageCount = 0;
@@ -150,7 +184,6 @@ void H_getSwapChainImages(VkDevice& logicalDevice, VkSwapchainKHR& swapChain  ,s
     swapChainImages.resize(swapChainImageCount);
     VK_CHECK_RESULT(vkGetSwapchainImagesKHR(logicalDevice, swapChain, &swapChainImageCount, swapChainImages.data()));
 }
-
 
 void H_createSwapChain(VkPhysicalDevice& physicalDevice,
                        VkDevice& logicalDevice,
