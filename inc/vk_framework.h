@@ -7,7 +7,7 @@
 	if (res != VK_SUCCESS)																				\
 	{																									\
 		Log::error("Fatal : VkResult is \" %s \" in %s at line %d", string_VkResult(res) , __FILE__, __LINE__); \
-		assert(res == VK_SUCCESS);																		\
+		std::abort();																		\
 	}																									\
 }
 
@@ -17,6 +17,9 @@ private:
     VulkanInstance vulkanInstance;
     VulkanSwapChain vulkanSwapChain;
     VulkanRender vulkanRender;
+
+    VkPipelineVertexInputStateCreateInfo vertexInputStateCreateInfo;
+    std::vector<DescriptorSetLayoutData> descriptorSetsLayoutData;
 
     CommandPoolInfo gfxCommandPoolInfo;
     CommandPoolInfo trxCommandPoolInfo;

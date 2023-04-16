@@ -4,34 +4,6 @@
 
 #include "includes.h"
 
-VkFormat H_findSupportedFormat(VkPhysicalDevice& physicalDevice,
-                               const std::vector<VkFormat>& candidates,
-                               VkImageTiling tiling,
-                               VkFormatFeatureFlags features) {
-    for(VkFormat format :candidates){
-        VkFormatProperties props;
-        vkGetPhysicalDeviceFormatProperties(physicalDevice,
-                                            format,
-                                            &props);
-
-        if (tiling == VK_IMAGE_TILING_LINEAR && (props.linearTilingFeatures & features) == features) {
-            return format;
-        } else if (tiling == VK_IMAGE_TILING_OPTIMAL && (props.optimalTilingFeatures & features) == features) {
-            return format;
-        }
-    }
-
-    return VK_FORMAT_UNDEFINED;
-}
-
-VkFormat H_findDepthFormat(VkPhysicalDevice& physicalDevice) {
-    return H_findSupportedFormat(physicalDevice,
-            {VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT},
-            VK_IMAGE_TILING_OPTIMAL,
-            VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT
-    );
-}
-
 void H_createRenderPass(VkDevice& logicalDevice,
                         VkFormat colorAttachmentFormat,
                         VkFormat depthAttachmentFormat,
@@ -99,7 +71,15 @@ void H_createRenderPass(VkDevice& logicalDevice,
 }
 
 void H_createPipelineLayout(VkDevice& logicalDevice,
-                            VkPipelineLayout& pipelineLayout){
+                            VkPipelineLayout& pipelineLayout,
+                            std::vector<VkDescriptorSetLayoutBinding> &layoutBindings){
+
+    VkDescriptorSetLayoutCreateInfo descriptorSetLayoutCreateInfo{
+        .sType          = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO,
+        .bindingCount   = static_cast<uint32_t>(layoutBindings.size()),
+        .pBindings      = layoutBindings.data()
+    };
+
     VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo{VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO};
 
     /* const void*                 */  pipelineLayoutCreateInfo.pNext                     = nullptr;
@@ -114,13 +94,20 @@ void H_createPipelineLayout(VkDevice& logicalDevice,
 
 void H_createRenderPipeline(VkDevice& logicalDevice,
                             float viewportWidth, float viewportHeight,
+                            Shader& shader,
                             VkPipelineLayout& pipelineLayout,
                             VkRenderPass& renderPass,
                             VkPipeline& pipeline){
-    Shader shader;
-    shader.compileShader(logicalDevice,
-                         "/shaders/shader.vert",
-                         "/shaders/shader.frag");
+
+    VkPipelineVertexInputStateCreateInfo vertexInputStateCreateInfo {
+            .sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO,
+            .pNext = nullptr,
+            .flags = 0,
+            .vertexBindingDescriptionCount = 1,
+            .pVertexBindingDescriptions = &shader.vertexInfo.binding_description,
+            .vertexAttributeDescriptionCount = static_cast<uint32_t>(shader.vertexInfo.attribute_descriptions.size()),
+            .pVertexAttributeDescriptions = shader.vertexInfo.attribute_descriptions.data()
+    };
 
     VkPipelineShaderStageCreateInfo vertShaderStageCreateInfo{
 /* VkStructureType                  */ .sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
@@ -248,19 +235,28 @@ void H_createRenderPipeline(VkDevice& logicalDevice,
 //    depthStencilStateCreateInfo.minDepthBounds = ;
 //    depthStencilStateCreateInfo.maxDepthBounds = ;
 
+    VkPipelineInputAssemblyStateCreateInfo pipelineInputAssemblyStateCreateInfo{
+        VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO
+    };
+
+    pipelineInputAssemblyStateCreateInfo.pNext                  = nullptr;
+    pipelineInputAssemblyStateCreateInfo.flags                  = 0;
+    pipelineInputAssemblyStateCreateInfo.topology               = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+    pipelineInputAssemblyStateCreateInfo.primitiveRestartEnable = VK_FALSE;
+
     VkGraphicsPipelineCreateInfo graphicsPipelineCreateInfo{VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO};
     /* const void*                                    */  graphicsPipelineCreateInfo.pNext              = nullptr;
     /* VkPipelineCreateFlags                          */  graphicsPipelineCreateInfo.flags              = 0;
     /* uint32_t                                       */  graphicsPipelineCreateInfo.stageCount         = static_cast<uint32_t>(shaderStages.size());
     /* const VkPipelineShaderStageCreateInfo*         */  graphicsPipelineCreateInfo.pStages            = shaderStages.data();
-    /* const VkPipelineVertexInputStateCreateInfo*    */  graphicsPipelineCreateInfo.pVertexInputState  = nullptr;
-    /* const VkPipelineInputAssemblyStateCreateInfo*  */  graphicsPipelineCreateInfo.pInputAssemblyState= nullptr;
+    /* const VkPipelineVertexInputStateCreateInfo*    */  graphicsPipelineCreateInfo.pVertexInputState  = &vertexInputStateCreateInfo;
+    /* const VkPipelineInputAssemblyStateCreateInfo*  */  graphicsPipelineCreateInfo.pInputAssemblyState= &pipelineInputAssemblyStateCreateInfo;
     /* const VkPipelineTessellationStateCreateInfo*   */  graphicsPipelineCreateInfo.pTessellationState = nullptr;
     /* const VkPipelineViewportStateCreateInfo*       */  graphicsPipelineCreateInfo.pViewportState     = &viewportStateCreateInfo;
     /* const VkPipelineRasterizationStateCreateInfo*  */  graphicsPipelineCreateInfo.pRasterizationState= &rasterizationStateCreateInfo;
     /* const VkPipelineMultisampleStateCreateInfo*    */  graphicsPipelineCreateInfo.pMultisampleState  = &multisampleStateCreateInfo;
     // TODO: Remember to create depth state (later)
-    /* const VkPipelineDepthStencilStateCreateInfo*   */  graphicsPipelineCreateInfo.pDepthStencilState = nullptr;
+    /* const VkPipelineDepthStencilStateCreateInfo*   */  graphicsPipelineCreateInfo.pDepthStencilState = &depthStencilStateCreateInfo;
     /* const VkPipelineColorBlendStateCreateInfo*     */  graphicsPipelineCreateInfo.pColorBlendState   = &colorBlendStateCreateInfo;
     /* const VkPipelineDynamicStateCreateInfo*        */  graphicsPipelineCreateInfo.pDynamicState      = &dynamicState;
     /* VkPipelineLayout                               */  graphicsPipelineCreateInfo.layout             = pipelineLayout;
@@ -277,14 +273,4 @@ void H_createRenderPipeline(VkDevice& logicalDevice,
                                               &pipeline))
 
     shader.deleteShader(logicalDevice);
-}
-
-void H_createDepthResource(VkPhysicalDevice physicalDevice,
-                           VkDevice logicalDevice,
-                           BufferInfo* depthBuffer){
-    // TODO : Test function improve implementation to work
-    depthBuffer->usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
-    depthBuffer->bufSz = 512;
-
-    H_createBuffer(logicalDevice, *depthBuffer);
 }

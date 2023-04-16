@@ -43,12 +43,43 @@ struct BufferInfo{
     VkMemoryPropertyFlagBits memoryProperties;
 };
 
+struct ImageInfo{
+    VkImage image;
+    VkImageView imageView;
+    VkDeviceSize deviceSize;
+    VkImageUsageFlags imageUsageFlags;
+    VkDeviceMemory memoryObj;
+    VkMemoryPropertyFlagBits memoryProperties;
+};
+
+struct VertexInfo {
+    VkVertexInputBindingDescription binding_description;
+    std::vector<VkVertexInputAttributeDescription> attribute_descriptions;
+};
+
+struct DescriptorSetLayoutData {
+    uint32_t set_number;
+    VkDescriptorSetLayoutCreateInfo create_info;
+    std::vector<VkDescriptorSetLayoutBinding> bindings;
+};
+
 struct BufferTransition {
     VkBuffer        buffer;
     VkAccessFlags   currentAccess;
     VkAccessFlags   newAccess;
     uint32_t        currentQueueFamily;
     uint32_t        newQueueFamily;
+};
+
+struct ImageTransition {
+    VkImage             image;
+    VkAccessFlags       currentAccess;
+    VkAccessFlags       newAccess;
+    VkImageLayout       currentLayout;
+    VkImageLayout       newLayout;
+    uint32_t            currentQueueFamily;
+    uint32_t            newQueueFamily;
+    VkImageAspectFlags  aspect;
 };
 
 struct QueueInfo{
@@ -92,6 +123,5 @@ struct VulkanRender{
     VkPipeline          gfxPipeline;
     VkRenderPass        renderPass;
     VkPipelineLayout    pipelineLayout;
-    // TODO: Please change this to an image later
-    BufferInfo          depthResource;
+    ImageInfo           depthResource;
 };

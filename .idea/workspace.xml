@@ -17,6 +17,7 @@
       <config projectName="vk_framework" targetName="vk_loader" />
       <config projectName="vk_framework" targetName="stb" />
       <config projectName="vk_framework" targetName="vk_framework" />
+      <config projectName="vk_framework" targetName="spirv_reflect" />
       <config projectName="vk_framework" targetName="update_mappings" />
     </generated>
   </component>
@@ -27,16 +28,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da0bf79b-d9b5-4cbc-876c-db286723f1e3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/inc/utils/resources/image/depth_util.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/resources/image/texture_util.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/resources/image/vk_image_util.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/spv_reflect_util.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/vk_descriptor_util.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/resources/image/depth_util.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/resources/image/texture_util.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/resources/image/vk_image_util.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/spv_reflect_util.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/vk_descriptor_util.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/third-party/spirv-reflect/spirv.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/third-party/spirv-reflect/spirv_reflect.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/third-party/spirv-reflect/spirv_reflect.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/third-party/spirv-reflect/spirv_reflect.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/includes.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/includes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/sync/fences/vk_fence_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/sync/fences/vk_fence_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/sync/semaphores/vk_semaphore_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/sync/semaphores/vk_semaphore_utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/utils/vk_command_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_command_X_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/vk_shader_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_shader_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/vk_framework.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/vk_framework_structs.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework_structs.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/sync/fences/vk_fence_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/sync/fences/vk_fence_utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/sync/semaphores/vk_semaphore_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/sync/semaphores/vk_semaphore_utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/vk_command_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_command_X_utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/vk_shader_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_shader_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vk_framework.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/vk_framework.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +78,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="OCResolveContextSettings">
+    <option name="configuration" value="0-Debug-main" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2022" />
@@ -79,12 +99,14 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "/home/jae/CLionProjects/vk-framework/inc/utils",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -100,9 +122,9 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.main">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="glfw" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vk_framework" TARGET_NAME="glfw" CONFIG_NAME="Debug">
@@ -116,6 +138,11 @@
       </method>
     </configuration>
     <configuration name="main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vk_framework" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="vk_framework" RUN_TARGET_NAME="main">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="spirv_reflect" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vk_framework" TARGET_NAME="spirv_reflect" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -143,6 +170,7 @@
     <list>
       <item itemvalue="CMake Application.log" />
       <item itemvalue="CMake Application.main" />
+      <item itemvalue="CMake Application.spirv_reflect" />
       <item itemvalue="CMake Application.stb" />
       <item itemvalue="CMake Application.vk_framework" />
       <item itemvalue="CMake Application.vk_loader" />
@@ -160,11 +188,48 @@
       <updated>1680736087106</updated>
       <workItem from="1680736088862" duration="18261000" />
       <workItem from="1681245502284" duration="2957000" />
-      <workItem from="1681248820984" duration="38265000" />
+      <workItem from="1681248820984" duration="46567000" />
+      <workItem from="1681424927687" duration="2076000" />
+      <workItem from="1681427362553" duration="153000" />
+      <workItem from="1681427573485" duration="232000" />
+      <workItem from="1681427894182" duration="1711000" />
+      <workItem from="1681429628581" duration="35966000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp</url>
+          <line>101</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

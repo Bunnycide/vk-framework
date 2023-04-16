@@ -8,9 +8,11 @@
 static void getShaderString(const std::string&,
                             std::string &);
 
+std::vector<uint32_t> compileShaderToSpv(std::string &,
+                                         VkShaderStageFlagBits);
+
 VkResult buildShaderFromSource(VkDevice logicalDevice,
-                               std::string &shaderSource,
-                               VkShaderStageFlagBits type,
+                               const std::vector<uint32_t>&,
                                VkShaderModule* shaderOut);
 
 class Shader{
@@ -18,6 +20,10 @@ private:
     std::map<ShaderTypes, VkShaderModule> shaderModules;
 
 public:
+    VertexInfo  vertexInfo;
+
+    std::vector<VkDescriptorSetLayoutBinding> layout_bindings;
+
     // Shader creation and deletion
     void compileShader(VkDevice,
                        const char*, const char*);

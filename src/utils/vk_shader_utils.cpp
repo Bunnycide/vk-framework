@@ -18,14 +18,32 @@ void Shader::compileShader(VkDevice logicalDevice,
     shaderModules[ShaderType_VERTEX] = *new VkShaderModule;
     shaderModules[ShaderType_FRAGMENT] = *new VkShaderModule;
 
+    const std::vector<uint32_t> vertCompileResult = compileShaderToSpv(vertShaderSource, VK_SHADER_STAGE_VERTEX_BIT);
+    const std::vector<uint32_t> fragCompileResult = compileShaderToSpv(fragShaderSource, VK_SHADER_STAGE_FRAGMENT_BIT);
+
+    Shader::vertexInfo = generateVertexInfo(vertCompileResult);
+
+    std::vector<DescriptorSetLayoutData> vertDesc = generateDescriptorInfo(vertCompileResult);
+    std::vector<DescriptorSetLayoutData> fragDesc = generateDescriptorInfo(fragCompileResult);
+
+    for(auto& desc : vertDesc){
+        for(auto& binding : desc.bindings){
+            layout_bindings.push_back(binding);
+        }
+    }
+
+    for(auto& desc : fragDesc){
+        for(auto& binding : desc.bindings){
+            layout_bindings.push_back(binding);
+        }
+    }
+
     VK_CHECK_RESULT(buildShaderFromSource(logicalDevice,
-                                          vertShaderSource,
-                                          VK_SHADER_STAGE_VERTEX_BIT,
+                                          vertCompileResult,
                                           &shaderModules[ShaderType_VERTEX]))
 
     VK_CHECK_RESULT(buildShaderFromSource(logicalDevice,
-                                          fragShaderSource,
-                                          VK_SHADER_STAGE_FRAGMENT_BIT,
+                                          fragCompileResult,
                                           &shaderModules[ShaderType_FRAGMENT]))
 }
 
@@ -86,24 +104,31 @@ shaderc_shader_kind getShadercShaderType(VkShaderStageFlagBits type) {
     return static_cast<shaderc_shader_kind>(-1);
 }
 
-VkResult buildShaderFromSource(VkDevice logicalDevice,
-                               std::string &shaderSource,
-                               VkShaderStageFlagBits type,
-                               VkShaderModule* shaderOut){
+std::vector<uint32_t> compileShaderToSpv(std::string &shaderSource,
+                                    VkShaderStageFlagBits type){
     shaderc::Compiler       compiler;
     shaderc::CompileOptions options;
+    std::vector<uint32_t>   compilerResult;
 
     shaderc::SpvCompilationResult spvShader = compiler.CompileGlslToSpv(shaderSource.c_str(),
-                                                                     shaderSource.size(),
-                                                                     getShadercShaderType(type),
-                                                                     "main");
+                                                                        shaderSource.size(),
+                                                                        getShadercShaderType(type),
+                                                                        "main");
 
     if(spvShader.GetCompilationStatus() !=
-    shaderc_compilation_status_success){
-        return static_cast<VkResult>(-1);
+        shaderc_compilation_status_success){
+        return  compilerResult;
     }
 
-    std::vector<uint32_t> compilerResult(spvShader.begin(), spvShader.end());
+
+    compilerResult.assign(spvShader.begin(), spvShader.end());
+
+    return compilerResult;
+}
+
+VkResult buildShaderFromSource(VkDevice logicalDevice,
+                               const std::vector<uint32_t>& compilerResult,
+                               VkShaderModule* shaderOut){
 
     // Build vulkan shader module
     VkShaderModuleCreateInfo shaderModuleCreateInfo{

@@ -14,6 +14,9 @@ set(ASSET_FOLDER_DIR ${CMAKE_SOURCE_DIR}/assets)
 configure_file(${CMAKE_SOURCE_DIR}/inc/config.h.in
         ${CMAKE_SOURCE_DIR}/inc/config.h)
 
+# spirv reflect
+add_library(spirv_reflect ${THIRD_PARTY_DIR}/spirv-reflect/spirv_reflect.cpp)
+
 # add vma
 #add_library(vma ${THIRD_PARTY_DIR}/vma/vk_memory_alloc.cpp)
 
@@ -52,11 +55,16 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/asset_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/resources/buffer/vk_buffer_util.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/sync/fences/vk_fence_utils.cpp
-                         ${CMAKE_SOURCE_DIR}/src/utils/sync/semaphores/vk_semaphore_utils.cpp)
+                         ${CMAKE_SOURCE_DIR}/src/utils/sync/semaphores/vk_semaphore_utils.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/resources/image/vk_image_util.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/resources/image/texture_util.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/resources/image/depth_util.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/spv_reflect_util.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/vk_descriptor_util.cpp)
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 
-target_link_libraries(vk_framework PUBLIC vk_loader glfw shaderc stb)
+target_link_libraries(vk_framework PUBLIC vk_loader glfw shaderc stb spirv_reflect)
 
 # main
 add_executable(main main.cpp)

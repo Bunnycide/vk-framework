@@ -1,0 +1,8 @@
+//
+// Created by jae on 16/04/23.
+//
+
+#ifndef VK_FRAMEWORK_VK_DESCRIPTOR_UTIL_H
+#define VK_FRAMEWORK_VK_DESCRIPTOR_UTIL_H
+
+#endif //VK_FRAMEWORK_VK_DESCRIPTOR_UTIL_H

@@ -7,9 +7,22 @@
 
 void H_createBuffer(VkDevice, BufferInfo&);
 
-void H_allocateAndBindMemoryObject(VkPhysicalDevice physicalDevice, BufferInfo bufferInfo);
+void H_allocateAndBindMemoryObjectToBuffer(VkPhysicalDevice ,
+                                           VkDevice ,
+                                           VkPhysicalDeviceMemoryProperties ,
+                                           BufferInfo& );
 
-void H_setBufferMemoryBarrier(std::vector<BufferTransition>&);
+void H_setBufferMemoryBarrier(std::vector<BufferTransition> &,
+                              VkPipelineStageFlags,
+                              VkPipelineStageFlags,
+                              VkCommandBuffer );
+
+void H_createBufferView(VkDevice,
+                        VkBuffer,
+                        VkFormat,
+                        VkDeviceSize,
+                        VkDeviceSize,
+                        VkBufferView &);
 
 void H_freeBuffer(VkDevice, BufferInfo&);
 

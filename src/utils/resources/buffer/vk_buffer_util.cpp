@@ -13,10 +13,10 @@ void H_createBuffer(VkDevice logicalDevice, BufferInfo& bufferInfo){
     VK_CHECK_RESULT(vkCreateBuffer(logicalDevice, &createInfo, nullptr, &bufferInfo.buffer))
 }
 
-void H_allocateAndBindMemoryObject(VkPhysicalDevice physicalDevice,
-                                   VkDevice logicalDevice,
-                                   VkPhysicalDeviceMemoryProperties physicalDeviceMemoryProperties,
-                                   BufferInfo& bufferInfo){
+void H_allocateAndBindMemoryObjectToBuffer(VkPhysicalDevice physicalDevice,
+                                           VkDevice logicalDevice,
+                                           VkPhysicalDeviceMemoryProperties physicalDeviceMemoryProperties,
+                                           BufferInfo& bufferInfo){
 
     // Required type of memory for the buffer
     VkMemoryRequirements memory_requirements;
@@ -99,6 +99,24 @@ void H_setBufferMemoryBarrier(std::vector<BufferTransition> &bufferTransitions,
                          nullptr);
 
     H_endCommandBufferRecording(commandBuffer);
+}
+
+void H_createBufferView(VkDevice logicalDevice,
+                        VkBuffer buffer,
+                        VkFormat bufferFormat,
+                        VkDeviceSize memoryOffset,
+                        VkDeviceSize memoryRange,
+                        VkBufferView &bufferView){
+    VkBufferViewCreateInfo bufferViewCreateInfo{VK_STRUCTURE_TYPE_BUFFER_VIEW_CREATE_INFO};
+
+/* const void*             */ bufferViewCreateInfo.pNext    = nullptr;
+/* VkBufferViewCreateFlags */ bufferViewCreateInfo.flags    = 0;
+/* VkBuffer                */ bufferViewCreateInfo.buffer   = buffer;
+/* VkFormat                */ bufferViewCreateInfo.format   = bufferFormat;
+/* VkDeviceSize            */ bufferViewCreateInfo.offset   = memoryOffset;
+/* VkDeviceSize            */ bufferViewCreateInfo.range    = memoryRange;
+
+    VK_CHECK_RESULT(vkCreateBufferView(logicalDevice, &bufferViewCreateInfo, nullptr, &bufferView))
 }
 
 void H_freeBuffer(VkDevice logicalDevice, BufferInfo& bufferInfo){

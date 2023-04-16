@@ -109,7 +109,7 @@ void FrameWork::cleanup() {
                          trxCommandPoolInfo.commandPool);
 
     // Destroy depth resources
-    H_freeBuffer(vulkanInstance.logicalDevice, vulkanRender.depthResource);
+    H_freeImage(vulkanInstance.logicalDevice, vulkanRender.depthResource);
 
     // Destroy gfx pipeline
     vkDestroyPipelineLayout(vulkanInstance.logicalDevice,
@@ -199,18 +199,38 @@ void FrameWork::setupSwapChain() {
 
 void FrameWork::setupRenderPass() {
 
+    Shader shader;
+    shader.compileShader(vulkanInstance.logicalDevice,
+                         "/shaders/shader.vert",
+                         "/shaders/shader.frag");
+
     VkFormat depthFormat = H_findDepthFormat(vulkanInstance.physicalDevice);
+
+    H_createDepthResources(vulkanInstance.physicalDevice,
+                           vulkanInstance.logicalDevice,
+                           vulkanInstance.physicalDeviceMemoryProperties,
+                           gfxCommandPoolInfo.commandBuffers[0],
+                           VkExtent3D {
+                                   800,
+                                   600,
+                                   1
+                           },
+                           vulkanRender.depthResource);
+
+    H_createPipelineLayout(vulkanInstance.logicalDevice,
+                           vulkanRender.pipelineLayout,
+                           shader.layout_bindings);
+
     H_createRenderPass(vulkanInstance.logicalDevice,
                        vulkanSwapChain.surfaceFormat,
                        depthFormat,
                        vulkanRender.renderPass);
-    H_createPipelineLayout(vulkanInstance.logicalDevice, vulkanRender.pipelineLayout);
-    H_createDepthResource(vulkanInstance.physicalDevice,
-                          vulkanInstance.logicalDevice,
-                          &vulkanRender.depthResource);
-//    H_createRenderPipeline(vulkanInstance.device,
-//                           800.0f, 600.0f,
-//                           vulkanRender.pipelineLayout,
-//                           vulkanRender.renderPass,
-//                           vulkanRender.gfxPipeline);
+
+
+    H_createRenderPipeline(vulkanInstance.logicalDevice,
+                           800.0f, 600.0f,
+                           shader,
+                           vulkanRender.pipelineLayout,
+                           vulkanRender.renderPass,
+                           vulkanRender.gfxPipeline);
 }

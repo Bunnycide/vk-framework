@@ -47,7 +47,5 @@ void H_resetCommandBuffer(VkCommandBuffer, VkBool32);
 
 void H_resetCommandPool(VkCommandPool, VkBool32);
 
-void H_freeBuffer(VkDevice, BufferInfo&);
-
 
 #endif //VK_FRAMEWORK_VK_COMMAND_X_UTILS_H
