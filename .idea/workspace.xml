@@ -28,32 +28,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da0bf79b-d9b5-4cbc-876c-db286723f1e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inc/utils/resources/image/depth_util.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/resources/image/texture_util.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/resources/image/vk_image_util.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/spv_reflect_util.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/vk_descriptor_util.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/resources/image/depth_util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/resources/image/texture_util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/resources/image/vk_image_util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/spv_reflect_util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/vk_descriptor_util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third-party/spirv-reflect/spirv.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third-party/spirv-reflect/spirv_reflect.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third-party/spirv-reflect/spirv_reflect.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/third-party/spirv-reflect/spirv_reflect.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/includes.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/includes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/resources/buffer/vk_buffer_util.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/vk_command_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_command_X_utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/vk_descriptor_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_descriptor_util.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_render_X_utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/vk_shader_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_shader_utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/vk_framework.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/vk_framework_structs.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework_structs.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/resources/buffer/vk_buffer_util.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/resources/image/vk_image_util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/resources/image/vk_image_util.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/vk_descriptor_util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_descriptor_util.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/vk_shader_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vk_shader_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vk_framework.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/vk_framework.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -193,7 +176,7 @@
       <workItem from="1681427362553" duration="153000" />
       <workItem from="1681427573485" duration="232000" />
       <workItem from="1681427894182" duration="1711000" />
-      <workItem from="1681429628581" duration="35966000" />
+      <workItem from="1681429628581" duration="47106000" />
     </task>
     <servers />
   </component>
@@ -216,17 +199,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/utils/vk_render_X_utils.cpp</url>
-          <line>101</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

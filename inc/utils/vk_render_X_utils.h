@@ -12,7 +12,7 @@ void H_createRenderPass(VkDevice&,
 
 void H_createPipelineLayout(VkDevice&,
                             VkPipelineLayout&,
-                            std::vector<VkDescriptorSetLayoutBinding>&);
+                            std::vector<VkDescriptorSetLayout>&);
 
 void H_createRenderPipeline(VkDevice&,
                             float, float,

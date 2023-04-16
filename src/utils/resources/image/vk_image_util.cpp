@@ -22,7 +22,7 @@ void H_createImage(VkDevice logicalDevice,
 /* VkExtent3D            */   imageCreateInfo.extent = size;
 /* uint32_t              */   imageCreateInfo.mipLevels = numMipMaps;
 /* uint32_t              */   imageCreateInfo.arrayLayers = numArrayLayers;
-/* VkSampleCountFlagBits */   imageCreateInfo.samples = VK_SAMPLE_COUNT_1_BIT;
+/* VkSampleCountFlagBits */   imageCreateInfo.samples = samples;
 /* VkImageTiling         */   imageCreateInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
 /* VkImageUsageFlags     */   imageCreateInfo.usage = imageInfo.imageUsageFlags;
 /* VkSharingMode         */   imageCreateInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;

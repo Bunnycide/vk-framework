@@ -71,6 +71,12 @@ struct BufferTransition {
     uint32_t        newQueueFamily;
 };
 
+struct DescriptorData{
+    VkDescriptorPool descriptorPool;
+    std::vector<VkDescriptorSetLayout> layouts;
+    std::vector<VkDescriptorSet> descriptorSets;
+};
+
 struct ImageTransition {
     VkImage             image;
     VkAccessFlags       currentAccess;

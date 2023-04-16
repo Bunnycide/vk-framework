@@ -42,7 +42,7 @@ void H_createRenderPass(VkDevice& logicalDevice,
     std::array<VkAttachmentDescription, 2> attachments = {colorPassAttachment, depthPassAttachment};
 
     VkSubpassDescription subpassDescription{};
-    
+
     subpassDescription.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
     subpassDescription.colorAttachmentCount = 1;
     subpassDescription.pColorAttachments = &colorAttachmentReference;
@@ -72,22 +72,16 @@ void H_createRenderPass(VkDevice& logicalDevice,
 
 void H_createPipelineLayout(VkDevice& logicalDevice,
                             VkPipelineLayout& pipelineLayout,
-                            std::vector<VkDescriptorSetLayoutBinding> &layoutBindings){
-
-    VkDescriptorSetLayoutCreateInfo descriptorSetLayoutCreateInfo{
-        .sType          = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO,
-        .bindingCount   = static_cast<uint32_t>(layoutBindings.size()),
-        .pBindings      = layoutBindings.data()
-    };
+                            std::vector<VkDescriptorSetLayout> &layouts){
 
     VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo{VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO};
 
-    /* const void*                 */  pipelineLayoutCreateInfo.pNext                     = nullptr;
-    /* VkPipelineLayoutCreateFlags */  pipelineLayoutCreateInfo.flags                     = 0;
-    /* uint32_t                    */  pipelineLayoutCreateInfo.setLayoutCount            = 0;
-    /* const VkDescriptorSetLayout**/  pipelineLayoutCreateInfo.pSetLayouts               = nullptr;
-    /* uint32_t                    */  pipelineLayoutCreateInfo.pushConstantRangeCount    = 0;
-    /* const VkPushConstantRange*  */  pipelineLayoutCreateInfo.pPushConstantRanges       = nullptr;
+    pipelineLayoutCreateInfo.pNext                     = nullptr;
+    pipelineLayoutCreateInfo.flags                     = 0;
+    pipelineLayoutCreateInfo.setLayoutCount            = static_cast<uint32_t>(layouts.size());
+    pipelineLayoutCreateInfo.pSetLayouts               = layouts.data();
+    pipelineLayoutCreateInfo.pushConstantRangeCount    = 0;
+    pipelineLayoutCreateInfo.pPushConstantRanges       = nullptr;
 
     VK_CHECK_RESULT(vkCreatePipelineLayout(logicalDevice, &pipelineLayoutCreateInfo, nullptr, &pipelineLayout))
 }
@@ -230,10 +224,10 @@ void H_createRenderPipeline(VkDevice& logicalDevice,
     depthStencilStateCreateInfo.depthCompareOp = VK_COMPARE_OP_LESS;
     depthStencilStateCreateInfo.depthBoundsTestEnable = VK_FALSE;
     depthStencilStateCreateInfo.stencilTestEnable = VK_FALSE;
-//    depthStencilStateCreateInfo.front = ;
-//    depthStencilStateCreateInfo.back = ;
-//    depthStencilStateCreateInfo.minDepthBounds = ;
-//    depthStencilStateCreateInfo.maxDepthBounds = ;
+    depthStencilStateCreateInfo.front = {};
+    depthStencilStateCreateInfo.back = {};
+    depthStencilStateCreateInfo.minDepthBounds = 0.0f;
+    depthStencilStateCreateInfo.maxDepthBounds = 1.0f;
 
     VkPipelineInputAssemblyStateCreateInfo pipelineInputAssemblyStateCreateInfo{
         VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO

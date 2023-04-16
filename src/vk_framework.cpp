@@ -108,6 +108,9 @@ void FrameWork::cleanup() {
     H_destroyCommandPool(vulkanInstance.logicalDevice,
                          trxCommandPoolInfo.commandPool);
 
+    // Destroy Descriptor set data
+    H_destroyDescriptorData(vulkanInstance.logicalDevice, descriptorData);
+
     // Destroy depth resources
     H_freeImage(vulkanInstance.logicalDevice, vulkanRender.depthResource);
 
@@ -115,6 +118,10 @@ void FrameWork::cleanup() {
     vkDestroyPipelineLayout(vulkanInstance.logicalDevice,
                             vulkanRender.pipelineLayout,
                             nullptr);
+    // Destroy gfx pipeline
+    vkDestroyPipeline(vulkanInstance.logicalDevice,
+                      vulkanRender.gfxPipeline,
+                      nullptr);
 
     // Destroy render pass
     vkDestroyRenderPass(vulkanInstance.logicalDevice,
@@ -204,7 +211,29 @@ void FrameWork::setupRenderPass() {
                          "/shaders/shader.vert",
                          "/shaders/shader.frag");
 
+    VkDescriptorSetLayout layout;;
+
+    H_createDescriptorSetLayout(vulkanInstance.logicalDevice,
+                                shader.layout_bindings,
+                                layout);
+
+    descriptorData.layouts = { layout };
+
+    std::vector<VkDescriptorPoolSize> descPoolSizes =
+            H_extractDescriptorSetTypes(shader.layout_bindings);
+
     VkFormat depthFormat = H_findDepthFormat(vulkanInstance.physicalDevice);
+
+    H_createDescriptorPool(vulkanInstance.logicalDevice,
+                           descPoolSizes,
+                           1,
+                           VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT,
+                           descriptorData.descriptorPool);
+
+    H_allocateDescriptorSets(vulkanInstance.logicalDevice,
+                             descriptorData.descriptorPool,
+                             descriptorData.layouts,
+                             descriptorData.descriptorSets);
 
     H_createDepthResources(vulkanInstance.physicalDevice,
                            vulkanInstance.logicalDevice,
@@ -219,7 +248,7 @@ void FrameWork::setupRenderPass() {
 
     H_createPipelineLayout(vulkanInstance.logicalDevice,
                            vulkanRender.pipelineLayout,
-                           shader.layout_bindings);
+                           descriptorData.layouts);
 
     H_createRenderPass(vulkanInstance.logicalDevice,
                        vulkanSwapChain.surfaceFormat,

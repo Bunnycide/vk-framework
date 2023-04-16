@@ -32,6 +32,7 @@
 #include "config.h"
 #include "utils/sync/semaphores/vk_semaphore_utils.h"
 #include "utils/sync/fences/vk_fence_utils.h"
+#include "utils/vk_descriptor_util.h"
 #include "utils/resources/image/texture_util.h"
 #include "utils/resources/image/depth_util.h"
 #include "../../third-party/spirv-reflect/spirv_reflect.h"

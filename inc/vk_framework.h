@@ -18,11 +18,10 @@ private:
     VulkanSwapChain vulkanSwapChain;
     VulkanRender vulkanRender;
 
-    VkPipelineVertexInputStateCreateInfo vertexInputStateCreateInfo;
-    std::vector<DescriptorSetLayoutData> descriptorSetsLayoutData;
-
     CommandPoolInfo gfxCommandPoolInfo;
     CommandPoolInfo trxCommandPoolInfo;
+
+    DescriptorData descriptorData;
 
     void setupSwapChain();
     void setupRenderPass();
