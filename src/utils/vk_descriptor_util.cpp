@@ -88,6 +88,52 @@ void H_createDescriptorPool(VkDevice logicalDevice,
     }
 }
 
+void H_updateDescriptorSets(VkDevice logicalDevice,
+                            const std::vector<BufferDescriptorInfo>& bufferDescriptionInfo,
+                            const std::vector<CopyDescriptorInfo>& copyDescriptionInfo){
+    std::vector<VkWriteDescriptorSet> write_descriptors;
+
+    for( auto & bufferDescriptor : bufferDescriptionInfo ) {
+        write_descriptors.push_back(
+            {
+            VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET,
+            nullptr,
+            bufferDescriptor.TargetDescriptorSet,
+            bufferDescriptor.TargetDescriptorBinding,
+            bufferDescriptor.TargetArrayElement,
+            static_cast<uint32_t>(bufferDescriptor.BufferInfos.size()),
+            bufferDescriptor.TargetDescriptorType,
+            nullptr,
+            bufferDescriptor.BufferInfos.data(),
+            nullptr
+            }
+        );
+    }
+
+    std::vector<VkCopyDescriptorSet> copyDescriptors;
+
+    if(! copyDescriptionInfo.empty()){
+        for( auto & copyDescriptor : copyDescriptionInfo ) {
+            copyDescriptors.push_back({
+              VK_STRUCTURE_TYPE_COPY_DESCRIPTOR_SET,
+              nullptr,
+              copyDescriptor.SourceDescriptorSet,
+              copyDescriptor.SourceDescriptorBinding,
+              copyDescriptor.SourceArrayElement,
+              copyDescriptor.TargetDescriptorSet,
+              copyDescriptor.TargetDescriptorBinding,
+              copyDescriptor.TargetArrayElement,
+              copyDescriptor.DescriptorCount
+        } );
+    }
+
+
+    vkUpdateDescriptorSets(logicalDevice,
+static_cast<uint32_t>(write_descriptors.size()), write_descriptors.data(),
+                   ! copyDescriptors.empty() ? static_cast<uint32_t>(copyDescriptors.size()) : 0,
+                   ! copyDescriptors.empty() ? copyDescriptors.data() : nullptr);
+}
+
 void H_destroyDescriptorData(VkDevice logicalDevice,
                              DescriptorData &descriptorData){
     for(auto& layout : descriptorData.layouts){

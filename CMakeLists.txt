@@ -32,7 +32,7 @@ set_target_properties(shaderc PROPERTIES IMPORTED_LOCATION
 add_subdirectory(${THIRD_PARTY_DIR}/glfw-3.3.8)
 
 # Log library
-add_library(log ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp )
+add_library(log ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp)
 target_include_directories(log PUBLIC ${LOG_INC_DIR})
 
 #vk loader
@@ -60,7 +60,8 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/resources/image/texture_util.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/resources/image/depth_util.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/spv_reflect_util.cpp
-                         ${CMAKE_SOURCE_DIR}/src/utils/vk_descriptor_util.cpp)
+                         ${CMAKE_SOURCE_DIR}/src/utils/vk_descriptor_util.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/vk_draw_util.cpp)
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 
