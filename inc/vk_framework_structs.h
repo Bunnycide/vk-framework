@@ -88,6 +88,11 @@ struct ImageTransition {
     VkImageAspectFlags  aspect;
 };
 
+struct VertexBufferParameters {
+    VkBuffer Buffer;
+    VkDeviceSize MemoryOffset;
+};
+
 struct ImageDescriptorInfo {
     VkDescriptorSet                     TargetDescriptorSet;
     uint32_t                            TargetDescriptorBinding;

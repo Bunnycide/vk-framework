@@ -112,26 +112,27 @@ void H_updateDescriptorSets(VkDevice logicalDevice,
 
     std::vector<VkCopyDescriptorSet> copyDescriptors;
 
-    if(! copyDescriptionInfo.empty()){
-        for( auto & copyDescriptor : copyDescriptionInfo ) {
+    if(! copyDescriptionInfo.empty()) {
+        for (auto &copyDescriptor: copyDescriptionInfo) {
             copyDescriptors.push_back({
-              VK_STRUCTURE_TYPE_COPY_DESCRIPTOR_SET,
-              nullptr,
-              copyDescriptor.SourceDescriptorSet,
-              copyDescriptor.SourceDescriptorBinding,
-              copyDescriptor.SourceArrayElement,
-              copyDescriptor.TargetDescriptorSet,
-              copyDescriptor.TargetDescriptorBinding,
-              copyDescriptor.TargetArrayElement,
-              copyDescriptor.DescriptorCount
-        } );
+                                              VK_STRUCTURE_TYPE_COPY_DESCRIPTOR_SET,
+                                              nullptr,
+                                              copyDescriptor.SourceDescriptorSet,
+                                              copyDescriptor.SourceDescriptorBinding,
+                                              copyDescriptor.SourceArrayElement,
+                                              copyDescriptor.TargetDescriptorSet,
+                                              copyDescriptor.TargetDescriptorBinding,
+                                              copyDescriptor.TargetArrayElement,
+                                              copyDescriptor.DescriptorCount
+                                      });
+        }
+
+
+        vkUpdateDescriptorSets(logicalDevice,
+                               static_cast<uint32_t>(write_descriptors.size()), write_descriptors.data(),
+                               !copyDescriptors.empty() ? static_cast<uint32_t>(copyDescriptors.size()) : 0,
+                               !copyDescriptors.empty() ? copyDescriptors.data() : nullptr);
     }
-
-
-    vkUpdateDescriptorSets(logicalDevice,
-static_cast<uint32_t>(write_descriptors.size()), write_descriptors.data(),
-                   ! copyDescriptors.empty() ? static_cast<uint32_t>(copyDescriptors.size()) : 0,
-                   ! copyDescriptors.empty() ? copyDescriptors.data() : nullptr);
 }
 
 void H_destroyDescriptorData(VkDevice logicalDevice,
@@ -142,4 +143,3 @@ void H_destroyDescriptorData(VkDevice logicalDevice,
 
     vkDestroyDescriptorPool(logicalDevice, descriptorData.descriptorPool, nullptr);
 }
-

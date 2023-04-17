@@ -37,3 +37,4 @@
 #include "utils/resources/image/depth_util.h"
 #include "../../third-party/spirv-reflect/spirv_reflect.h"
 #include "utils/spv_reflect_util.h"
+#include "utils/vk_draw_util.h"

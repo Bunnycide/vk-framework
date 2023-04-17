@@ -38,6 +38,6 @@ H_updateDescriptorSets(VkDevice ,
 
 void
 H_destroyDescriptorData(VkDevice ,
-                             DescriptorData &);
+                        DescriptorData &);
 
 #endif //VK_FRAMEWORK_VK_DESCRIPTOR_UTIL_H
