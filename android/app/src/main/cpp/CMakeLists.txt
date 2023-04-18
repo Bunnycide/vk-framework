@@ -40,9 +40,9 @@ set_target_properties(shaderc PROPERTIES IMPORTED_LOCATION
 
 # compile glfw
 #add_subdirectory(${THIRD_PARTY_DIR}/glfw-3.3.8 ${THIRD_PARTY_DIR}/glfw-3.3.8/lib)
-                                            
+
 # Log library
-add_library(h_log ${SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp)
+add_library(h_log ${SOURCE_DIR}/src/platform/${CMAKE_SYSTEM_NAME}/Log.cpp)
 target_include_directories(h_log PUBLIC ${LOG_INC_DIR})
 
 #vk loader
@@ -53,19 +53,19 @@ target_include_directories(vk_loader PUBLIC VK_LOADER_DIR)
 
 target_link_libraries(vk_loader PUBLIC h_log)
 
-message(${CMAKE_HOST_SYSTEM_NAME})
+message(${CMAKE_SYSTEM_NAME})
 
 # vk framework
 add_library(vk_framework
         ${SOURCE_DIR}/src/vk_framework.cpp
         ${SOURCE_DIR}/src/utils/vk_instance_and_device_utils.cpp
         ${SOURCE_DIR}/src/utils/vk_layer_and_extension_utils.cpp
-        ${SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/vk_render_surface.cpp
+        ${SOURCE_DIR}/src/platform/${CMAKE_SYSTEM_NAME}/vk_render_surface.cpp
         ${SOURCE_DIR}/src/utils/vk_swapchain_utils.cpp
         ${SOURCE_DIR}/src/utils/vk_command_X_utils.cpp
         ${SOURCE_DIR}/src/utils/vk_render_X_utils.cpp
         ${SOURCE_DIR}/src/utils/vk_shader_utils.cpp
-        ${SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/asset_utils.cpp
+        ${SOURCE_DIR}/src/platform/${CMAKE_SYSTEM_NAME}/asset_utils.cpp
         ${SOURCE_DIR}/src/utils/resources/buffer/vk_buffer_util.cpp
         ${SOURCE_DIR}/src/utils/sync/fences/vk_fence_utils.cpp
         ${SOURCE_DIR}/src/utils/sync/semaphores/vk_semaphore_utils.cpp
@@ -82,7 +82,8 @@ target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR}
 target_link_libraries(vk_framework PUBLIC vk_loader shaderc stb spirv_reflect glm)
 
 # main
-add_library(vk_main ${CMAKE_SOURCE_DIR}/vk_main.cpp)
+add_library(vk_main ${CMAKE_SOURCE_DIR}/vk_main.cpp
+                    ${CMAKE_SOURCE_DIR}/EventLooper.cpp)
 
 # Link libs
 target_link_libraries(vk_main vk_framework)

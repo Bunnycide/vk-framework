@@ -16,17 +16,10 @@ private:
     ContextType contextType;
     VulkanInstance vulkanInstance;
     VulkanSwapChain vulkanSwapChain;
-    VulkanRender vulkanRender{};
-    VkRenderPassBeginInfo renderPassBeginInfo{};
     CommandPoolInfo gfxCommandPoolInfo;
     CommandPoolInfo trxCommandPoolInfo;
 
-    DescriptorData descriptorData;
-
-    std::array<VkClearValue, 2> clearValues{};
-    VkViewport viewport{};
-    VkRect2D scissor{};
-    VkDeviceSize offset = 0;
+    GpuRenderPass gpuRenderPass;
 
     BufferInfo vertexBufferInfo{};
     BufferInfo indexBufferInfo{};

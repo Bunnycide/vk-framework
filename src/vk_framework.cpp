@@ -7,17 +7,6 @@
     }
 #elif defined __linux
     FrameWork::FrameWork(ContextType mcontextType, WindowLinux& mWindowLinux) : contextType(mcontextType), window(mWindowLinux) {
-
-        clearValues[0] = {{{0.7f, 0.7f, 0.7f, 1.0f}}};
-        clearValues[1].depthStencil = {1.0f, 0};
-
-        viewport.x = 0.0f;
-        viewport.y = 0.0f;
-        viewport.width = 800;
-        viewport.height = 600;
-        viewport.minDepth = 0.0f;
-        viewport.maxDepth = 1.0f;
-
         window.setLooper(reinterpret_cast<DrawLooper *>(this));
     }
 #elif defined __ANDROID__
@@ -110,20 +99,6 @@ bool FrameWork::InitRenderEngine() {
                                   vulkanSwapChain.swapChainImageViews,
                                   vulkanSwapChain.swapChainFrameBuffers);
 
-    renderPassBeginInfo = {
-            .sType          = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO,
-            .pNext          = nullptr,
-            .renderPass     = vulkanRender.renderPass,
-            .framebuffer    = vulkanSwapChain.swapChainFrameBuffers[0],
-            .renderArea     = {
-                    {0,0},
-                    800, 600
-            },
-
-            .clearValueCount    = static_cast<uint32_t>(clearValues.size()),
-            .pClearValues       = clearValues.data()
-    };
-
     setupSyncObjects();
     setupGeom();
 
@@ -199,7 +174,7 @@ void FrameWork::cleanup() {
 }
 
 void FrameWork::draw() {
-
+    // TODO::Update renderpass here
 }
 
 void FrameWork::mainLoop() {
@@ -255,6 +230,21 @@ void FrameWork::setupSwapChain() {
 }
 
 void FrameWork::setupRenderPass() {
+
+    int *width, *height;
+
+    window.getWindowSize(*width, *height);
+
+    gpuRenderPass.createRenderPass(vulkanInstance.logicalDevice,
+                                   vulkanInstance.physicalDevice,
+                                   vulkanInstance.physicalDeviceMemoryProperties,
+                                   vulkanSwapChain.surfaceFormat,
+                                   VkExtent3D{
+                                        width,
+                                        height
+                                    },
+            VkCommandBuffer& commandBuffer,
+    const char* vertPath, const char* fragPath);
 
     Shader shader;
     shader.compileShader(vulkanInstance.logicalDevice,
@@ -313,8 +303,6 @@ void FrameWork::setupRenderPass() {
                            vulkanRender.renderPass,
                            vulkanRender.gfxPipeline);
 
-    scissor.offset = {0, 0};
-    scissor.extent = {800, 600};
 }
 
 void FrameWork::setupGeom(){
@@ -403,31 +391,25 @@ void FrameWork::drawFrame(){
 }
 
 void FrameWork::recordCommands() {
-    H_beginCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0], VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
-    renderPassBeginInfo.framebuffer = vulkanSwapChain.swapChainFrameBuffers[imgIndx];
 
-    vkCmdBeginRenderPass(gfxCommandPoolInfo.commandBuffers[0], &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
-    vkCmdSetViewport(gfxCommandPoolInfo.commandBuffers[0], 0, 1, &viewport);
-    vkCmdSetScissor(gfxCommandPoolInfo.commandBuffers[0], 0,1, &scissor);
-
-    vkCmdBindVertexBuffers(gfxCommandPoolInfo.commandBuffers[0],
-                           0,
-                           1,
-                           &vertexBufferInfo.buffer,
-                           &offset);
-
-    vkCmdBindPipeline(gfxCommandPoolInfo.commandBuffers[0],
-                      VK_PIPELINE_BIND_POINT_GRAPHICS,
-                      vulkanRender.gfxPipeline);
-
-    vkCmdDrawIndexed(gfxCommandPoolInfo.commandBuffers[0],
-                     6,
-                     1,
-                     0,
-                     0,
-                     0);
-
-    H_endCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0]);
+//    vkCmdBindVertexBuffers(gfxCommandPoolInfo.commandBuffers[0],
+//                           0,
+//                           1,
+//                           &vertexBufferInfo.buffer,
+//                           &offset);
+//
+//    vkCmdBindPipeline(gfxCommandPoolInfo.commandBuffers[0],
+//                      VK_PIPELINE_BIND_POINT_GRAPHICS,
+//                      vulkanRender.gfxPipeline);
+//
+//    vkCmdDrawIndexed(gfxCommandPoolInfo.commandBuffers[0],
+//                     6,
+//                     1,
+//                     0,
+//                     0,
+//                     0);
+//
+//    H_endCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0]);
 }
 
 

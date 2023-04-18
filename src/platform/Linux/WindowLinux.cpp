@@ -6,7 +6,7 @@
 #include "utils/platform/Linux/WindowLinux.h"
 
 
-void WindowLinux::getWindowSize(int& width, int&height){
+void WindowLinux::getWindowSize(int& width, int& height){
     width = Window::width;
     height = Window::height;
 }

@@ -37,7 +37,7 @@ set_target_properties(shaderc PROPERTIES IMPORTED_LOCATION
 add_subdirectory(${THIRD_PARTY_DIR}/glfw-3.3.8)
 
 # Log library
-add_library(log ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Log.cpp inc/utils/draw_looper.h)
+add_library(log ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_SYSTEM_NAME}/Log.cpp inc/utils/draw_looper.h)
 target_include_directories(log PUBLIC ${LOG_INC_DIR})
 
 #vk loader
@@ -52,12 +52,12 @@ target_link_libraries(vk_loader PUBLIC log)
 add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_instance_and_device_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_layer_and_extension_utils.cpp
-                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/vk_render_surface.cpp
+                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_SYSTEM_NAME}/vk_render_surface.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_swapchain_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_command_X_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_render_X_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_shader_utils.cpp
-                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/asset_utils.cpp
+                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_SYSTEM_NAME}/asset_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/resources/buffer/vk_buffer_util.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/sync/fences/vk_fence_utils.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/sync/semaphores/vk_semaphore_utils.cpp
@@ -67,7 +67,10 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/spv_reflect_util.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_descriptor_util.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_draw_util.cpp
-                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_HOST_SYSTEM_NAME}/Window${CMAKE_HOST_SYSTEM_NAME}.cpp src/platform/Window.cpp)
+                         ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_SYSTEM_NAME}/Window${CMAKE_SYSTEM_NAME}.cpp
+                         ${CMAKE_SOURCE_DIR}/src/platform/Window.cpp
+                         ${CMAKE_SOURCE_DIR}/src/utils/vk_draw_util.cpp
+                         ${CMAKE_SOURCE_DIR}/inc/GpuRenderPass.cpp)
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 

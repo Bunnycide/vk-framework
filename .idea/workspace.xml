@@ -28,21 +28,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da0bf79b-d9b5-4cbc-876c-db286723f1e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inc/utils/draw_looper.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/platform/Window.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/utils/platform/Windows/WindowWindows.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inc/windowconfig.h.in" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/platform/Android/WindowAndroid.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/platform/Linux/WindowLinux.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/platform/Window.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/platform/Windows/WindowWindows.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/cpp/EventLooper.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/cpp/EventLooper.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/GpuRenderPass.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/GpuRenderPass.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/vk_drawsetup.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/vk_drawsetup.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/platform/Android/asset_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/cpp/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/cpp/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/cpp/vk_main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/cpp/vk_main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/jae_b/vk_framework/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/jae_b/vk_framework/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/includes.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/includes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/platform/Linux/vk_render_surface.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/platform/Linux/vk_render_surface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/platform/Linux/WindowLinux.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/platform/Linux/WindowLinux.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/platform/Window.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/platform/Window.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/vk_draw_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/vk_draw_utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/vk_framework.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/vk_framework.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platform/Linux/vk_render_surface.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/platform/Linux/vk_render_surface.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/platform/Linux/WindowLinux.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/platform/Linux/WindowLinux.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vk_framework.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/vk_framework.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,19 +93,20 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/jae/CLionProjects/vk-framework/inc/utils/platform/Windows",
+    "last_opened_file_path": "/home/jae/CLionProjects/vk-framework/src/platform/Android",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "structure.view.defaults.are.configured": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/platform/Android" />
       <recent name="$PROJECT_DIR$/inc/utils/platform/Windows" />
       <recent name="$PROJECT_DIR$/third-party" />
       <recent name="$PROJECT_DIR$/inc/utils" />
@@ -185,7 +190,9 @@
       <workItem from="1681427362553" duration="153000" />
       <workItem from="1681427573485" duration="232000" />
       <workItem from="1681427894182" duration="1711000" />
-      <workItem from="1681429628581" duration="86228000" />
+      <workItem from="1681429628581" duration="88245000" />
+      <workItem from="1681828400121" duration="108000" />
+      <workItem from="1681829056094" duration="8661000" />
     </task>
     <servers />
   </component>

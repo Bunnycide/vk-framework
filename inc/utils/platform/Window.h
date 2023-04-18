@@ -17,7 +17,7 @@ public:
     ~Window() = default;
 
     virtual VkSurfaceKHR getVkSurface() = 0;
-    virtual void getWindowSize(int& width, int&height) = 0;
+    virtual void getWindowSize(int& width, int& height) = 0;
 
     virtual void createWindowSurface(VkInstance) = 0;
     virtual void deleteWindow() = 0;

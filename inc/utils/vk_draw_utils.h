@@ -2,8 +2,8 @@
 // Created by jae on 17/04/23.
 //
 
-#ifndef VK_FRAMEWORK_VK_DRAW_UTIL_H
-#define VK_FRAMEWORK_VK_DRAW_UTIL_H
+#ifndef VK_FRAMEWORK_VK_DRAW_UTILS_H
+#define VK_FRAMEWORK_VK_DRAW_UTILS_H
 
 void
 H_clearColor(VkCommandBuffer commandBuffer,
@@ -35,4 +35,4 @@ H_bindIndexBuffer(VkCommandBuffer,
                   VkDeviceSize,
                   VkIndexType);
 
-#endif //VK_FRAMEWORK_VK_DRAW_UTIL_H
+#endif //VK_FRAMEWORK_VK_DRAW_UTILS_H
