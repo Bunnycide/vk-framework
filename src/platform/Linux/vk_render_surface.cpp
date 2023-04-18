@@ -3,28 +3,25 @@
 //
 #include "includes.h"
 
-GLFWwindow* window = nullptr;
-
-bool H_createWindow(int width, int height, const char* name){
+GLFWwindow* H_createWindow(int width, int height, const char* name){
     glfwInit();
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    window = glfwCreateWindow(width, height, name, nullptr, nullptr);
+    GLFWwindow* mWindow = glfwCreateWindow(width, height, name, nullptr, nullptr);
 
-    if(window == nullptr){
-        H_deleteRenderWindow();
-        return false;
+    if(mWindow == nullptr){
+        H_deleteRenderWindow(mWindow);
+        return mWindow;
     }
 
-    return true;
+    return mWindow;
 }
 
-bool H_createRenderSurface(VkInstance instance, VkSurfaceKHR& surface){
+bool H_createRenderSurface(VkInstance instance, VkSurfaceKHR& surface, GLFWwindow* window){
     VkResult result = glfwCreateWindowSurface(instance, window, nullptr, &surface);
-
     return (result == VK_SUCCESS);
 }
 
-void H_deleteRenderWindow(){
+void H_deleteRenderWindow(GLFWwindow* window){
     if(window != nullptr) glfwDestroyWindow(window);
     window = nullptr;
     glfwTerminate();

@@ -1,21 +1,31 @@
 #include "includes.h"
 #include "vk_framework.h"
 
+#if defined _WIN32
+    FrameWork::FrameWork(ContextType, WindowWindows) {
 
-FrameWork::FrameWork(ContextType mContextType){
-    H_createWindow(800, 600, "vk");
-    contextType = mContextType;
+    }
+#elif defined __linux
+    FrameWork::FrameWork(ContextType mcontextType, WindowLinux& mWindowLinux) : contextType(mcontextType), window(mWindowLinux) {
 
-    clearValues[0] = {{{0.7f, 0.7f, 0.7f, 1.0f}}};
-    clearValues[1].depthStencil = {1.0f, 0};
+        clearValues[0] = {{{0.7f, 0.7f, 0.7f, 1.0f}}};
+        clearValues[1].depthStencil = {1.0f, 0};
 
-    viewport.x = 0.0f;
-    viewport.y = 0.0f;
-    viewport.width = 800;
-    viewport.height = 600;
-    viewport.minDepth = 0.0f;
-    viewport.maxDepth = 1.0f;
-}
+        viewport.x = 0.0f;
+        viewport.y = 0.0f;
+        viewport.width = 800;
+        viewport.height = 600;
+        viewport.minDepth = 0.0f;
+        viewport.maxDepth = 1.0f;
+
+        window.setLooper(reinterpret_cast<DrawLooper *>(this));
+    }
+#elif defined __ANDROID__
+FrameWork::FrameWork(ContextType, WindowAndroid) {
+
+    }
+#endif
+
 FrameWork::~FrameWork()= default;
 
 bool FrameWork::InitRenderEngine() {
@@ -84,11 +94,8 @@ bool FrameWork::InitRenderEngine() {
     setupCommandPool();
 
     //// Create a render surface
-    if(! H_createRenderSurface(vulkanInstance.instance,
-                               vulkanSwapChain.surface)){
-        Log::error("Failed to create render surface");
-        return false;
-    }
+    window.createWindowSurface(vulkanInstance.instance);
+    vulkanSwapChain.surface = window.getVkSurface();
 
     //// Setup swap-chain stuff
     setupSwapChain();
@@ -138,7 +145,7 @@ bool FrameWork::LoadLightStyle(LightData *, const char *lightData) {
 }
 
 void FrameWork::cleanup() {
-    H_deleteRenderWindow();
+    window.deleteWindow();
 
     // Destroy command pool
     H_destroyCommandPool(vulkanInstance.logicalDevice,
@@ -191,13 +198,12 @@ void FrameWork::cleanup() {
     vulkanInstance.instance = nullptr;
 }
 
-void FrameWork::mainLoop() {
-    if(window == nullptr) return;
+void FrameWork::draw() {
 
-    while(!glfwWindowShouldClose(window)){
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
+}
+
+void FrameWork::mainLoop() {
+    window.loop(0.0f);
 }
 
 void FrameWork::setupCommandPool(){
@@ -375,25 +381,25 @@ void FrameWork::drawGeometry(){
 
 void FrameWork::drawFrame(){
 
-    vkAcquireNextImageKHR(vulkanInstance.logicalDevice,
-                          vulkanSwapChain.swapchain,
-                          UINT64_MAX,
-                          VK_NULL_HANDLE,
-                          VK_NULL_HANDLE,
-                          &imgIndx);
-
-    VkPresentInfoKHR presentInfo {
-/* VkStructureType       */ .sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
-/* const void*           */ .pNext = nullptr,
-/* uint32_t              */ .waitSemaphoreCount = 1,
-/* const VkSemaphore*    */ .pWaitSemaphores = &imgAvailSemaphores[imgIndx],
-/* uint32_t              */ .swapchainCount = 1,
-/* const VkSwapchainKHR* */ .pSwapchains = &vulkanSwapChain.swapchain,
-/* const uint32_t*       */ .pImageIndices = &imgIndx,
-/* VkResult*             */ .pResults = NULL,
-    };
-
-    vkQueuePresentKHR(vulkanInstance.queueInfos[IDX_GRAPHICS].queues[0], &presentInfo);
+//    vkAcquireNextImageKHR(vulkanInstance.logicalDevice,
+//                          vulkanSwapChain.swapchain,
+//                          UINT64_MAX,
+//                          VK_NULL_HANDLE,
+//                          VK_NULL_HANDLE,
+//                          &imgIndx);
+//
+//    VkPresentInfoKHR presentInfo {
+///* VkStructureType       */ .sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
+///* const void*           */ .pNext = nullptr,
+///* uint32_t              */ .waitSemaphoreCount = 1,
+///* const VkSemaphore*    */ .pWaitSemaphores = &imgAvailSemaphores[imgIndx],
+///* uint32_t              */ .swapchainCount = 1,
+///* const VkSwapchainKHR* */ .pSwapchains = &vulkanSwapChain.swapchain,
+///* const uint32_t*       */ .pImageIndices = &imgIndx,
+///* VkResult*             */ .pResults = NULL,
+//    };
+//
+//    vkQueuePresentKHR(vulkanInstance.queueInfos[IDX_GRAPHICS].queues[0], &presentInfo);
 }
 
 void FrameWork::recordCommands() {
@@ -423,3 +429,6 @@ void FrameWork::recordCommands() {
 
     H_endCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0]);
 }
+
+
+

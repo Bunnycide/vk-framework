@@ -1,0 +1,10 @@
+//
+// Created by jae on 18/04/23.
+//
+
+#ifndef VK_FRAMEWORK_WINDOWCONFIG_H
+#define VK_FRAMEWORK_WINDOWCONFIG_H
+
+#include "utils/platform/${CMAKE_HOST_SYSTEM_NAME}/Window${CMAKE_HOST_SYSTEM_NAME}.h"
+
+#endif //VK_FRAMEWORK_WINDOWCONFIG_H

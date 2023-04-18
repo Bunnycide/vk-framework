@@ -4,7 +4,11 @@ int main() {
     ContextType contextType;
     contextType.GRAPHICS_ONLY = true;
 
-    FrameWork fw(contextType);
+    int width = 800, height = 600;
+
+    WindowLinux windowLinux(width, height, "vk-test");
+
+    FrameWork fw(contextType, windowLinux);
 
     if(! fw.InitRenderEngine()){
         Log::error("Failed to init render engine");

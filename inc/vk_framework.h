@@ -11,13 +11,13 @@
 	}																									\
 }
 
-class FrameWork{
+class FrameWork : public DrawLooper{
 private:
     ContextType contextType;
     VulkanInstance vulkanInstance;
     VulkanSwapChain vulkanSwapChain;
-    VulkanRender vulkanRender;
-    VkRenderPassBeginInfo renderPassBeginInfo;
+    VulkanRender vulkanRender{};
+    VkRenderPassBeginInfo renderPassBeginInfo{};
     CommandPoolInfo gfxCommandPoolInfo;
     CommandPoolInfo trxCommandPoolInfo;
 
@@ -35,8 +35,20 @@ private:
     void setupRenderPass();
     void setupCommandPool();
 
+    void draw() override;
+
 public:
-    explicit FrameWork(ContextType);
+
+#if defined _WIN32
+    explicit FrameWork(ContextType, WindowWindows&);
+    WindowWindows window;
+#elif defined __linux
+    explicit FrameWork(ContextType mcontextType, WindowLinux& mWindowLinux);
+    WindowLinux window;
+#elif defined __ANDROID__
+    explicit FrameWork(ContextType, WindowAndroid&);
+    WindowAndroid window;
+#endif
     ~FrameWork();
 
     // Delete this later
