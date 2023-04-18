@@ -1,0 +1,2 @@
+/usr/bin/ar qc libvk_loader.a CMakeFiles/vk_loader.dir/vk_loader/vk_functions.cpp.o CMakeFiles/vk_loader.dir/vk_loader/vk_loader.cpp.o
+/usr/bin/ranlib libvk_loader.a

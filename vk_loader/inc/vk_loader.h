@@ -139,6 +139,7 @@ extern PFN_vkCmdSetBlendConstants                   vkCmdSetBlendConstants;
 extern PFN_vkCmdExecuteCommands                     vkCmdExecuteCommands;
 extern PFN_vkCmdClearAttachments                    vkCmdClearAttachments;
 extern PFN_vkGetImageSubresourceLayout              vkGetImageSubresourceLayout;
+extern PFN_vkSignalSemaphore                        vkSignalSemaphore;
 //extern PFN_vkGetAccelerationStructureBuildSizesKHR  vkGetAccelerationStructureBuildSizesKHR;
 //extern PFN_vkCreateAccelerationStructureKHR         vkCreateAccelerationStructureKHR;
 //extern PFN_vkBuildAccelerationStructuresKHR         vkBuildAccelerationStructuresKHR;

@@ -14,6 +14,9 @@ set(ASSET_FOLDER_DIR ${CMAKE_SOURCE_DIR}/assets)
 configure_file(${CMAKE_SOURCE_DIR}/inc/config.h.in
         ${CMAKE_SOURCE_DIR}/inc/config.h)
 
+# GLM
+add_subdirectory(${THIRD_PARTY_DIR}/glm)
+
 # spirv reflect
 add_library(spirv_reflect ${THIRD_PARTY_DIR}/spirv-reflect/spirv_reflect.cpp)
 
@@ -65,7 +68,7 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 
-target_link_libraries(vk_framework PUBLIC vk_loader glfw shaderc stb spirv_reflect)
+target_link_libraries(vk_framework PUBLIC vk_loader glfw shaderc stb spirv_reflect glm)
 
 # main
 add_executable(main main.cpp)

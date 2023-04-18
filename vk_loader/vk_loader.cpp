@@ -119,6 +119,7 @@ PFN_vkCmdSetBlendConstants          vkCmdSetBlendConstants          = nullptr;
 PFN_vkCmdExecuteCommands            vkCmdExecuteCommands            = nullptr;
 PFN_vkCmdClearAttachments           vkCmdClearAttachments           = nullptr;
 PFN_vkGetImageSubresourceLayout     vkGetImageSubresourceLayout     = nullptr;
+PFN_vkSignalSemaphore               vkSignalSemaphore               = nullptr;
 //PFN_vkGetAccelerationStructureBuildSizesKHR vkGetAccelerationStructureBuildSizesKHR     = nullptr;
 //PFN_vkCreateAccelerationStructureKHR vkCreateAccelerationStructureKHR               = nullptr;
 //PFN_vkBuildAccelerationStructuresKHR vkBuildAccelerationStructuresKHR               = nullptr;

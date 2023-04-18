@@ -63,16 +63,29 @@ CMAKE_BINARY_DIR = /home/jae/CLionProjects/vk-framework/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/spirv_reflect.dir/all
+all: CMakeFiles/stb.dir/all
 all: CMakeFiles/log.dir/all
+all: CMakeFiles/vk_loader.dir/all
+all: CMakeFiles/vk_framework.dir/all
+all: CMakeFiles/main.dir/all
+all: third-party/glm/all
 all: third-party/glfw-3.3.8/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
+preinstall: third-party/glm/preinstall
 preinstall: third-party/glfw-3.3.8/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/spirv_reflect.dir/clean
+clean: CMakeFiles/stb.dir/clean
 clean: CMakeFiles/log.dir/clean
+clean: CMakeFiles/vk_loader.dir/clean
+clean: CMakeFiles/vk_framework.dir/clean
+clean: CMakeFiles/main.dir/clean
+clean: third-party/glm/clean
 clean: third-party/glfw-3.3.8/clean
 .PHONY : clean
 
@@ -108,6 +121,88 @@ third-party/glfw-3.3.8/src/clean: third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir
 .PHONY : third-party/glfw-3.3.8/src/clean
 
 #=============================================================================
+# Directory level rules for directory third-party/glm
+
+# Recursive "all" directory target.
+third-party/glm/all: third-party/glm/glm/all
+.PHONY : third-party/glm/all
+
+# Recursive "preinstall" directory target.
+third-party/glm/preinstall: third-party/glm/glm/preinstall
+.PHONY : third-party/glm/preinstall
+
+# Recursive "clean" directory target.
+third-party/glm/clean: third-party/glm/glm/clean
+.PHONY : third-party/glm/clean
+
+#=============================================================================
+# Directory level rules for directory third-party/glm/glm
+
+# Recursive "all" directory target.
+third-party/glm/glm/all:
+.PHONY : third-party/glm/glm/all
+
+# Recursive "preinstall" directory target.
+third-party/glm/glm/preinstall:
+.PHONY : third-party/glm/glm/preinstall
+
+# Recursive "clean" directory target.
+third-party/glm/glm/clean:
+.PHONY : third-party/glm/glm/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/spirv_reflect.dir
+
+# All Build rule for target.
+CMakeFiles/spirv_reflect.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/spirv_reflect.dir/build.make CMakeFiles/spirv_reflect.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/spirv_reflect.dir/build.make CMakeFiles/spirv_reflect.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jae/CLionProjects/vk-framework/build/CMakeFiles --progress-num=22,23 "Built target spirv_reflect"
+.PHONY : CMakeFiles/spirv_reflect.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/spirv_reflect.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/spirv_reflect.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 0
+.PHONY : CMakeFiles/spirv_reflect.dir/rule
+
+# Convenience name for target.
+spirv_reflect: CMakeFiles/spirv_reflect.dir/rule
+.PHONY : spirv_reflect
+
+# clean rule for target.
+CMakeFiles/spirv_reflect.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/spirv_reflect.dir/build.make CMakeFiles/spirv_reflect.dir/clean
+.PHONY : CMakeFiles/spirv_reflect.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/stb.dir
+
+# All Build rule for target.
+CMakeFiles/stb.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stb.dir/build.make CMakeFiles/stb.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stb.dir/build.make CMakeFiles/stb.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jae/CLionProjects/vk-framework/build/CMakeFiles --progress-num=24,25 "Built target stb"
+.PHONY : CMakeFiles/stb.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/stb.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/stb.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 0
+.PHONY : CMakeFiles/stb.dir/rule
+
+# Convenience name for target.
+stb: CMakeFiles/stb.dir/rule
+.PHONY : stb
+
+# clean rule for target.
+CMakeFiles/stb.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stb.dir/build.make CMakeFiles/stb.dir/clean
+.PHONY : CMakeFiles/stb.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/log.dir
 
 # All Build rule for target.
@@ -134,13 +229,100 @@ CMakeFiles/log.dir/clean:
 .PHONY : CMakeFiles/log.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/vk_loader.dir
+
+# All Build rule for target.
+CMakeFiles/vk_loader.dir/all: CMakeFiles/log.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jae/CLionProjects/vk-framework/build/CMakeFiles --progress-num=46,47,48 "Built target vk_loader"
+.PHONY : CMakeFiles/vk_loader.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/vk_loader.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/vk_loader.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 0
+.PHONY : CMakeFiles/vk_loader.dir/rule
+
+# Convenience name for target.
+vk_loader: CMakeFiles/vk_loader.dir/rule
+.PHONY : vk_loader
+
+# clean rule for target.
+CMakeFiles/vk_loader.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/clean
+.PHONY : CMakeFiles/vk_loader.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/vk_framework.dir
+
+# All Build rule for target.
+CMakeFiles/vk_framework.dir/all: CMakeFiles/spirv_reflect.dir/all
+CMakeFiles/vk_framework.dir/all: CMakeFiles/stb.dir/all
+CMakeFiles/vk_framework.dir/all: CMakeFiles/log.dir/all
+CMakeFiles/vk_framework.dir/all: CMakeFiles/vk_loader.dir/all
+CMakeFiles/vk_framework.dir/all: third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jae/CLionProjects/vk-framework/build/CMakeFiles --progress-num=27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45 "Built target vk_framework"
+.PHONY : CMakeFiles/vk_framework.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/vk_framework.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 45
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/vk_framework.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 0
+.PHONY : CMakeFiles/vk_framework.dir/rule
+
+# Convenience name for target.
+vk_framework: CMakeFiles/vk_framework.dir/rule
+.PHONY : vk_framework
+
+# clean rule for target.
+CMakeFiles/vk_framework.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/clean
+.PHONY : CMakeFiles/vk_framework.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/main.dir
+
+# All Build rule for target.
+CMakeFiles/main.dir/all: CMakeFiles/spirv_reflect.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/stb.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/log.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/vk_loader.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/vk_framework.dir/all
+CMakeFiles/main.dir/all: third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jae/CLionProjects/vk-framework/build/CMakeFiles --progress-num=20,21 "Built target main"
+.PHONY : CMakeFiles/main.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/main.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 47
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jae/CLionProjects/vk-framework/build/CMakeFiles 0
+.PHONY : CMakeFiles/main.dir/rule
+
+# Convenience name for target.
+main: CMakeFiles/main.dir/rule
+.PHONY : main
+
+# clean rule for target.
+CMakeFiles/main.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/clean
+.PHONY : CMakeFiles/main.dir/clean
+
+#=============================================================================
 # Target rules for target third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir
 
 # All Build rule for target.
 third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/all:
 	$(MAKE) $(MAKESILENT) -f third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/build.make third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/depend
 	$(MAKE) $(MAKESILENT) -f third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/build.make third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jae/CLionProjects/vk-framework/build/CMakeFiles --progress-num=20 "Built target update_mappings"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jae/CLionProjects/vk-framework/build/CMakeFiles --progress-num=26 "Built target update_mappings"
 .PHONY : third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/all
 
 # Build rule for subdir invocation for target.

@@ -34,7 +34,7 @@ void H_allocateAndBindMemoryObjectToBuffer(VkPhysicalDevice physicalDevice,
          * Second section checks for memory type being present
          *
          * ((physical_device_memory_properties.memoryTypes[type].propertyFlags &
-         *    bufferInfo.memoryProperties) == bufferInfo.memoryProperties)
+         *    vertexBufferInfo.memoryProperties) == vertexBufferInfo.memoryProperties)
          */
 
         if( (memory_requirements.memoryTypeBits & (1 << type)) &&
@@ -117,6 +117,92 @@ void H_createBufferView(VkDevice logicalDevice,
 /* VkDeviceSize            */ bufferViewCreateInfo.range    = memoryRange;
 
     VK_CHECK_RESULT(vkCreateBufferView(logicalDevice, &bufferViewCreateInfo, nullptr, &bufferView))
+}
+
+void H_createVertexBuffer(VkDevice logicalDevice,
+                          VkDeviceSize size,
+                          BufferInfo& bufferInfo){
+    bufferInfo.memoryProperties = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT;
+    bufferInfo.bufSz = size;
+    bufferInfo.usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_INDEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT;
+
+    H_createBuffer(logicalDevice, bufferInfo);
+}
+
+void H_copyToVertexBuffer(VkPhysicalDevice physicalDevice,
+                          VkDevice logicalDevice,
+                          VkPhysicalDeviceMemoryProperties physicalDeviceMemoryProperties,
+                          VkCommandBuffer commandBuffer,
+                          void* data,
+                          uint32_t queueFamilyIndex,
+                          BufferInfo& dstBufferInfo){
+
+    BufferInfo stagingBuffer{};
+    stagingBuffer.memoryProperties = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
+    stagingBuffer.bufSz = dstBufferInfo.bufSz;
+    stagingBuffer.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
+
+    H_createBuffer(logicalDevice, stagingBuffer);
+
+    H_allocateAndBindMemoryObjectToBuffer(physicalDevice,
+                                          logicalDevice,
+                                          physicalDeviceMemoryProperties,
+                                          stagingBuffer);
+
+    VK_CHECK_RESULT(vkMapMemory(logicalDevice,
+                                stagingBuffer.memoryObj,
+                                0,
+                                stagingBuffer.bufSz,
+                                0,
+                                &stagingBuffer.memoryPointer))
+
+    std::memcpy(stagingBuffer.memoryPointer,
+                data,
+                stagingBuffer.bufSz);
+
+    std::vector<VkBufferCopy> regions;
+
+    regions.push_back(VkBufferCopy{
+        0,0,stagingBuffer.bufSz
+    });
+
+    std::vector<BufferTransition> bufferTransition(1);
+
+    bufferTransition[0] = {
+        .buffer = dstBufferInfo.buffer,
+        .currentAccess = VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT,
+        .newAccess = VK_ACCESS_TRANSFER_WRITE_BIT,
+        .currentQueueFamily = queueFamilyIndex,
+        .newQueueFamily = queueFamilyIndex
+    };
+
+    H_setBufferMemoryBarrier(bufferTransition,
+                             VK_PIPELINE_STAGE_VERTEX_INPUT_BIT,
+                             VK_PIPELINE_STAGE_TRANSFER_BIT,
+                             commandBuffer);
+
+    H_beginCommandBufferRecording(commandBuffer, VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
+
+    vkCmdCopyBuffer(commandBuffer, stagingBuffer.buffer, dstBufferInfo.buffer,
+                    static_cast<uint32_t>(regions.size()),
+                    &regions[0]);
+
+    H_endCommandBufferRecording(commandBuffer);
+
+    bufferTransition[0] = {
+            .buffer = dstBufferInfo.buffer,
+            .currentAccess = VK_ACCESS_TRANSFER_WRITE_BIT,
+            .newAccess = VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT,
+            .currentQueueFamily = queueFamilyIndex,
+            .newQueueFamily = queueFamilyIndex
+    };
+
+    H_setBufferMemoryBarrier(bufferTransition,
+                             VK_PIPELINE_STAGE_TRANSFER_BIT,
+                             VK_PIPELINE_STAGE_VERTEX_INPUT_BIT,
+                             commandBuffer);
+
+    H_freeBuffer(logicalDevice, stagingBuffer);
 }
 
 void H_freeBuffer(VkDevice logicalDevice, BufferInfo& bufferInfo){

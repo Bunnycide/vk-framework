@@ -17,6 +17,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/jae/CLionProjects/vk-framework/third-party/glfw-3.3.8/src/glfw3.pc.in"
   "/home/jae/CLionProjects/vk-framework/third-party/glfw-3.3.8/src/glfw3Config.cmake.in"
   "/home/jae/CLionProjects/vk-framework/third-party/glfw-3.3.8/src/glfw_config.h.in"
+  "/home/jae/CLionProjects/vk-framework/third-party/glm/CMakeLists.txt"
+  "/home/jae/CLionProjects/vk-framework/third-party/glm/glm/CMakeLists.txt"
   "/usr/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in"
   "/usr/share/cmake/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCXXInformation.cmake"
@@ -64,6 +66,8 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "/home/jae/CLionProjects/vk-framework/inc/config.h"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "third-party/glm/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "third-party/glm/glm/CMakeFiles/CMakeDirectoryInformation.cmake"
   "third-party/glfw-3.3.8/src/glfw3Config.cmake"
   "third-party/glfw-3.3.8/src/glfw3ConfigVersion.cmake"
   "third-party/glfw-3.3.8/src/glfw_config.h"
@@ -74,7 +78,12 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/spirv_reflect.dir/DependInfo.cmake"
+  "CMakeFiles/stb.dir/DependInfo.cmake"
   "CMakeFiles/log.dir/DependInfo.cmake"
+  "CMakeFiles/vk_loader.dir/DependInfo.cmake"
+  "CMakeFiles/vk_framework.dir/DependInfo.cmake"
+  "CMakeFiles/main.dir/DependInfo.cmake"
   "third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir/DependInfo.cmake"
   "third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   )

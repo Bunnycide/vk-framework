@@ -10,6 +10,7 @@
 #include <map>
 #include <utility>
 #include <algorithm>
+#include "../../glm/glm.hpp"
 #include "Log/Log.h"
 #include "../../third-party/shaderc/include/shaderc/shaderc.hpp"
 #include "../../third-party/stb/stb_image.h"

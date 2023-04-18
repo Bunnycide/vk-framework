@@ -41,6 +41,7 @@ struct BufferInfo{
     VkBufferUsageFlags usage;
     VkDeviceMemory memoryObj;
     VkMemoryPropertyFlagBits memoryProperties;
+    void* memoryPointer;
 };
 
 struct ImageInfo{
@@ -86,6 +87,12 @@ struct ImageTransition {
     uint32_t            currentQueueFamily;
     uint32_t            newQueueFamily;
     VkImageAspectFlags  aspect;
+};
+
+struct Vertex {
+    glm::vec2 pos;
+    glm::vec3 color;
+    glm::vec2 texCoord;
 };
 
 struct VertexBufferParameters {

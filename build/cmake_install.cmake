@@ -44,6 +44,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/jae/CLionProjects/vk-framework/build/third-party/glm/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/jae/CLionProjects/vk-framework/build/third-party/glfw-3.3.8/cmake_install.cmake")
 endif()
 

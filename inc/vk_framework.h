@@ -17,11 +17,19 @@ private:
     VulkanInstance vulkanInstance;
     VulkanSwapChain vulkanSwapChain;
     VulkanRender vulkanRender;
-
+    VkRenderPassBeginInfo renderPassBeginInfo;
     CommandPoolInfo gfxCommandPoolInfo;
     CommandPoolInfo trxCommandPoolInfo;
 
     DescriptorData descriptorData;
+
+    std::array<VkClearValue, 2> clearValues{};
+    VkViewport viewport{};
+    VkRect2D scissor{};
+    VkDeviceSize offset = 0;
+
+    BufferInfo vertexBufferInfo{};
+    BufferInfo indexBufferInfo{};
 
     void setupSwapChain();
     void setupRenderPass();
@@ -31,10 +39,29 @@ public:
     explicit FrameWork(ContextType);
     ~FrameWork();
 
+    // Delete this later
+    uint32_t imgIndx = 0;
+    std::vector<VkFence> inFlightFences;
+    std::vector<VkSemaphore> imgAvailSemaphores;
+    std::vector<VkSemaphore> signalSemaphores;
+
+    std::vector<VkPipelineStageFlags> wait_stages = {
+            VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT
+    };
+
+    // Delete this later
+
     bool InitRenderEngine();
     bool LoadScene(const char* path);
     bool UseRenderType(RenderStyle);
     bool LoadLightStyle(LightData*, const char* lightData);
+
+    void setupSyncObjects();
+    void setupGeom();
+    void recordCommands();
+    void drawGeometry();
+    void drawFrame();
+
     void mainLoop();
 
     void cleanup();

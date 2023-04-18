@@ -1,7 +1,20 @@
 #include "includes.h"
+#include "vk_framework.h"
+
 
 FrameWork::FrameWork(ContextType mContextType){
+    H_createWindow(800, 600, "vk");
     contextType = mContextType;
+
+    clearValues[0] = {{{0.7f, 0.7f, 0.7f, 1.0f}}};
+    clearValues[1].depthStencil = {1.0f, 0};
+
+    viewport.x = 0.0f;
+    viewport.y = 0.0f;
+    viewport.width = 800;
+    viewport.height = 600;
+    viewport.minDepth = 0.0f;
+    viewport.maxDepth = 1.0f;
 }
 FrameWork::~FrameWork()= default;
 
@@ -15,12 +28,11 @@ bool FrameWork::InitRenderEngine() {
         Log::error("Validation layers not found");
         return false;
     }
+
     if(! H_areInstanceExtensionsSupported()){
         Log::error("Instance level extensions not supported");
         return false;
     }
-
-    H_createWindow(800, 600, "vk");
 
     //// Vulkan instance creation and func loading
     H_createVulkanInstance(vulkanInstance.instance, contextType);
@@ -90,6 +102,25 @@ bool FrameWork::InitRenderEngine() {
                                   vulkanRender.renderPass,
                                   vulkanSwapChain.swapChainImageViews,
                                   vulkanSwapChain.swapChainFrameBuffers);
+
+    renderPassBeginInfo = {
+            .sType          = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO,
+            .pNext          = nullptr,
+            .renderPass     = vulkanRender.renderPass,
+            .framebuffer    = vulkanSwapChain.swapChainFrameBuffers[0],
+            .renderArea     = {
+                    {0,0},
+                    800, 600
+            },
+
+            .clearValueCount    = static_cast<uint32_t>(clearValues.size()),
+            .pClearValues       = clearValues.data()
+    };
+
+    setupSyncObjects();
+    setupGeom();
+
+    drawFrame();
 
     return true;
 }
@@ -275,4 +306,120 @@ void FrameWork::setupRenderPass() {
                            vulkanRender.pipelineLayout,
                            vulkanRender.renderPass,
                            vulkanRender.gfxPipeline);
+
+    scissor.offset = {0, 0};
+    scissor.extent = {800, 600};
+}
+
+void FrameWork::setupGeom(){
+    const std::vector<Vertex> vertices = {
+            {{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}, {1.0f, 0.0f}},
+            {{0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f}},
+            {{0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}, {0.0f, 1.0f}},
+            {{-0.5f, 0.5f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}}
+    };
+
+    H_createVertexBuffer(vulkanInstance.logicalDevice, sizeof(Vertex) * vertices.size(),
+                         vertexBufferInfo);
+
+    H_allocateAndBindMemoryObjectToBuffer(vulkanInstance.physicalDevice,
+                                          vulkanInstance.logicalDevice,
+                                          vulkanInstance.physicalDeviceMemoryProperties,
+                                          vertexBufferInfo);
+
+    H_copyToVertexBuffer(vulkanInstance.physicalDevice,
+                         vulkanInstance.logicalDevice,
+                         vulkanInstance.physicalDeviceMemoryProperties,
+                         gfxCommandPoolInfo.commandBuffers[0],
+                         (void *) vertices.data(),
+                         vulkanInstance.queueInfos[IDX_TRANSFER].queueFamilyIndex,
+                         vertexBufferInfo);
+
+    const std::vector<uint16_t> indices = {
+            0, 1, 2, 2, 3, 0
+    };
+
+    H_createVertexBuffer(vulkanInstance.logicalDevice,
+                         indices.size() * sizeof(uint16_t),
+                         indexBufferInfo);
+
+    H_allocateAndBindMemoryObjectToBuffer(vulkanInstance.physicalDevice,
+                                          vulkanInstance.logicalDevice,
+                                          vulkanInstance.physicalDeviceMemoryProperties,
+                                          indexBufferInfo);
+
+    H_copyToVertexBuffer(vulkanInstance.physicalDevice,
+                         vulkanInstance.logicalDevice,
+                         vulkanInstance.physicalDeviceMemoryProperties,
+                         gfxCommandPoolInfo.commandBuffers[0],
+                         (void *) indices.data(),
+                         vulkanInstance.queueInfos[IDX_TRANSFER].queueFamilyIndex,
+                         indexBufferInfo);
+}
+
+void FrameWork::setupSyncObjects(){
+    inFlightFences.resize(vulkanSwapChain.swapChainImages.size());
+    imgAvailSemaphores.resize(vulkanSwapChain.swapChainImages.size());
+    signalSemaphores.resize(vulkanSwapChain.swapChainImages.size());
+
+    for(int i = 0; i < inFlightFences.size(); i++){
+        H_createFence(vulkanInstance.logicalDevice, false, inFlightFences[i]);
+        H_createSemaphore(vulkanInstance.logicalDevice, imgAvailSemaphores[i]);
+        H_createSemaphore(vulkanInstance.logicalDevice, signalSemaphores[i]);
+    }
+}
+
+void FrameWork::drawGeometry(){
+
+}
+
+void FrameWork::drawFrame(){
+
+    vkAcquireNextImageKHR(vulkanInstance.logicalDevice,
+                          vulkanSwapChain.swapchain,
+                          UINT64_MAX,
+                          VK_NULL_HANDLE,
+                          VK_NULL_HANDLE,
+                          &imgIndx);
+
+    VkPresentInfoKHR presentInfo {
+/* VkStructureType       */ .sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
+/* const void*           */ .pNext = nullptr,
+/* uint32_t              */ .waitSemaphoreCount = 1,
+/* const VkSemaphore*    */ .pWaitSemaphores = &imgAvailSemaphores[imgIndx],
+/* uint32_t              */ .swapchainCount = 1,
+/* const VkSwapchainKHR* */ .pSwapchains = &vulkanSwapChain.swapchain,
+/* const uint32_t*       */ .pImageIndices = &imgIndx,
+/* VkResult*             */ .pResults = NULL,
+    };
+
+    vkQueuePresentKHR(vulkanInstance.queueInfos[IDX_GRAPHICS].queues[0], &presentInfo);
+}
+
+void FrameWork::recordCommands() {
+    H_beginCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0], VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
+    renderPassBeginInfo.framebuffer = vulkanSwapChain.swapChainFrameBuffers[imgIndx];
+
+    vkCmdBeginRenderPass(gfxCommandPoolInfo.commandBuffers[0], &renderPassBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
+    vkCmdSetViewport(gfxCommandPoolInfo.commandBuffers[0], 0, 1, &viewport);
+    vkCmdSetScissor(gfxCommandPoolInfo.commandBuffers[0], 0,1, &scissor);
+
+    vkCmdBindVertexBuffers(gfxCommandPoolInfo.commandBuffers[0],
+                           0,
+                           1,
+                           &vertexBufferInfo.buffer,
+                           &offset);
+
+    vkCmdBindPipeline(gfxCommandPoolInfo.commandBuffers[0],
+                      VK_PIPELINE_BIND_POINT_GRAPHICS,
+                      vulkanRender.gfxPipeline);
+
+    vkCmdDrawIndexed(gfxCommandPoolInfo.commandBuffers[0],
+                     6,
+                     1,
+                     0,
+                     0,
+                     0);
+
+    H_endCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0]);
 }

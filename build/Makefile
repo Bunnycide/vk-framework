@@ -117,6 +117,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named spirv_reflect
+
+# Build rule for target.
+spirv_reflect: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 spirv_reflect
+.PHONY : spirv_reflect
+
+# fast build rule for target.
+spirv_reflect/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/spirv_reflect.dir/build.make CMakeFiles/spirv_reflect.dir/build
+.PHONY : spirv_reflect/fast
+
+#=============================================================================
+# Target rules for targets named stb
+
+# Build rule for target.
+stb: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stb
+.PHONY : stb
+
+# fast build rule for target.
+stb/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stb.dir/build.make CMakeFiles/stb.dir/build
+.PHONY : stb/fast
+
+#=============================================================================
 # Target rules for targets named log
 
 # Build rule for target.
@@ -128,6 +154,45 @@ log: cmake_check_build_system
 log/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/log.dir/build.make CMakeFiles/log.dir/build
 .PHONY : log/fast
+
+#=============================================================================
+# Target rules for targets named vk_loader
+
+# Build rule for target.
+vk_loader: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vk_loader
+.PHONY : vk_loader
+
+# fast build rule for target.
+vk_loader/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/build
+.PHONY : vk_loader/fast
+
+#=============================================================================
+# Target rules for targets named vk_framework
+
+# Build rule for target.
+vk_framework: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vk_framework
+.PHONY : vk_framework
+
+# fast build rule for target.
+vk_framework/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/build
+.PHONY : vk_framework/fast
+
+#=============================================================================
+# Target rules for targets named main
+
+# Build rule for target.
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
+
+# fast build rule for target.
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 #=============================================================================
 # Target rules for targets named update_mappings
@@ -155,6 +220,30 @@ glfw/fast:
 	$(MAKE) $(MAKESILENT) -f third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/build.make third-party/glfw-3.3.8/src/CMakeFiles/glfw.dir/build
 .PHONY : glfw/fast
 
+main.o: main.cpp.o
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
+.PHONY : main.cpp.s
+
 src/platform/Linux/Log.o: src/platform/Linux/Log.cpp.o
 .PHONY : src/platform/Linux/Log.o
 
@@ -179,6 +268,534 @@ src/platform/Linux/Log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/log.dir/build.make CMakeFiles/log.dir/src/platform/Linux/Log.cpp.s
 .PHONY : src/platform/Linux/Log.cpp.s
 
+src/platform/Linux/asset_utils.o: src/platform/Linux/asset_utils.cpp.o
+.PHONY : src/platform/Linux/asset_utils.o
+
+# target to build an object file
+src/platform/Linux/asset_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/platform/Linux/asset_utils.cpp.o
+.PHONY : src/platform/Linux/asset_utils.cpp.o
+
+src/platform/Linux/asset_utils.i: src/platform/Linux/asset_utils.cpp.i
+.PHONY : src/platform/Linux/asset_utils.i
+
+# target to preprocess a source file
+src/platform/Linux/asset_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/platform/Linux/asset_utils.cpp.i
+.PHONY : src/platform/Linux/asset_utils.cpp.i
+
+src/platform/Linux/asset_utils.s: src/platform/Linux/asset_utils.cpp.s
+.PHONY : src/platform/Linux/asset_utils.s
+
+# target to generate assembly for a file
+src/platform/Linux/asset_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/platform/Linux/asset_utils.cpp.s
+.PHONY : src/platform/Linux/asset_utils.cpp.s
+
+src/platform/Linux/vk_render_surface.o: src/platform/Linux/vk_render_surface.cpp.o
+.PHONY : src/platform/Linux/vk_render_surface.o
+
+# target to build an object file
+src/platform/Linux/vk_render_surface.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/platform/Linux/vk_render_surface.cpp.o
+.PHONY : src/platform/Linux/vk_render_surface.cpp.o
+
+src/platform/Linux/vk_render_surface.i: src/platform/Linux/vk_render_surface.cpp.i
+.PHONY : src/platform/Linux/vk_render_surface.i
+
+# target to preprocess a source file
+src/platform/Linux/vk_render_surface.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/platform/Linux/vk_render_surface.cpp.i
+.PHONY : src/platform/Linux/vk_render_surface.cpp.i
+
+src/platform/Linux/vk_render_surface.s: src/platform/Linux/vk_render_surface.cpp.s
+.PHONY : src/platform/Linux/vk_render_surface.s
+
+# target to generate assembly for a file
+src/platform/Linux/vk_render_surface.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/platform/Linux/vk_render_surface.cpp.s
+.PHONY : src/platform/Linux/vk_render_surface.cpp.s
+
+src/utils/resources/buffer/vk_buffer_util.o: src/utils/resources/buffer/vk_buffer_util.cpp.o
+.PHONY : src/utils/resources/buffer/vk_buffer_util.o
+
+# target to build an object file
+src/utils/resources/buffer/vk_buffer_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/buffer/vk_buffer_util.cpp.o
+.PHONY : src/utils/resources/buffer/vk_buffer_util.cpp.o
+
+src/utils/resources/buffer/vk_buffer_util.i: src/utils/resources/buffer/vk_buffer_util.cpp.i
+.PHONY : src/utils/resources/buffer/vk_buffer_util.i
+
+# target to preprocess a source file
+src/utils/resources/buffer/vk_buffer_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/buffer/vk_buffer_util.cpp.i
+.PHONY : src/utils/resources/buffer/vk_buffer_util.cpp.i
+
+src/utils/resources/buffer/vk_buffer_util.s: src/utils/resources/buffer/vk_buffer_util.cpp.s
+.PHONY : src/utils/resources/buffer/vk_buffer_util.s
+
+# target to generate assembly for a file
+src/utils/resources/buffer/vk_buffer_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/buffer/vk_buffer_util.cpp.s
+.PHONY : src/utils/resources/buffer/vk_buffer_util.cpp.s
+
+src/utils/resources/image/depth_util.o: src/utils/resources/image/depth_util.cpp.o
+.PHONY : src/utils/resources/image/depth_util.o
+
+# target to build an object file
+src/utils/resources/image/depth_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/depth_util.cpp.o
+.PHONY : src/utils/resources/image/depth_util.cpp.o
+
+src/utils/resources/image/depth_util.i: src/utils/resources/image/depth_util.cpp.i
+.PHONY : src/utils/resources/image/depth_util.i
+
+# target to preprocess a source file
+src/utils/resources/image/depth_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/depth_util.cpp.i
+.PHONY : src/utils/resources/image/depth_util.cpp.i
+
+src/utils/resources/image/depth_util.s: src/utils/resources/image/depth_util.cpp.s
+.PHONY : src/utils/resources/image/depth_util.s
+
+# target to generate assembly for a file
+src/utils/resources/image/depth_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/depth_util.cpp.s
+.PHONY : src/utils/resources/image/depth_util.cpp.s
+
+src/utils/resources/image/texture_util.o: src/utils/resources/image/texture_util.cpp.o
+.PHONY : src/utils/resources/image/texture_util.o
+
+# target to build an object file
+src/utils/resources/image/texture_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/texture_util.cpp.o
+.PHONY : src/utils/resources/image/texture_util.cpp.o
+
+src/utils/resources/image/texture_util.i: src/utils/resources/image/texture_util.cpp.i
+.PHONY : src/utils/resources/image/texture_util.i
+
+# target to preprocess a source file
+src/utils/resources/image/texture_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/texture_util.cpp.i
+.PHONY : src/utils/resources/image/texture_util.cpp.i
+
+src/utils/resources/image/texture_util.s: src/utils/resources/image/texture_util.cpp.s
+.PHONY : src/utils/resources/image/texture_util.s
+
+# target to generate assembly for a file
+src/utils/resources/image/texture_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/texture_util.cpp.s
+.PHONY : src/utils/resources/image/texture_util.cpp.s
+
+src/utils/resources/image/vk_image_util.o: src/utils/resources/image/vk_image_util.cpp.o
+.PHONY : src/utils/resources/image/vk_image_util.o
+
+# target to build an object file
+src/utils/resources/image/vk_image_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/vk_image_util.cpp.o
+.PHONY : src/utils/resources/image/vk_image_util.cpp.o
+
+src/utils/resources/image/vk_image_util.i: src/utils/resources/image/vk_image_util.cpp.i
+.PHONY : src/utils/resources/image/vk_image_util.i
+
+# target to preprocess a source file
+src/utils/resources/image/vk_image_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/vk_image_util.cpp.i
+.PHONY : src/utils/resources/image/vk_image_util.cpp.i
+
+src/utils/resources/image/vk_image_util.s: src/utils/resources/image/vk_image_util.cpp.s
+.PHONY : src/utils/resources/image/vk_image_util.s
+
+# target to generate assembly for a file
+src/utils/resources/image/vk_image_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/resources/image/vk_image_util.cpp.s
+.PHONY : src/utils/resources/image/vk_image_util.cpp.s
+
+src/utils/spv_reflect_util.o: src/utils/spv_reflect_util.cpp.o
+.PHONY : src/utils/spv_reflect_util.o
+
+# target to build an object file
+src/utils/spv_reflect_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/spv_reflect_util.cpp.o
+.PHONY : src/utils/spv_reflect_util.cpp.o
+
+src/utils/spv_reflect_util.i: src/utils/spv_reflect_util.cpp.i
+.PHONY : src/utils/spv_reflect_util.i
+
+# target to preprocess a source file
+src/utils/spv_reflect_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/spv_reflect_util.cpp.i
+.PHONY : src/utils/spv_reflect_util.cpp.i
+
+src/utils/spv_reflect_util.s: src/utils/spv_reflect_util.cpp.s
+.PHONY : src/utils/spv_reflect_util.s
+
+# target to generate assembly for a file
+src/utils/spv_reflect_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/spv_reflect_util.cpp.s
+.PHONY : src/utils/spv_reflect_util.cpp.s
+
+src/utils/sync/fences/vk_fence_utils.o: src/utils/sync/fences/vk_fence_utils.cpp.o
+.PHONY : src/utils/sync/fences/vk_fence_utils.o
+
+# target to build an object file
+src/utils/sync/fences/vk_fence_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/sync/fences/vk_fence_utils.cpp.o
+.PHONY : src/utils/sync/fences/vk_fence_utils.cpp.o
+
+src/utils/sync/fences/vk_fence_utils.i: src/utils/sync/fences/vk_fence_utils.cpp.i
+.PHONY : src/utils/sync/fences/vk_fence_utils.i
+
+# target to preprocess a source file
+src/utils/sync/fences/vk_fence_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/sync/fences/vk_fence_utils.cpp.i
+.PHONY : src/utils/sync/fences/vk_fence_utils.cpp.i
+
+src/utils/sync/fences/vk_fence_utils.s: src/utils/sync/fences/vk_fence_utils.cpp.s
+.PHONY : src/utils/sync/fences/vk_fence_utils.s
+
+# target to generate assembly for a file
+src/utils/sync/fences/vk_fence_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/sync/fences/vk_fence_utils.cpp.s
+.PHONY : src/utils/sync/fences/vk_fence_utils.cpp.s
+
+src/utils/sync/semaphores/vk_semaphore_utils.o: src/utils/sync/semaphores/vk_semaphore_utils.cpp.o
+.PHONY : src/utils/sync/semaphores/vk_semaphore_utils.o
+
+# target to build an object file
+src/utils/sync/semaphores/vk_semaphore_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/sync/semaphores/vk_semaphore_utils.cpp.o
+.PHONY : src/utils/sync/semaphores/vk_semaphore_utils.cpp.o
+
+src/utils/sync/semaphores/vk_semaphore_utils.i: src/utils/sync/semaphores/vk_semaphore_utils.cpp.i
+.PHONY : src/utils/sync/semaphores/vk_semaphore_utils.i
+
+# target to preprocess a source file
+src/utils/sync/semaphores/vk_semaphore_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/sync/semaphores/vk_semaphore_utils.cpp.i
+.PHONY : src/utils/sync/semaphores/vk_semaphore_utils.cpp.i
+
+src/utils/sync/semaphores/vk_semaphore_utils.s: src/utils/sync/semaphores/vk_semaphore_utils.cpp.s
+.PHONY : src/utils/sync/semaphores/vk_semaphore_utils.s
+
+# target to generate assembly for a file
+src/utils/sync/semaphores/vk_semaphore_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/sync/semaphores/vk_semaphore_utils.cpp.s
+.PHONY : src/utils/sync/semaphores/vk_semaphore_utils.cpp.s
+
+src/utils/vk_command_X_utils.o: src/utils/vk_command_X_utils.cpp.o
+.PHONY : src/utils/vk_command_X_utils.o
+
+# target to build an object file
+src/utils/vk_command_X_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_command_X_utils.cpp.o
+.PHONY : src/utils/vk_command_X_utils.cpp.o
+
+src/utils/vk_command_X_utils.i: src/utils/vk_command_X_utils.cpp.i
+.PHONY : src/utils/vk_command_X_utils.i
+
+# target to preprocess a source file
+src/utils/vk_command_X_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_command_X_utils.cpp.i
+.PHONY : src/utils/vk_command_X_utils.cpp.i
+
+src/utils/vk_command_X_utils.s: src/utils/vk_command_X_utils.cpp.s
+.PHONY : src/utils/vk_command_X_utils.s
+
+# target to generate assembly for a file
+src/utils/vk_command_X_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_command_X_utils.cpp.s
+.PHONY : src/utils/vk_command_X_utils.cpp.s
+
+src/utils/vk_descriptor_util.o: src/utils/vk_descriptor_util.cpp.o
+.PHONY : src/utils/vk_descriptor_util.o
+
+# target to build an object file
+src/utils/vk_descriptor_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_descriptor_util.cpp.o
+.PHONY : src/utils/vk_descriptor_util.cpp.o
+
+src/utils/vk_descriptor_util.i: src/utils/vk_descriptor_util.cpp.i
+.PHONY : src/utils/vk_descriptor_util.i
+
+# target to preprocess a source file
+src/utils/vk_descriptor_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_descriptor_util.cpp.i
+.PHONY : src/utils/vk_descriptor_util.cpp.i
+
+src/utils/vk_descriptor_util.s: src/utils/vk_descriptor_util.cpp.s
+.PHONY : src/utils/vk_descriptor_util.s
+
+# target to generate assembly for a file
+src/utils/vk_descriptor_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_descriptor_util.cpp.s
+.PHONY : src/utils/vk_descriptor_util.cpp.s
+
+src/utils/vk_draw_util.o: src/utils/vk_draw_util.cpp.o
+.PHONY : src/utils/vk_draw_util.o
+
+# target to build an object file
+src/utils/vk_draw_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_draw_util.cpp.o
+.PHONY : src/utils/vk_draw_util.cpp.o
+
+src/utils/vk_draw_util.i: src/utils/vk_draw_util.cpp.i
+.PHONY : src/utils/vk_draw_util.i
+
+# target to preprocess a source file
+src/utils/vk_draw_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_draw_util.cpp.i
+.PHONY : src/utils/vk_draw_util.cpp.i
+
+src/utils/vk_draw_util.s: src/utils/vk_draw_util.cpp.s
+.PHONY : src/utils/vk_draw_util.s
+
+# target to generate assembly for a file
+src/utils/vk_draw_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_draw_util.cpp.s
+.PHONY : src/utils/vk_draw_util.cpp.s
+
+src/utils/vk_instance_and_device_utils.o: src/utils/vk_instance_and_device_utils.cpp.o
+.PHONY : src/utils/vk_instance_and_device_utils.o
+
+# target to build an object file
+src/utils/vk_instance_and_device_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_instance_and_device_utils.cpp.o
+.PHONY : src/utils/vk_instance_and_device_utils.cpp.o
+
+src/utils/vk_instance_and_device_utils.i: src/utils/vk_instance_and_device_utils.cpp.i
+.PHONY : src/utils/vk_instance_and_device_utils.i
+
+# target to preprocess a source file
+src/utils/vk_instance_and_device_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_instance_and_device_utils.cpp.i
+.PHONY : src/utils/vk_instance_and_device_utils.cpp.i
+
+src/utils/vk_instance_and_device_utils.s: src/utils/vk_instance_and_device_utils.cpp.s
+.PHONY : src/utils/vk_instance_and_device_utils.s
+
+# target to generate assembly for a file
+src/utils/vk_instance_and_device_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_instance_and_device_utils.cpp.s
+.PHONY : src/utils/vk_instance_and_device_utils.cpp.s
+
+src/utils/vk_layer_and_extension_utils.o: src/utils/vk_layer_and_extension_utils.cpp.o
+.PHONY : src/utils/vk_layer_and_extension_utils.o
+
+# target to build an object file
+src/utils/vk_layer_and_extension_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_layer_and_extension_utils.cpp.o
+.PHONY : src/utils/vk_layer_and_extension_utils.cpp.o
+
+src/utils/vk_layer_and_extension_utils.i: src/utils/vk_layer_and_extension_utils.cpp.i
+.PHONY : src/utils/vk_layer_and_extension_utils.i
+
+# target to preprocess a source file
+src/utils/vk_layer_and_extension_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_layer_and_extension_utils.cpp.i
+.PHONY : src/utils/vk_layer_and_extension_utils.cpp.i
+
+src/utils/vk_layer_and_extension_utils.s: src/utils/vk_layer_and_extension_utils.cpp.s
+.PHONY : src/utils/vk_layer_and_extension_utils.s
+
+# target to generate assembly for a file
+src/utils/vk_layer_and_extension_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_layer_and_extension_utils.cpp.s
+.PHONY : src/utils/vk_layer_and_extension_utils.cpp.s
+
+src/utils/vk_render_X_utils.o: src/utils/vk_render_X_utils.cpp.o
+.PHONY : src/utils/vk_render_X_utils.o
+
+# target to build an object file
+src/utils/vk_render_X_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_render_X_utils.cpp.o
+.PHONY : src/utils/vk_render_X_utils.cpp.o
+
+src/utils/vk_render_X_utils.i: src/utils/vk_render_X_utils.cpp.i
+.PHONY : src/utils/vk_render_X_utils.i
+
+# target to preprocess a source file
+src/utils/vk_render_X_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_render_X_utils.cpp.i
+.PHONY : src/utils/vk_render_X_utils.cpp.i
+
+src/utils/vk_render_X_utils.s: src/utils/vk_render_X_utils.cpp.s
+.PHONY : src/utils/vk_render_X_utils.s
+
+# target to generate assembly for a file
+src/utils/vk_render_X_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_render_X_utils.cpp.s
+.PHONY : src/utils/vk_render_X_utils.cpp.s
+
+src/utils/vk_shader_utils.o: src/utils/vk_shader_utils.cpp.o
+.PHONY : src/utils/vk_shader_utils.o
+
+# target to build an object file
+src/utils/vk_shader_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_shader_utils.cpp.o
+.PHONY : src/utils/vk_shader_utils.cpp.o
+
+src/utils/vk_shader_utils.i: src/utils/vk_shader_utils.cpp.i
+.PHONY : src/utils/vk_shader_utils.i
+
+# target to preprocess a source file
+src/utils/vk_shader_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_shader_utils.cpp.i
+.PHONY : src/utils/vk_shader_utils.cpp.i
+
+src/utils/vk_shader_utils.s: src/utils/vk_shader_utils.cpp.s
+.PHONY : src/utils/vk_shader_utils.s
+
+# target to generate assembly for a file
+src/utils/vk_shader_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_shader_utils.cpp.s
+.PHONY : src/utils/vk_shader_utils.cpp.s
+
+src/utils/vk_swapchain_utils.o: src/utils/vk_swapchain_utils.cpp.o
+.PHONY : src/utils/vk_swapchain_utils.o
+
+# target to build an object file
+src/utils/vk_swapchain_utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_swapchain_utils.cpp.o
+.PHONY : src/utils/vk_swapchain_utils.cpp.o
+
+src/utils/vk_swapchain_utils.i: src/utils/vk_swapchain_utils.cpp.i
+.PHONY : src/utils/vk_swapchain_utils.i
+
+# target to preprocess a source file
+src/utils/vk_swapchain_utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_swapchain_utils.cpp.i
+.PHONY : src/utils/vk_swapchain_utils.cpp.i
+
+src/utils/vk_swapchain_utils.s: src/utils/vk_swapchain_utils.cpp.s
+.PHONY : src/utils/vk_swapchain_utils.s
+
+# target to generate assembly for a file
+src/utils/vk_swapchain_utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/utils/vk_swapchain_utils.cpp.s
+.PHONY : src/utils/vk_swapchain_utils.cpp.s
+
+src/vk_framework.o: src/vk_framework.cpp.o
+.PHONY : src/vk_framework.o
+
+# target to build an object file
+src/vk_framework.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/vk_framework.cpp.o
+.PHONY : src/vk_framework.cpp.o
+
+src/vk_framework.i: src/vk_framework.cpp.i
+.PHONY : src/vk_framework.i
+
+# target to preprocess a source file
+src/vk_framework.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/vk_framework.cpp.i
+.PHONY : src/vk_framework.cpp.i
+
+src/vk_framework.s: src/vk_framework.cpp.s
+.PHONY : src/vk_framework.s
+
+# target to generate assembly for a file
+src/vk_framework.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_framework.dir/build.make CMakeFiles/vk_framework.dir/src/vk_framework.cpp.s
+.PHONY : src/vk_framework.cpp.s
+
+third-party/spirv-reflect/spirv_reflect.o: third-party/spirv-reflect/spirv_reflect.cpp.o
+.PHONY : third-party/spirv-reflect/spirv_reflect.o
+
+# target to build an object file
+third-party/spirv-reflect/spirv_reflect.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/spirv_reflect.dir/build.make CMakeFiles/spirv_reflect.dir/third-party/spirv-reflect/spirv_reflect.cpp.o
+.PHONY : third-party/spirv-reflect/spirv_reflect.cpp.o
+
+third-party/spirv-reflect/spirv_reflect.i: third-party/spirv-reflect/spirv_reflect.cpp.i
+.PHONY : third-party/spirv-reflect/spirv_reflect.i
+
+# target to preprocess a source file
+third-party/spirv-reflect/spirv_reflect.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/spirv_reflect.dir/build.make CMakeFiles/spirv_reflect.dir/third-party/spirv-reflect/spirv_reflect.cpp.i
+.PHONY : third-party/spirv-reflect/spirv_reflect.cpp.i
+
+third-party/spirv-reflect/spirv_reflect.s: third-party/spirv-reflect/spirv_reflect.cpp.s
+.PHONY : third-party/spirv-reflect/spirv_reflect.s
+
+# target to generate assembly for a file
+third-party/spirv-reflect/spirv_reflect.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/spirv_reflect.dir/build.make CMakeFiles/spirv_reflect.dir/third-party/spirv-reflect/spirv_reflect.cpp.s
+.PHONY : third-party/spirv-reflect/spirv_reflect.cpp.s
+
+third-party/stb/stb_loader.o: third-party/stb/stb_loader.cpp.o
+.PHONY : third-party/stb/stb_loader.o
+
+# target to build an object file
+third-party/stb/stb_loader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stb.dir/build.make CMakeFiles/stb.dir/third-party/stb/stb_loader.cpp.o
+.PHONY : third-party/stb/stb_loader.cpp.o
+
+third-party/stb/stb_loader.i: third-party/stb/stb_loader.cpp.i
+.PHONY : third-party/stb/stb_loader.i
+
+# target to preprocess a source file
+third-party/stb/stb_loader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stb.dir/build.make CMakeFiles/stb.dir/third-party/stb/stb_loader.cpp.i
+.PHONY : third-party/stb/stb_loader.cpp.i
+
+third-party/stb/stb_loader.s: third-party/stb/stb_loader.cpp.s
+.PHONY : third-party/stb/stb_loader.s
+
+# target to generate assembly for a file
+third-party/stb/stb_loader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stb.dir/build.make CMakeFiles/stb.dir/third-party/stb/stb_loader.cpp.s
+.PHONY : third-party/stb/stb_loader.cpp.s
+
+vk_loader/vk_functions.o: vk_loader/vk_functions.cpp.o
+.PHONY : vk_loader/vk_functions.o
+
+# target to build an object file
+vk_loader/vk_functions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/vk_loader/vk_functions.cpp.o
+.PHONY : vk_loader/vk_functions.cpp.o
+
+vk_loader/vk_functions.i: vk_loader/vk_functions.cpp.i
+.PHONY : vk_loader/vk_functions.i
+
+# target to preprocess a source file
+vk_loader/vk_functions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/vk_loader/vk_functions.cpp.i
+.PHONY : vk_loader/vk_functions.cpp.i
+
+vk_loader/vk_functions.s: vk_loader/vk_functions.cpp.s
+.PHONY : vk_loader/vk_functions.s
+
+# target to generate assembly for a file
+vk_loader/vk_functions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/vk_loader/vk_functions.cpp.s
+.PHONY : vk_loader/vk_functions.cpp.s
+
+vk_loader/vk_loader.o: vk_loader/vk_loader.cpp.o
+.PHONY : vk_loader/vk_loader.o
+
+# target to build an object file
+vk_loader/vk_loader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/vk_loader/vk_loader.cpp.o
+.PHONY : vk_loader/vk_loader.cpp.o
+
+vk_loader/vk_loader.i: vk_loader/vk_loader.cpp.i
+.PHONY : vk_loader/vk_loader.i
+
+# target to preprocess a source file
+vk_loader/vk_loader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/vk_loader/vk_loader.cpp.i
+.PHONY : vk_loader/vk_loader.cpp.i
+
+vk_loader/vk_loader.s: vk_loader/vk_loader.cpp.s
+.PHONY : vk_loader/vk_loader.s
+
+# target to generate assembly for a file
+vk_loader/vk_loader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vk_loader.dir/build.make CMakeFiles/vk_loader.dir/vk_loader/vk_loader.cpp.s
+.PHONY : vk_loader/vk_loader.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -190,9 +807,83 @@ help:
 	@echo "... update_mappings"
 	@echo "... glfw"
 	@echo "... log"
+	@echo "... main"
+	@echo "... spirv_reflect"
+	@echo "... stb"
+	@echo "... vk_framework"
+	@echo "... vk_loader"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 	@echo "... src/platform/Linux/Log.o"
 	@echo "... src/platform/Linux/Log.i"
 	@echo "... src/platform/Linux/Log.s"
+	@echo "... src/platform/Linux/asset_utils.o"
+	@echo "... src/platform/Linux/asset_utils.i"
+	@echo "... src/platform/Linux/asset_utils.s"
+	@echo "... src/platform/Linux/vk_render_surface.o"
+	@echo "... src/platform/Linux/vk_render_surface.i"
+	@echo "... src/platform/Linux/vk_render_surface.s"
+	@echo "... src/utils/resources/buffer/vk_buffer_util.o"
+	@echo "... src/utils/resources/buffer/vk_buffer_util.i"
+	@echo "... src/utils/resources/buffer/vk_buffer_util.s"
+	@echo "... src/utils/resources/image/depth_util.o"
+	@echo "... src/utils/resources/image/depth_util.i"
+	@echo "... src/utils/resources/image/depth_util.s"
+	@echo "... src/utils/resources/image/texture_util.o"
+	@echo "... src/utils/resources/image/texture_util.i"
+	@echo "... src/utils/resources/image/texture_util.s"
+	@echo "... src/utils/resources/image/vk_image_util.o"
+	@echo "... src/utils/resources/image/vk_image_util.i"
+	@echo "... src/utils/resources/image/vk_image_util.s"
+	@echo "... src/utils/spv_reflect_util.o"
+	@echo "... src/utils/spv_reflect_util.i"
+	@echo "... src/utils/spv_reflect_util.s"
+	@echo "... src/utils/sync/fences/vk_fence_utils.o"
+	@echo "... src/utils/sync/fences/vk_fence_utils.i"
+	@echo "... src/utils/sync/fences/vk_fence_utils.s"
+	@echo "... src/utils/sync/semaphores/vk_semaphore_utils.o"
+	@echo "... src/utils/sync/semaphores/vk_semaphore_utils.i"
+	@echo "... src/utils/sync/semaphores/vk_semaphore_utils.s"
+	@echo "... src/utils/vk_command_X_utils.o"
+	@echo "... src/utils/vk_command_X_utils.i"
+	@echo "... src/utils/vk_command_X_utils.s"
+	@echo "... src/utils/vk_descriptor_util.o"
+	@echo "... src/utils/vk_descriptor_util.i"
+	@echo "... src/utils/vk_descriptor_util.s"
+	@echo "... src/utils/vk_draw_util.o"
+	@echo "... src/utils/vk_draw_util.i"
+	@echo "... src/utils/vk_draw_util.s"
+	@echo "... src/utils/vk_instance_and_device_utils.o"
+	@echo "... src/utils/vk_instance_and_device_utils.i"
+	@echo "... src/utils/vk_instance_and_device_utils.s"
+	@echo "... src/utils/vk_layer_and_extension_utils.o"
+	@echo "... src/utils/vk_layer_and_extension_utils.i"
+	@echo "... src/utils/vk_layer_and_extension_utils.s"
+	@echo "... src/utils/vk_render_X_utils.o"
+	@echo "... src/utils/vk_render_X_utils.i"
+	@echo "... src/utils/vk_render_X_utils.s"
+	@echo "... src/utils/vk_shader_utils.o"
+	@echo "... src/utils/vk_shader_utils.i"
+	@echo "... src/utils/vk_shader_utils.s"
+	@echo "... src/utils/vk_swapchain_utils.o"
+	@echo "... src/utils/vk_swapchain_utils.i"
+	@echo "... src/utils/vk_swapchain_utils.s"
+	@echo "... src/vk_framework.o"
+	@echo "... src/vk_framework.i"
+	@echo "... src/vk_framework.s"
+	@echo "... third-party/spirv-reflect/spirv_reflect.o"
+	@echo "... third-party/spirv-reflect/spirv_reflect.i"
+	@echo "... third-party/spirv-reflect/spirv_reflect.s"
+	@echo "... third-party/stb/stb_loader.o"
+	@echo "... third-party/stb/stb_loader.i"
+	@echo "... third-party/stb/stb_loader.s"
+	@echo "... vk_loader/vk_functions.o"
+	@echo "... vk_loader/vk_functions.i"
+	@echo "... vk_loader/vk_functions.s"
+	@echo "... vk_loader/vk_loader.o"
+	@echo "... vk_loader/vk_loader.i"
+	@echo "... vk_loader/vk_loader.s"
 .PHONY : help
 
 

@@ -24,6 +24,18 @@ void H_createBufferView(VkDevice,
                         VkDeviceSize,
                         VkBufferView &);
 
+void H_createVertexBuffer(VkDevice,
+                          VkDeviceSize,
+                          BufferInfo&);
+
+void H_copyToVertexBuffer(VkPhysicalDevice ,
+                          VkDevice ,
+                          VkPhysicalDeviceMemoryProperties ,
+                          VkCommandBuffer ,
+                          void* ,
+                          uint32_t ,
+                          BufferInfo& );
+
 void H_freeBuffer(VkDevice, BufferInfo&);
 
 #endif //VK_FRAMEWORK_VK_BUFFER_UTIL_H

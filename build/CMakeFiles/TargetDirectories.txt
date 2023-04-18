@@ -1,6 +1,15 @@
+/home/jae/CLionProjects/vk-framework/build/CMakeFiles/spirv_reflect.dir
+/home/jae/CLionProjects/vk-framework/build/CMakeFiles/stb.dir
 /home/jae/CLionProjects/vk-framework/build/CMakeFiles/log.dir
+/home/jae/CLionProjects/vk-framework/build/CMakeFiles/vk_loader.dir
+/home/jae/CLionProjects/vk-framework/build/CMakeFiles/vk_framework.dir
+/home/jae/CLionProjects/vk-framework/build/CMakeFiles/main.dir
 /home/jae/CLionProjects/vk-framework/build/CMakeFiles/edit_cache.dir
 /home/jae/CLionProjects/vk-framework/build/CMakeFiles/rebuild_cache.dir
+/home/jae/CLionProjects/vk-framework/build/third-party/glm/CMakeFiles/edit_cache.dir
+/home/jae/CLionProjects/vk-framework/build/third-party/glm/CMakeFiles/rebuild_cache.dir
+/home/jae/CLionProjects/vk-framework/build/third-party/glm/glm/CMakeFiles/edit_cache.dir
+/home/jae/CLionProjects/vk-framework/build/third-party/glm/glm/CMakeFiles/rebuild_cache.dir
 /home/jae/CLionProjects/vk-framework/build/third-party/glfw-3.3.8/CMakeFiles/edit_cache.dir
 /home/jae/CLionProjects/vk-framework/build/third-party/glfw-3.3.8/CMakeFiles/rebuild_cache.dir
 /home/jae/CLionProjects/vk-framework/build/third-party/glfw-3.3.8/src/CMakeFiles/update_mappings.dir
