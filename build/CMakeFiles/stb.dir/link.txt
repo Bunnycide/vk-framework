@@ -1,2 +1,0 @@
-/usr/bin/ar qc libstb.a "CMakeFiles/stb.dir/third-party/stb/stb_loader.cpp.o"
-/usr/bin/ranlib libstb.a
