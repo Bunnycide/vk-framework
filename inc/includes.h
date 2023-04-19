@@ -41,6 +41,7 @@
 #include "../../third-party/spirv-reflect/spirv_reflect.h"
 #include "utils/spv_reflect_util.h"
 #include "utils/vk_draw_utils.h"
+#include "../inc/utils/resources/image/Texture2D.h"
 #include "GpuRenderPass.h"
-#include "vk_drawsetup.h"
+#include "DrawSetup.h"
 #include "vk_framework.h"

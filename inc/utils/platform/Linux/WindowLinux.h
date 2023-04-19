@@ -11,7 +11,7 @@ class WindowLinux : public Window{
 public:
     WindowLinux(int &width, int &height, const char* name);
 
-    void getWindowSize(int &width, int & height) override;
+    VkExtent2D getWindowSize() override;
     void createWindowSurface(VkInstance) override;
     void deleteWindow() override;
 

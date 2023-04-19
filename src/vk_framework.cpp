@@ -94,15 +94,16 @@ bool FrameWork::InitRenderEngine() {
 
     //// Create frame buffers
     H_createSwapChainFrameBuffers(vulkanInstance.logicalDevice,
-                                  vulkanRender.depthResource,
-                                  vulkanRender.renderPass,
+                                  gpuRenderPass.vulkanRender.depthResource,
+                                  gpuRenderPass.vulkanRender.renderPass,
                                   vulkanSwapChain.swapChainImageViews,
                                   vulkanSwapChain.swapChainFrameBuffers);
+    VkExtent2D size = window.getWindowSize();
+    drawSetup.initDraw(vulkanInstance.logicalDevice,
+                       (int)size.width, (int)size.height, (int)vulkanSwapChain.swapChainImages.size());
 
-    setupSyncObjects();
     setupGeom();
-
-    drawFrame();
+//    recordCommandsAndDraw();
 
     return true;
 }
@@ -129,23 +130,23 @@ void FrameWork::cleanup() {
                          trxCommandPoolInfo.commandPool);
 
     // Destroy Descriptor set data
-    H_destroyDescriptorData(vulkanInstance.logicalDevice, descriptorData);
+    H_destroyDescriptorData(vulkanInstance.logicalDevice, gpuRenderPass.descriptorData);
 
     // Destroy depth resources
-    H_freeImage(vulkanInstance.logicalDevice, vulkanRender.depthResource);
+    H_freeImage(vulkanInstance.logicalDevice, gpuRenderPass.vulkanRender.depthResource);
 
     // Destroy gfx pipeline
     vkDestroyPipelineLayout(vulkanInstance.logicalDevice,
-                            vulkanRender.pipelineLayout,
+                            gpuRenderPass.vulkanRender.pipelineLayout,
                             nullptr);
     // Destroy gfx pipeline
     vkDestroyPipeline(vulkanInstance.logicalDevice,
-                      vulkanRender.gfxPipeline,
+                      gpuRenderPass.vulkanRender.gfxPipeline,
                       nullptr);
 
     // Destroy render pass
     vkDestroyRenderPass(vulkanInstance.logicalDevice,
-                        vulkanRender.renderPass,
+                        gpuRenderPass.vulkanRender.renderPass,
                         nullptr);
 
     // Destroy frame buffers
@@ -174,10 +175,11 @@ void FrameWork::cleanup() {
 }
 
 void FrameWork::draw() {
-    // TODO::Update renderpass here
+
 }
 
 void FrameWork::mainLoop() {
+    drawFrame();
     window.loop(0.0f);
 }
 
@@ -206,11 +208,13 @@ void FrameWork::setupCommandPool(){
 }
 
 void FrameWork::setupSwapChain() {
+    VkExtent2D size = window.getWindowSize();
+
     H_createSwapChain(vulkanInstance.physicalDevice,
                       vulkanInstance.logicalDevice,
                       vulkanSwapChain.surface,
-                      800,
-                      600,
+                      size.width,
+                      size.height,
                       vulkanInstance.queueInfos,
                       vulkanSwapChain.swapchain);
 
@@ -226,82 +230,26 @@ void FrameWork::setupSwapChain() {
                                 surfaceFormat,
                                 vulkanSwapChain.swapChainImages,
                                 vulkanSwapChain.swapChainImageViews);
-
 }
 
 void FrameWork::setupRenderPass() {
 
-    int *width, *height;
+    VkExtent2D size = window.getWindowSize();
 
-    window.getWindowSize(*width, *height);
+    Log::info("Story %d %d", size.width, size.height);
 
     gpuRenderPass.createRenderPass(vulkanInstance.logicalDevice,
                                    vulkanInstance.physicalDevice,
                                    vulkanInstance.physicalDeviceMemoryProperties,
                                    vulkanSwapChain.surfaceFormat,
                                    VkExtent3D{
-                                        width,
-                                        height
+                                           size.width,
+                                           size.height,
+                                           1
                                     },
-            VkCommandBuffer& commandBuffer,
-    const char* vertPath, const char* fragPath);
-
-    Shader shader;
-    shader.compileShader(vulkanInstance.logicalDevice,
-                         "/shaders/shader.vert",
-                         "/shaders/shader.frag");
-
-    VkDescriptorSetLayout layout;;
-
-    H_createDescriptorSetLayout(vulkanInstance.logicalDevice,
-                                shader.layout_bindings,
-                                layout);
-
-    descriptorData.layouts = { layout };
-
-    std::vector<VkDescriptorPoolSize> descPoolSizes =
-            H_extractDescriptorSetTypes(shader.layout_bindings);
-
-    VkFormat depthFormat = H_findDepthFormat(vulkanInstance.physicalDevice);
-
-    H_createDescriptorPool(vulkanInstance.logicalDevice,
-                           descPoolSizes,
-                           1,
-                           VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT,
-                           descriptorData.descriptorPool);
-
-    H_allocateDescriptorSets(vulkanInstance.logicalDevice,
-                             descriptorData.descriptorPool,
-                             descriptorData.layouts,
-                             descriptorData.descriptorSets);
-
-    H_createDepthResources(vulkanInstance.physicalDevice,
-                           vulkanInstance.logicalDevice,
-                           vulkanInstance.physicalDeviceMemoryProperties,
-                           gfxCommandPoolInfo.commandBuffers[0],
-                           VkExtent3D {
-                                   800,
-                                   600,
-                                   1
-                           },
-                           vulkanRender.depthResource);
-
-    H_createPipelineLayout(vulkanInstance.logicalDevice,
-                           vulkanRender.pipelineLayout,
-                           descriptorData.layouts);
-
-    H_createRenderPass(vulkanInstance.logicalDevice,
-                       vulkanSwapChain.surfaceFormat,
-                       depthFormat,
-                       vulkanRender.renderPass);
-
-
-    H_createRenderPipeline(vulkanInstance.logicalDevice,
-                           800.0f, 600.0f,
-                           shader,
-                           vulkanRender.pipelineLayout,
-                           vulkanRender.renderPass,
-                           vulkanRender.gfxPipeline);
+                                    gfxCommandPoolInfo.commandBuffers[0],
+                                   "/shaders/shader.vert",
+                                   "/shaders/shader.frag");
 
 }
 
@@ -349,67 +297,81 @@ void FrameWork::setupGeom(){
                          (void *) indices.data(),
                          vulkanInstance.queueInfos[IDX_TRANSFER].queueFamilyIndex,
                          indexBufferInfo);
+
+    texture.create(vulkanInstance.physicalDevice,
+                   vulkanInstance.logicalDevice,
+                   vulkanInstance.queueInfos[IDX_GRAPHICS].queues[0],
+                   gfxCommandPoolInfo.commandBuffers[1],
+                   vulkanInstance.physicalDeviceMemoryProperties,
+                   "/texture/oasis.png");
 }
 
 void FrameWork::setupSyncObjects(){
-    inFlightFences.resize(vulkanSwapChain.swapChainImages.size());
-    imgAvailSemaphores.resize(vulkanSwapChain.swapChainImages.size());
-    signalSemaphores.resize(vulkanSwapChain.swapChainImages.size());
-
-    for(int i = 0; i < inFlightFences.size(); i++){
-        H_createFence(vulkanInstance.logicalDevice, false, inFlightFences[i]);
-        H_createSemaphore(vulkanInstance.logicalDevice, imgAvailSemaphores[i]);
-        H_createSemaphore(vulkanInstance.logicalDevice, signalSemaphores[i]);
-    }
-}
-
-void FrameWork::drawGeometry(){
 
 }
 
-void FrameWork::drawFrame(){
+void FrameWork::recordCommands(){
+    H_resetCommandBuffer(gfxCommandPoolInfo.commandBuffers[0], false);
+    H_beginCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0],
+                                  VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT);
 
-//    vkAcquireNextImageKHR(vulkanInstance.logicalDevice,
-//                          vulkanSwapChain.swapchain,
-//                          UINT64_MAX,
-//                          VK_NULL_HANDLE,
-//                          VK_NULL_HANDLE,
-//                          &imgIndx);
-//
-//    VkPresentInfoKHR presentInfo {
-///* VkStructureType       */ .sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
-///* const void*           */ .pNext = nullptr,
-///* uint32_t              */ .waitSemaphoreCount = 1,
-///* const VkSemaphore*    */ .pWaitSemaphores = &imgAvailSemaphores[imgIndx],
-///* uint32_t              */ .swapchainCount = 1,
-///* const VkSwapchainKHR* */ .pSwapchains = &vulkanSwapChain.swapchain,
-///* const uint32_t*       */ .pImageIndices = &imgIndx,
-///* VkResult*             */ .pResults = NULL,
-//    };
-//
-//    vkQueuePresentKHR(vulkanInstance.queueInfos[IDX_GRAPHICS].queues[0], &presentInfo);
+    vkCmdBeginRenderPass(gfxCommandPoolInfo.commandBuffers[0],
+                         &drawSetup.renderPassBeginInfo,
+                         VK_SUBPASS_CONTENTS_INLINE);
+
+    vkCmdSetViewport(gfxCommandPoolInfo.commandBuffers[0],
+                     0, 1, &drawSetup.viewport);
+
+    vkCmdSetScissor(gfxCommandPoolInfo.commandBuffers[0],
+                    0, 1, &drawSetup.scissor);
+
+    vkCmdBindVertexBuffers(gfxCommandPoolInfo.commandBuffers[0],
+                           0, 1, &vertexBufferInfo.buffer,
+                           &drawSetup.offset);
+
+    vkCmdBindIndexBuffer(gfxCommandPoolInfo.commandBuffers[0],
+                         indexBufferInfo.buffer,
+                         0,
+                         VK_INDEX_TYPE_UINT16);
+
+    vkCmdBindPipeline(gfxCommandPoolInfo.commandBuffers[0],
+                      VK_PIPELINE_BIND_POINT_GRAPHICS,
+                      gpuRenderPass.vulkanRender.gfxPipeline);
+
+    vkCmdBindDescriptorSets(gfxCommandPoolInfo.commandBuffers[0],
+                            VK_PIPELINE_BIND_POINT_GRAPHICS,
+                            gpuRenderPass.vulkanRender.pipelineLayout,
+                            0,
+                            gpuRenderPass.descriptorData.descriptorSets.size(),
+                            gpuRenderPass.descriptorData.descriptorSets.data(),
+                            0,
+                            nullptr);
+
+    vkCmdDrawIndexed(gfxCommandPoolInfo.commandBuffers[0],
+                     6,
+                     1,
+                     0,
+                     0,
+                     0);
+
+    vkCmdEndRenderPass(gfxCommandPoolInfo.commandBuffers[0]);
+
+    H_endCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0]);
 }
 
-void FrameWork::recordCommands() {
+void FrameWork::drawFrame() {
 
-//    vkCmdBindVertexBuffers(gfxCommandPoolInfo.commandBuffers[0],
-//                           0,
-//                           1,
-//                           &vertexBufferInfo.buffer,
-//                           &offset);
-//
-//    vkCmdBindPipeline(gfxCommandPoolInfo.commandBuffers[0],
-//                      VK_PIPELINE_BIND_POINT_GRAPHICS,
-//                      vulkanRender.gfxPipeline);
-//
-//    vkCmdDrawIndexed(gfxCommandPoolInfo.commandBuffers[0],
-//                     6,
-//                     1,
-//                     0,
-//                     0,
-//                     0);
-//
-//    H_endCommandBufferRecording(gfxCommandPoolInfo.commandBuffers[0]);
+    drawSetup.startDraw(vulkanInstance.logicalDevice,
+                        gpuRenderPass.vulkanRender.renderPass,
+                        vulkanSwapChain.swapChainFrameBuffers,
+                        vulkanSwapChain.swapchain);
+
+    recordCommands();
+
+    drawSetup.endDraw(vulkanInstance.logicalDevice,
+                      vulkanSwapChain.swapchain,
+                      vulkanInstance.queueInfos[IDX_GRAPHICS].queues[0],
+                      gfxCommandPoolInfo.commandBuffers[0]);
 }
 
 

@@ -17,9 +17,11 @@ public:
                           VkExtent3D ,
                           VkCommandBuffer& ,
                           const char* , const char* );
-private:
+
     VulkanRender        vulkanRender{};
     DescriptorData      descriptorData{};
+
+private:
     Shader              shader{};
 };
 

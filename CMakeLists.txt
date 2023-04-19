@@ -70,7 +70,9 @@ add_library(vk_framework ${CMAKE_SOURCE_DIR}/src/vk_framework.cpp
                          ${CMAKE_SOURCE_DIR}/src/platform/${CMAKE_SYSTEM_NAME}/Window${CMAKE_SYSTEM_NAME}.cpp
                          ${CMAKE_SOURCE_DIR}/src/platform/Window.cpp
                          ${CMAKE_SOURCE_DIR}/src/utils/vk_draw_util.cpp
-                         ${CMAKE_SOURCE_DIR}/inc/GpuRenderPass.cpp)
+                         ${CMAKE_SOURCE_DIR}/inc/GpuRenderPass.cpp
+                         ${CMAKE_SOURCE_DIR}/inc/DrawSetup.cpp
+                         ${CMAKE_SOURCE_DIR}/inc/utils/resources/image/Texture2D.cpp)
 
 target_include_directories(vk_framework PUBLIC ${INCLUDE_DIR})
 

@@ -6,9 +6,13 @@
 #include "utils/platform/Linux/WindowLinux.h"
 
 
-void WindowLinux::getWindowSize(int& width, int& height){
-    width = Window::width;
-    height = Window::height;
+VkExtent2D WindowLinux::getWindowSize(){
+    VkExtent2D extent{
+        static_cast<uint32_t>(width),
+        static_cast<uint32_t>(height)
+    };
+
+    return extent;
 }
 
 void WindowLinux::createWindowSurface(VkInstance instance){

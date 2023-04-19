@@ -19,6 +19,11 @@ private:
     CommandPoolInfo gfxCommandPoolInfo;
     CommandPoolInfo trxCommandPoolInfo;
 
+    VkRenderPassBeginInfo renderPassBeginInfo;
+
+    Texture2D texture;
+
+    DrawSetup drawSetup;
     GpuRenderPass gpuRenderPass;
 
     BufferInfo vertexBufferInfo{};
@@ -44,18 +49,6 @@ public:
 #endif
     ~FrameWork();
 
-    // Delete this later
-    uint32_t imgIndx = 0;
-    std::vector<VkFence> inFlightFences;
-    std::vector<VkSemaphore> imgAvailSemaphores;
-    std::vector<VkSemaphore> signalSemaphores;
-
-    std::vector<VkPipelineStageFlags> wait_stages = {
-            VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT
-    };
-
-    // Delete this later
-
     bool InitRenderEngine();
     bool LoadScene(const char* path);
     bool UseRenderType(RenderStyle);
@@ -64,14 +57,12 @@ public:
     void setupSyncObjects();
     void setupGeom();
     void recordCommands();
-    void drawGeometry();
     void drawFrame();
 
     void mainLoop();
 
     void cleanup();
-
-
+    ;
 };
 
 #endif // VK_FRAMEWORK_H

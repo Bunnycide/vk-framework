@@ -51,6 +51,9 @@ struct ImageInfo{
     VkImageUsageFlags imageUsageFlags;
     VkDeviceMemory memoryObj;
     VkMemoryPropertyFlagBits memoryProperties;
+    void* imageData;
+    int imgWidth, imgHeight;
+    uint32_t imgSize;
 };
 
 struct VertexInfo {
